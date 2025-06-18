@@ -7,18 +7,18 @@ public class LogEvento {
     private int ID;
     private Integer ID_Ospite; 
     private Integer ID_Impiegato; 
-    private Integer ID_motivazione; 
+    private Integer ID_Motivazione; 
     private String tipo_utente;
     private String azione;
     private Date data;
     private LocalTime ora;
 
 
-    public LogEvento(int ID, Integer ID_Ospite, Integer ID_Impiegato, Integer ID_motivazione, String tipo_utente, String azione, Date data, LocalTime ora) {
+    public LogEvento(int ID, Integer ID_Ospite, Integer ID_Impiegato, Integer ID_Motivazione, String tipo_utente, String azione, Date data, LocalTime ora) {
         this.ID = ID;
         this.ID_Ospite = ID_Ospite;
         this.ID_Impiegato = ID_Impiegato;
-        this.ID_motivazione = ID_motivazione;
+        this.ID_Motivazione = ID_Motivazione;
         this.tipo_utente = tipo_utente;
         this.azione = azione;
         this.data = data;
@@ -50,11 +50,11 @@ public class LogEvento {
     }
 
     public Integer getID_motivazione() {
-        return ID_motivazione;
+        return ID_Motivazione;
     }
 
     public void setID_motivazione(Integer ID_motivazione) {
-        this.ID_motivazione = ID_motivazione;
+        this.ID_Motivazione = ID_motivazione;
     }
 
     public String getTipo_utente() {

@@ -8,5 +8,22 @@ public class Stato {
         this.ID = ID;
         this.nome = nome;
     }
-    
+
+    //GETTERS
+    public int getID() {
+        return ID;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    //SETTERS
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

@@ -2,8 +2,8 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
 public class Impiegato {
-    private int id;
-    private int idRuolo;
+    private int ID;
+    private int ID_Ruolo;
     private String nome;
     private String cognome;
     private String email;
@@ -11,9 +11,9 @@ public class Impiegato {
     private boolean isEsterno;
 
     // Costruttore completo
-    public Impiegato(int id, int idRuolo, String nome, String cognome, String email, String password, boolean isEsterno) {
-        this.id = id;
-        this.idRuolo = idRuolo;
+    public Impiegato(int ID, int ID_Ruolo, String nome, String cognome, String email, String password, boolean isEsterno) {
+        this.ID = ID;
+        this.ID_Ruolo = ID_Ruolo;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
@@ -22,20 +22,20 @@ public class Impiegato {
     }
 
     // Getter e Setter
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int ID) {
+        this.ID = ID;
     }
 
-    public int getIdRuolo() {
-        return idRuolo;
+    public int getID_Ruolo() {
+        return ID_Ruolo;
     }
 
-    public void setIdRuolo(int idRuolo) {
-        this.idRuolo = idRuolo;
+    public void setID_Ruolo(int ID_Ruolo) {
+        this.ID_Ruolo = ID_Ruolo;
     }
 
     public String getNome() {

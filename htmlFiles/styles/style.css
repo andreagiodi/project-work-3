@@ -1,0 +1,42 @@
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: min-content;
+}
+
+.loginCard {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    padding: 20px;
+    width: 500px;
+}
+
+.loginCard img {
+    border-radius: 100%;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputContainer input {
+    padding: 2vh;
+}
+
+.loginButton {
+    width: 20vh;
+    height: 8vh;
+}
+
+.formFooter {
+    display: block;
+    text-align: center;
+    align-items: center;
+}

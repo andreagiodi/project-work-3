@@ -1,20 +1,20 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
 public class Permesso {
-    private int id;
+    private int ID;
     private String nome;
 
-    public Permesso(int id, String nome) {
-        this.id = id;
+    public Permesso(int ID, String nome) {
+        this.ID = ID;
         this.nome = nome;
     }    
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getNome() {

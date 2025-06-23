@@ -1,22 +1,34 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
-public class Ruolo {
+import java.io.Serializable;
 
-    // Attributi
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    private int id;
+@Entity
+@Table(name = "Ruolo")
+public class Ruolo implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
 
-    // Costruttore
+    public Ruolo() {
+    }
 
-    public Ruolo(int id, String nome) {
-        this.id = id;
+    public Ruolo(String nome) {
         this.nome = nome;
     }
 
-    // Getter
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -24,9 +36,7 @@ public class Ruolo {
         return nome;
     }
 
-    // Setter
-
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,94 +1,123 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
-import java.util.Date;
+import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Date;
 
-public class LogEvento {
-    private int ID;
-    private Integer ID_Ospite; 
-    private Integer ID_Impiegato; 
-    private Integer ID_Motivazione; 
-    private String tipo_utente;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "Log_Evento")
+public class LogEvento implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+
+    @Column(name = "ID_Ospite")
+    private Integer idOspite;
+
+    @Column(name = "ID_Impiegato")
+    private Integer idImpiegato;
+
+    @Column(name = "ID_motivazione")
+    private Integer idMotivazione;
+
+    @Column(name = "tipo_utente", length = 50)
+    private String tipoUtente;
+
+    @Column(name = "azione", length = 100)
     private String azione;
+
+    @Column(name = "data")
+    @Temporal(TemporalType.DATE)
     private Date data;
+
+    @Column(name = "ora")
     private LocalTime ora;
 
+    public LogEvento() {
+    }
 
-    public LogEvento(int ID, Integer ID_Ospite, Integer ID_Impiegato, Integer ID_Motivazione, String tipo_utente, String azione, Date data, LocalTime ora) {
-        this.ID = ID;
-        this.ID_Ospite = ID_Ospite;
-        this.ID_Impiegato = ID_Impiegato;
-        this.ID_Motivazione = ID_Motivazione;
-        this.tipo_utente = tipo_utente;
+    public LogEvento(Integer idOspite, Integer idImpiegato, Integer idMotivazione, String tipoUtente, String azione, Date data, LocalTime ora) {
+        this.idOspite = idOspite;
+        this.idImpiegato = idImpiegato;
+        this.idMotivazione = idMotivazione;
+        this.tipoUtente = tipoUtente;
         this.azione = azione;
         this.data = data;
         this.ora = ora;
     }
 
-    public int getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public Integer getIdOspite() {
+        return idOspite;
     }
 
-    public Integer getID_Ospite() {
-        return ID_Ospite;
+    public Integer getIdImpiegato() {
+        return idImpiegato;
     }
 
-    public void setID_Ospite(Integer ID_Ospite) {
-        this.ID_Ospite = ID_Ospite;
+    public Integer getIdMotivazione() {
+        return idMotivazione;
     }
 
-    public Integer getID_Impiegato() {
-        return ID_Impiegato;
-    }
-
-    public void setID_Impiegato(Integer ID_Impiegato) {
-        this.ID_Impiegato = ID_Impiegato;
-    }
-
-    public Integer getID_motivazione() {
-        return ID_Motivazione;
-    }
-
-    public void setID_motivazione(Integer ID_motivazione) {
-        this.ID_Motivazione = ID_motivazione;
-    }
-
-    public String getTipo_utente() {
-        return tipo_utente;
-    }
-
-    public void setTipo_utente(String tipo_utente) {
-        this.tipo_utente = tipo_utente;
+    public String getTipoUtente() {
+        return tipoUtente;
     }
 
     public String getAzione() {
         return azione;
     }
 
-    public void setAzione(String azione) {
-        this.azione = azione;
-    }
-
     public Date getData() {
         return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public LocalTime getOra() {
         return ora;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setIdOspite(Integer idOspite) {
+        this.idOspite = idOspite;
+    }
+
+    public void setIdImpiegato(Integer idImpiegato) {
+        this.idImpiegato = idImpiegato;
+    }
+
+    public void setIdMotivazione(Integer idMotivazione) {
+        this.idMotivazione = idMotivazione;
+    }
+
+    public void setTipoUtente(String tipoUtente) {
+        this.tipoUtente = tipoUtente;
+    }
+
+    public void setAzione(String azione) {
+        this.azione = azione;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
     public void setOra(LocalTime ora) {
         this.ora = ora;
-    }    
-    
-
-
-} 
+    }
+}

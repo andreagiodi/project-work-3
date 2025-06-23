@@ -1,30 +1,40 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
-public class Tipo_Ospite {
-    private int ID;
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "Tipo_Ospite")
+public class Tipo_Ospite implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+
+    @Column(name = "tipologia", nullable = false, length = 50)
     private String tipologia;
 
-    public Tipo_Ospite(int ID, String tipologia) {
-        this.ID = ID;
+    public Tipo_Ospite() {
+    }
+
+    public Tipo_Ospite(String tipologia) {
         this.tipologia = tipologia;
     }
 
-    //GETTERS
-    public int getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     public String getTipologia() {
         return tipologia;
     }
 
-    //SETTERS
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setTipologia(String tipologia) {
         this.tipologia = tipologia;
     }
-    
 }

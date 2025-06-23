@@ -1,26 +1,43 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
-public class Stato {
-    private int ID;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Stato")
+public class Stato implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
 
-    public Stato(int ID, String nome) {
-        this.ID = ID;
+    public Stato() {
+    }
+
+    public Stato(String nome) {
         this.nome = nome;
     }
 
-    //GETTERS
-    public int getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     public String getNome() {
         return nome;
     }
 
-    //SETTERS
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {

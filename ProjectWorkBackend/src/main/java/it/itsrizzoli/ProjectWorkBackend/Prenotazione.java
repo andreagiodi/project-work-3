@@ -1,23 +1,47 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Prenotazione {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    // Attributi
+@Entity
+@Table(name = "Prenotazione")
+public class Prenotazione implements Serializable {
 
-    private int id;
-    private int idOspite; 
-    private int stato;    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+
+    @Column(name = "ID_Ospite")
+    private Integer idOspite;
+
+    @Column(name = "stato")
+    private Integer stato;
+
+    @Column(name = "entrata")
     private LocalDateTime entrata;
+
+    @Column(name = "uscita")
     private LocalDateTime uscita;
-    private String identificazioneProfessionale; 
+
+    @Column(name = "identificazione_professionale", length = 100)
+    private String identificazioneProfessionale;
+
+    @Column(name = "motivo", length = 255)
     private String motivo;
 
-    // Costruttore
+    public Prenotazione() {
+    }
 
-    public Prenotazione(int idOspite, int stato, LocalDateTime entrata, LocalDateTime uscita,
-                         String identificazioneProfessionale, String motivo) {
+    public Prenotazione(Integer idOspite, Integer stato, LocalDateTime entrata, LocalDateTime uscita,
+                        String identificazioneProfessionale, String motivo) {
         this.idOspite = idOspite;
         this.stato = stato;
         this.entrata = entrata;
@@ -26,17 +50,15 @@ public class Prenotazione {
         this.motivo = motivo;
     }
 
-    // Getters
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public int getIdOspite() {
+    public Integer getIdOspite() {
         return idOspite;
     }
 
-    public int getStato() {
+    public Integer getStato() {
         return stato;
     }
 
@@ -56,17 +78,15 @@ public class Prenotazione {
         return motivo;
     }
 
-    // Setters
-
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setIdOspite(int idOspite) {
+    public void setIdOspite(Integer idOspite) {
         this.idOspite = idOspite;
     }
 
-    public void setStato(int stato) {
+    public void setStato(Integer stato) {
         this.stato = stato;
     }
 

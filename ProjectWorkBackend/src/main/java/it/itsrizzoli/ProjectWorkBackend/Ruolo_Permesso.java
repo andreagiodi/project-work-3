@@ -1,27 +1,60 @@
 package it.itsrizzoli.ProjectWorkBackend;
 
-public class Ruolo_Permesso {
-    private int ID_Ruoli;
-    private int ID_Permessi;
+import java.io.Serializable;
 
-    public Ruolo_Permesso(int ID_Ruoli, int ID_Permessi) {
-        this.ID_Ruoli = ID_Ruoli;
-        this.ID_Permessi = ID_Permessi;
-    }  
-    
-      public int getID_Ruoli() {
-        return ID_Ruoli;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Ruolo_Permesso")
+@IdClass(Ruolo_Permesso.RuoloPermessoId.class)
+public class Ruolo_Permesso implements Serializable {
+
+    @Id
+    @Column(name = "ID_Ruoli")
+    private Integer idRuoli;
+
+    @Id
+    @Column(name = "ID_Permessi")
+    private Integer idPermessi;
+
+    public Ruolo_Permesso() {
     }
 
-    public void setID_Ruoli(int ID_Ruoli) {
-        this.ID_Ruoli = ID_Ruoli;
+    public Ruolo_Permesso(Integer idRuoli, Integer idPermessi) {
+        this.idRuoli = idRuoli;
+        this.idPermessi = idPermessi;
     }
 
-    public int getID_Permessi() {
-        return ID_Permessi;
+    public Integer getIdRuoli() {
+        return idRuoli;
     }
 
-    public void setID_Permessi(int ID_Permessi) {
-        this.ID_Permessi = ID_Permessi;
+    public void setIdRuoli(Integer idRuoli) {
+        this.idRuoli = idRuoli;
+    }
+
+    public Integer getIdPermessi() {
+        return idPermessi;
+    }
+
+    public void setIdPermessi(Integer idPermessi) {
+        this.idPermessi = idPermessi;
+    }
+
+    public static class RuoloPermessoId implements Serializable {
+        private Integer idRuoli;
+        private Integer idPermessi;
+
+        public RuoloPermessoId() {
+        }
+
+        public RuoloPermessoId(Integer idRuoli, Integer idPermessi) {
+            this.idRuoli = idRuoli;
+            this.idPermessi = idPermessi;
+        }
     }
 }

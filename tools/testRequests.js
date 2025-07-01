@@ -119,4 +119,75 @@ const profile = () => {
 }
 
 
+const getAuthProfile = async () => {
+    console.log("🔄 Test Get Auth Profile...");
+    try {
+        const response = await fetch(serverURL + '/auth/profile', {
+            credentials: 'include'
+        });
+        
+        const data = await response.json();
+        console.log("✅ Auth Profile:", response.status, data);
+    } catch (error) {
+        console.error("❌ Errore Auth Profile:", error);
+    }
+}
+
+const getCurrentUser = async () => {
+    console.log("🔄 Test Get Current User...");
+    try {
+        const response = await fetch(serverURL + '/auth/me', {
+            credentials: 'include'
+        });
+        
+        const data = await response.json();
+        console.log("✅ Current User:", response.status, data);
+    } catch (error) {
+        console.error("❌ Errore Current User:", error);
+    }
+}
+
+const checkUserType = async () => {
+    console.log("🔄 Test Check User Type...");
+    try {
+        const response = await fetch(serverURL + '/auth/user-type', {
+            credentials: 'include'
+        });
+        
+        const data = await response.json();
+        console.log("✅ User Type:", response.status, data);
+    } catch (error) {
+        console.error("❌ Errore User Type:", error);
+    }
+}
+
+const checkOspiteAccess = async () => {
+    console.log("🔄 Test Check Ospite Access...");
+    try {
+        const response = await fetch(serverURL + '/auth/check-ospite', {
+            credentials: 'include'
+        });
+        
+        const data = await response.text();
+        console.log("✅ Ospite Access:", response.status, data);
+    } catch (error) {
+        console.error("❌ Errore Ospite Access:", error);
+    }
+}
+
+const checkStaffAccess = async () => {
+    console.log("🔄 Test Check Staff Access...");
+    try {
+        const response = await fetch(serverURL + '/auth/check-staff', {
+            credentials: 'include'
+        });
+        
+        const data = await response.text();
+        console.log("✅ Staff Access:", response.status, data);
+    } catch (error) {
+        console.error("❌ Errore Staff Access:", error);
+    }
+}
+
+
 loginAndrea()

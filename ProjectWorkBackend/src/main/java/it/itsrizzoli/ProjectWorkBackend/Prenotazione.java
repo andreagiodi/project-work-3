@@ -37,17 +37,21 @@ public class Prenotazione implements Serializable {
     @Column(name = "motivo", length = 255)
     private String motivo;
 
+    @Column(name= "data_prenotazione")
+    private LocalDateTime data_prenotazione;
+
     public Prenotazione() {
     }
 
     public Prenotazione(Integer idOspite, Integer stato, LocalDateTime entrata, LocalDateTime uscita,
-                        String identificazioneProfessionale, String motivo) {
+                        String identificazioneProfessionale, String motivo, LocalDateTime data_prenotazione) {
         this.idOspite = idOspite;
         this.stato = stato;
         this.entrata = entrata;
         this.uscita = uscita;
         this.identificazioneProfessionale = identificazioneProfessionale;
         this.motivo = motivo;
+        this.data_prenotazione = data_prenotazione;
     }
 
     public Integer getId() {
@@ -78,6 +82,10 @@ public class Prenotazione implements Serializable {
         return motivo;
     }
 
+    public LocalDateTime getDataPrenotazione() {
+        return data_prenotazione;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -104,5 +112,9 @@ public class Prenotazione implements Serializable {
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+
+    public void setDataPrenotazione(LocalDateTime data_prenotazione) {
+        this.data_prenotazione = data_prenotazione;
     }
 }

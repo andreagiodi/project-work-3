@@ -67,6 +67,7 @@ public class AuthService {
             return null;
         } catch (Exception e) {
             // Token non valido o corrotto
+            System.out.println(e);
             return null;
         }
     }

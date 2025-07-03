@@ -21,9 +21,6 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        // Salva il token in localStorage
-        // localStorage.setItem('token', response.token);
-        // Redirect alla home o dashboard
       },
       error: (error) => {
         console.error('Login failed', error);

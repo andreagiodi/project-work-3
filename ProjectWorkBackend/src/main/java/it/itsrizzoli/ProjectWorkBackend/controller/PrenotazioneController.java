@@ -48,7 +48,6 @@ public class PrenotazioneController {
         }
 
         try {
-            // Crea una nuova prenotazione
             Prenotazione prenotazione = new Prenotazione();
             prenotazione.setIdOspite(user.getUserId());
             prenotazione.setStato(0);
@@ -68,6 +67,7 @@ public class PrenotazioneController {
 
             return ResponseEntity.ok(saved);
         } catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(500).body("Errore durante la creazione della prenotazione: " + e.getMessage());
         }
     }

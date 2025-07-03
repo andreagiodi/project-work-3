@@ -1,1 +1,45 @@
-<p>dashboard-ospite works!</p>
+
+
+<form #loginForm="ngForm" class="login-form" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="data">Data</label>
+        <input
+            type="date"
+            id="data"
+            name="data"
+            [(ngModel)]="data"
+            required
+        />
+    </div>
+    <div>
+        <label for="ora">Ora</label>
+        <input
+            type="time"
+            id="ora"
+            name="ora"
+            [(ngModel)]="ora"
+            required
+        />
+    </div>
+    <div>
+        <label for="identificazioneProfessionale">Identificazione Professionale</label>
+        <input
+            type="text"
+            id="identificazioneProfessionale"
+            name="identificazioneProfessionale"
+            [(ngModel)]="identificazioneProfessionale"
+            required
+        />
+    </div>
+    <div>
+        <label for="motivoVisita">Motivo della visita</label>
+        <input
+            type="text"
+            id="motivoVisita"
+            name="motivoVisita"
+            [(ngModel)]="motivoVisita"
+            required
+        />
+    </div>
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+</form>

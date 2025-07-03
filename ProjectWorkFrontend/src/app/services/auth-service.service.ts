@@ -34,11 +34,12 @@ export class AuthService {
       if (user) {
         
         if (user.userType === 'impiegato') {
-          console.log("klajsdlkajsdlkja")
           this.router.navigate(['/dashboard']);
         } else if (user.userType === 'ospite') {
           this.router.navigate(['/dashboard-ospite']);
         }
+      } else {
+        this.router.navigate(['/']);
       }
     });
 

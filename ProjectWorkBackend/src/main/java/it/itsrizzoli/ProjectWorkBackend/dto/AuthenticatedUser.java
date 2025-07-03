@@ -4,10 +4,12 @@ import it.itsrizzoli.ProjectWorkBackend.Impiegato;
 import it.itsrizzoli.ProjectWorkBackend.Ospite;
 
 public class AuthenticatedUser {
+
     private Object user; // Può essere Ospite o Impiegato
     private String userType; // "ospite" o "impiegato"
 
-    public AuthenticatedUser() {}
+    public AuthenticatedUser() {
+    }
 
     public AuthenticatedUser(Object user, String userType) {
         this.user = user;
@@ -79,6 +81,14 @@ public class AuthenticatedUser {
         } else if (isImpiegato()) {
             Impiegato impiegato = (Impiegato) user;
             return impiegato.getNome() + " " + impiegato.getCognome();
+        }
+        return null;
+    }
+
+    public Integer getUserRoleId() {
+        if (isImpiegato()) {
+            Impiegato impiegato = (Impiegato) user;
+            return impiegato.getIdRuolo(); // Assumendo che esista un metodo getIdRuolo() nella classe Impiegato
         }
         return null;
     }

@@ -27,20 +27,21 @@ public class LoginController {
 
     @Autowired
     private OspiteRepository ospiteRepository;
-    
+
     @Autowired
     private JwtService jwtService;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    //@CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
         Optional<Ospite> ospiteOpt = ospiteRepository.findByEmail(loginRequest.getEmail());
 
         if (ospiteOpt.isEmpty()) {
             Optional<Impiegato> impiegatoOpt = impiegatoRepository.findByEmail(loginRequest.getEmail());
-            
-            if (impiegatoOpt.isEmpty()) { 
+
+            if (impiegatoOpt.isEmpty()) {
                 return ResponseEntity.badRequest().body("Credenziali non valide");
             }
 
@@ -51,16 +52,17 @@ public class LoginController {
             }
 
             String token = jwtService.generateTokenForImpiegato(impiegato.getId());
-            
 
             Cookie sessionCookie = new Cookie("auth_token", token);
-            System.out.println("Token "+ token);
-            sessionCookie.setMaxAge(24 * 60 * 60); 
+            System.out.println("Token " + token);
+            sessionCookie.setMaxAge(24 * 60 * 60);
             sessionCookie.setHttpOnly(true);
             sessionCookie.setPath("/");
+            sessionCookie.setSecure(true);
+
             response.addCookie(sessionCookie);
 
-            impiegato.setPassword(null); 
+            impiegato.setPassword(null);
             return ResponseEntity.ok(impiegato);
         }
 
@@ -71,12 +73,13 @@ public class LoginController {
         }
 
         String token = jwtService.generateTokenForOspite(ospite.getId());
-        
+
         Cookie sessionCookie = new Cookie("auth_token", token);
-        System.out.println("Token "+ token);
+        System.out.println("Token " + token);
         sessionCookie.setMaxAge(24 * 60 * 60);
         sessionCookie.setHttpOnly(true);
         sessionCookie.setPath("/");
+        sessionCookie.setSecure(true);
         response.addCookie(sessionCookie);
 
         ospite.setPassword(null);

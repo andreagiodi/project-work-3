@@ -47,19 +47,19 @@ public class AuthService {
                 return null;
             }
 
-            // Recupera l'utente dal database in base al tipo
+
             if ("ospite".equals(userType)) {
                 Optional<Ospite> ospiteOpt = ospiteRepository.findById(userId);
                 if (ospiteOpt.isPresent()) {
                     Ospite ospite = ospiteOpt.get();
-                    ospite.setPassword(null); // Rimuovi password per sicurezza
+                    ospite.setPassword(null);
                     return new AuthenticatedUser(ospite, "ospite");
                 }
             } else if ("impiegato".equals(userType)) {
                 Optional<Impiegato> impiegatoOpt = impiegatoRepository.findById(userId);
                 if (impiegatoOpt.isPresent()) {
                     Impiegato impiegato = impiegatoOpt.get();
-                    impiegato.setPassword(null); // Rimuovi password per sicurezza
+                    impiegato.setPassword(null); 
                     return new AuthenticatedUser(impiegato, "impiegato");
                 }
             }

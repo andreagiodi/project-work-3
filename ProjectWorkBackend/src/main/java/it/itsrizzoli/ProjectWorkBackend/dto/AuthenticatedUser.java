@@ -88,8 +88,12 @@ public class AuthenticatedUser {
     public Integer getUserRoleId() {
         if (isImpiegato()) {
             Impiegato impiegato = (Impiegato) user;
-            return impiegato.getIdRuolo(); // Assumendo che esista un metodo getIdRuolo() nella classe Impiegato
+            return impiegato.getIdRuolo();
         }
         return null;
+    }
+
+    public boolean isAmministratore() {
+        return isImpiegato() && getUserRoleId() != null && getUserRoleId() == 4;
     }
 }

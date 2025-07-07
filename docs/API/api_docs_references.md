@@ -58,7 +58,12 @@
 
 # Admin
 
-7. "/admin/ospiti"
+7. "/admin/ospiti" ✅
     - **Method**: GET
     - **Description**: Get the list of all registered ospiti.
     - **Response**: JSON array containing the ospiti.
+
+8. "/admin/impiegati" ✅
+    - **Method**: GET
+    - **Description**: Get the list of all registered impiegati.
+    - **Response**: JSON array containing the impiegati.

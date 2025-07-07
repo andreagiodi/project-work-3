@@ -62,7 +62,8 @@ public class LoginController {
 
             response.addCookie(sessionCookie);
 
-            impiegato.setPassword(null);
+
+            //impiegato.setPassword(null); TO FIX; IMPORTANT
             return ResponseEntity.ok(impiegato);
         }
 

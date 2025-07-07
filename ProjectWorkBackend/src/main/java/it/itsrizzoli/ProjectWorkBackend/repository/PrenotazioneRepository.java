@@ -7,4 +7,5 @@ import it.itsrizzoli.ProjectWorkBackend.Prenotazione;
 
 @Repository
 public interface PrenotazioneRepository extends CrudRepository<Prenotazione, Integer> {
+    Iterable<Prenotazione> findByIdOspite(Integer idOspite);
 }

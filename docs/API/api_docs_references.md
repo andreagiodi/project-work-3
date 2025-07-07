@@ -39,7 +39,6 @@
         - `esterno`: boolean, required
     - **Response**: JSON object containing the created staff member.
 
-
 5. "/prenotazione/create" ✅
     - **Method**: POST
     - **Description**: Create a new reservation by the ospite.
@@ -49,3 +48,17 @@
       - `identificazioneProfessionale`: string, required
       - `motivoVisita`: string, required
     - **Response**: JSON object containing the created reservation.
+
+6. "/prenotazione/list" ✅
+    - **Method**: GET
+    - **Description**: Get the list of reservations for the authenticated user.
+    - **Response**: JSON array containing the reservations.
+
+
+
+# Admin
+
+7. "/admin/ospiti"
+    - **Method**: GET
+    - **Description**: Get the list of all registered ospiti.
+    - **Response**: JSON array containing the ospiti.

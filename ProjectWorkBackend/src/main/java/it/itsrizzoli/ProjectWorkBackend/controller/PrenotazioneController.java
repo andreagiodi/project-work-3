@@ -72,6 +72,20 @@ public class PrenotazioneController {
         }
     }
 
+
+    @GetMapping("/list")
+    public ResponseEntity<?> getPrenotazioniByOspite(
+            @CookieValue(value = "auth_token", required = false) String token) {
+
+        AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
+
+        if (user == null) {
+            return ResponseEntity.status(401).body("Non autenticato");
+        }
+
+        return ResponseEntity.ok(prenotazioneRepository.findByIdOspite(user.getUserId()));
+    }
+
     @GetMapping("/all")
     public Iterable<Prenotazione> getAll() {
         return prenotazioneRepository.findAll();

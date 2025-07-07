@@ -50,17 +50,17 @@ public class PrenotazioneController {
         try {
             Prenotazione prenotazione = new Prenotazione();
             prenotazione.setIdOspite(user.getUserId());
-            prenotazione.setStato(0);
+            prenotazione.setStato(1);
 
             LocalDate data = LocalDate.parse(request.getData());
             LocalTime ora = LocalTime.parse(request.getOra());
-            LocalDateTime entrata = LocalDateTime.of(data, ora);
+            LocalDateTime data_prenotazione = LocalDateTime.of(data, ora);
 
-            prenotazione.setEntrata(entrata);
+            prenotazione.setDataPrenotazione(data_prenotazione);
+            prenotazione.setEntrata(null);
             prenotazione.setUscita(null);
             prenotazione.setIdentificazioneProfessionale(request.getIdentificazioneProfessionale());
             prenotazione.setMotivo(request.getMotivoVisita());
-            prenotazione.setDataPrenotazione(LocalDateTime.now());
 
 
             Prenotazione saved = prenotazioneRepository.save(prenotazione);

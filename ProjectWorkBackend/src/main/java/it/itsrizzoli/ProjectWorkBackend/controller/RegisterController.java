@@ -66,15 +66,12 @@ public class RegisterController {
             nuovoOspite.setCodiceFiscale(request.getCodiceFiscale());
             nuovoOspite.setAzienda(request.getAzienda());
             nuovoOspite.setIdTipoOspite(request.getIdTipoOspite());
-            nuovoOspite.setAttivo(true); // Attivo di default
+            nuovoOspite.setAttivo(true);
             
-            // Cripta la password
             nuovoOspite.setPassword(passwordEncoder.encode(request.getPassword()));
 
-            // Salva nel database
             Ospite ospiteSalvato = ospiteRepository.save(nuovoOspite);
 
-            // Rimuovi la password dalla risposta
             ospiteSalvato.setPassword(null);
 
             return ResponseEntity.ok(ospiteSalvato);
@@ -86,7 +83,7 @@ public class RegisterController {
 
     @PostMapping("/staff")
     public ResponseEntity<?> registerImpiegato(@RequestBody RegisterImpiegatoRequest request) {
-        // Validazioni input
+
         if (request.getEmail() == null || request.getEmail().trim().isEmpty()) {
             return ResponseEntity.badRequest().body("Email è obbligatoria");
         }
@@ -103,32 +100,32 @@ public class RegisterController {
             return ResponseEntity.badRequest().body("Cognome è obbligatorio");
         }
 
-        // Verifica se email già esistente
+
         if (impiegatoRepository.existsByEmail(request.getEmail())) {
             return ResponseEntity.badRequest().body("Email già registrata");
         }
 
-        // Verifica se email già usata da un ospite
+
         if (ospiteRepository.existsByEmail(request.getEmail())) {
             return ResponseEntity.badRequest().body("Email già in uso");
         }
 
         try {
-            // Crea nuovo impiegato
+
             Impiegato nuovoImpiegato = new Impiegato();
             nuovoImpiegato.setNome(request.getNome());
             nuovoImpiegato.setCognome(request.getCognome());
             nuovoImpiegato.setEmail(request.getEmail());
-            nuovoImpiegato.setIdRuolo(request.getIdRuolo());
+            nuovoImpiegato.setIdRuolo(null); // INIZIALMENTE NON ASSEGNATO
             nuovoImpiegato.setEsterno(request.isEsterno());
             
-            // Cripta la password
+
             nuovoImpiegato.setPassword(passwordEncoder.encode(request.getPassword()));
 
-            // Salva nel database
+
             Impiegato impiegatoSalvato = impiegatoRepository.save(nuovoImpiegato);
 
-            // Rimuovi la password dalla risposta
+
             impiegatoSalvato.setPassword(null);
 
             return ResponseEntity.ok(impiegatoSalvato);
@@ -153,7 +150,7 @@ public class RegisterController {
         return ResponseEntity.ok("Email disponibile");
     }
 
-    // Classe interna per la validazione email
+
     public static class EmailValidationRequest {
         private String email;
 

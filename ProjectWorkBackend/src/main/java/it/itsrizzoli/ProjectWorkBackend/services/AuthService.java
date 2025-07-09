@@ -52,14 +52,14 @@ public class AuthService {
                 Optional<Ospite> ospiteOpt = ospiteRepository.findById(userId);
                 if (ospiteOpt.isPresent()) {
                     Ospite ospite = ospiteOpt.get();
-                    ospite.setPassword(null);
+                    //ospite.setPassword(null);
                     return new AuthenticatedUser(ospite, "ospite");
                 }
             } else if ("impiegato".equals(userType)) {
                 Optional<Impiegato> impiegatoOpt = impiegatoRepository.findById(userId);
                 if (impiegatoOpt.isPresent()) {
                     Impiegato impiegato = impiegatoOpt.get();
-                    impiegato.setPassword(null); 
+                    //impiegato.setPassword(null); 
                     return new AuthenticatedUser(impiegato, "impiegato");
                 }
             }

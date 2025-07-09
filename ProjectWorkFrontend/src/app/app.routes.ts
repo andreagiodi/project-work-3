@@ -10,6 +10,30 @@ import {
 import {
   RegisterFormEsternoComponent
 } from './componenti/benvenuto/childrenComponents/register-form-esterno/register-form-esterno.component';
+import {ReceptionistViewComponent} from './componenti/receptionist-view/receptionist-view.component';
+import {ReferenteViewComponent} from './componenti/referente-view/referente-view.component';
+import {
+  NuovoAppuntamentoComponent
+} from './componenti/referente-view/childrenComponents/nuovo-appuntamento/nuovo-appuntamento.component';
+import {
+  AppuntamentiSospesoComponent
+} from './componenti/referente-view/childrenComponents/appuntamenti-sospeso/appuntamenti-sospeso.component';
+import {
+  AccettaAppuntamentoComponent
+} from './componenti/referente-view/childrenComponents/accetta-appuntamento/accetta-appuntamento.component';
+import {InfoOspiteComponent} from './componenti/receptionist-view/childrenComponents/info-ospite/info-ospite.component';
+import {
+  StoricoOspiteComponent
+} from './componenti/receptionist-view/childrenComponents/info-ospite/childrenComponents/storico-ospite/storico-ospite.component';
+import {AdminViewComponent} from './componenti/admin-view/admin-view.component';
+import {UtenteComponent} from './componenti/admin-view/childrenComponents/utente/utente.component';
+import {
+  StoricoUtenteComponent
+} from './componenti/admin-view/childrenComponents/utente/childrenComponents/storico-utente/storico-utente.component';
+import {
+  WarningComponent
+} from './componenti/admin-view/childrenComponents/utente/childrenComponents/warning/warning.component';
+import {RichiesteSospesoComponent} from './componenti/richieste-sospeso/richieste-sospeso.component';
 
 export const routes: Routes = [
     {
@@ -43,11 +67,71 @@ export const routes: Routes = [
     {
       path: "interno",
       component:InternoComponent,
-      children: [],
+      children: [
+        {
+          path:"receptionist",
+          component:ReceptionistViewComponent,
+          children: [
+            {
+              path:":idUtente",
+              component:InfoOspiteComponent,
+              children:[
+                {
+                  path:"storico",
+                  component:StoricoOspiteComponent
+                },
+              ]
+            }
+          ]
+        },
+        {
+          path:"referente",
+          component:ReferenteViewComponent,
+          children:[
+            {
+              path:"nuovoAppuntamento",
+              component:NuovoAppuntamentoComponent
+            },
+            {
+              path:"appuntamentoSospeso",
+              component: AppuntamentiSospesoComponent
+            },
+            {
+              path:"accettaAppuntamento",
+              component: AccettaAppuntamentoComponent
+            },
+          ]
+        },
+        {
+          path:"admin",
+          component: AdminViewComponent,
+          children: [
+            {
+              path:":idUtente",
+              component: UtenteComponent,
+              children:[
+                {
+                  path:"storicoUtente",
+                  component:StoricoUtenteComponent
+                },
+                {
+                  path:"warning",
+                  component:WarningComponent
+                },
+              ]
+            },
+          ]
+        },
+      ],
     },
     {
       path: "esterno",
       component:OspiteComponent,
-      children: [],
+      children: [
+        {
+          path:"richiesteSospeso",
+          component:RichiesteSospesoComponent
+        },
+      ],
     },
 ];

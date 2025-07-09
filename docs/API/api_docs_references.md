@@ -73,3 +73,10 @@
     - **Method**: GET
     - **Description**: Get the list of all registered impiegati.
     - **Response**: JSON array containing the impiegati.
+
+- "/impiegati/{id}/ruolo" ✅
+    - **Method**: POST
+    - **Parameters**:
+      - `idRuolo`: integer, required (ID of the role to set)
+    - **Description**: Set a role for a specified impiegato.
+    - **Response**: JSON array containing the impiegati.

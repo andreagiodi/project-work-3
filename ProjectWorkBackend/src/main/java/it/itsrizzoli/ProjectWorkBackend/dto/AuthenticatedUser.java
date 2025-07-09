@@ -5,8 +5,8 @@ import it.itsrizzoli.ProjectWorkBackend.Ospite;
 
 public class AuthenticatedUser {
 
-    private Object user; // Può essere Ospite o Impiegato
-    private String userType; // "ospite" o "impiegato"
+    private Object user; 
+    private String userType;
 
     public AuthenticatedUser() {
     }

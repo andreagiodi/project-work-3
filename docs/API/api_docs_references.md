@@ -1,6 +1,6 @@
 # API Docs References
 
-1. "/login" ✅
+- "/login" ✅
     - **Method**: POST
     - **Description**: Authenticate a user(ospite/impiegato).
     - **Parameters**:
@@ -8,13 +8,13 @@
       - `password`: string, required
     - **Response**: JSON object containing the user and save the cookie in the client.
 
-2. "/auth/me" ✅
+- "/auth/me" ✅
     - **Method**: GET
     - **Description**: Get the authenticated user by checking the cookie.
     - **Response**: JSON object containing the user.
 
 
-3. "/register/ospite" ✅
+- "/register/ospite" ✅
     - **Method**: POST
     - **Description**: Register a new user (ospite).
     - **Parameters**:
@@ -28,7 +28,7 @@
         - `idTipoOspite`: integer, required
     - **Response**: JSON object containing the created user (ospite).
 
-4. "/register/staff" ✅
+-  "/register/staff" ✅
     - **Method**: POST
     - **Description**: Register a new staff member (impiegato).
     - **Parameters**:
@@ -39,7 +39,10 @@
         - `esterno`: boolean, required
     - **Response**: JSON object containing the created staff member.
 
-5. "/prenotazione/create" ✅
+
+# Ospite
+
+- "/prenotazione/create" ✅
     - **Method**: POST
     - **Description**: Create a new reservation by the ospite.
     - **Parameters**:
@@ -49,21 +52,24 @@
       - `motivoVisita`: string, required
     - **Response**: JSON object containing the created reservation.
 
-6. "/prenotazione/list" ✅
+- "/prenotazione/list" ✅
     - **Method**: GET
     - **Description**: Get the list of reservations for the authenticated user.
     - **Response**: JSON array containing the reservations.
 
 
+# Referente - Leo
 
-# Admin
+# Receptionist - Abi
 
-7. "/admin/ospiti" ✅
+# Admin - Andrea
+
+- "/admin/ospiti" ✅
     - **Method**: GET
     - **Description**: Get the list of all registered ospiti.
     - **Response**: JSON array containing the ospiti.
 
-8. "/admin/impiegati" ✅
+- "/admin/impiegati" ✅
     - **Method**: GET
     - **Description**: Get the list of all registered impiegati.
     - **Response**: JSON array containing the impiegati.

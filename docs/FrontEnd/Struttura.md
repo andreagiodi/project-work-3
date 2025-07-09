@@ -14,17 +14,18 @@ Pagine:
         - ElencoSospeso
   - Interno: (NavBar - Pulsanti(per ruoli))
     - Componenti:
-      - ProssimiAppuntamenti (scroll)
-      - UtentiAdmin (scroll)
       - Receptionist-view:
-        - InfoOspite
-        - StroricoOpsite 
+        - ProssimiAppuntamenti (scroll)
+        - InfoOspite:
+          - StroricoOpsite 
       - Referente-view:
+        - ProssimiAppuntamenti (scroll)
         - Bottoni:
           - Appuntamento
           - Sospeso
           - DaAccettare
       - Admin-view:
+        - UtentiAdmin (scroll)
         - Utente:
           - StoricoUtente
           - Warning

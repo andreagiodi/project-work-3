@@ -1,5 +1,5 @@
 Pagine:
-  - Benvenuto: 
+  - Home: 
     - Componenti: 
       - Benvenuto (3 pulsanti: Login, Registrazione interno, Registrazione Esterno) 
         - Loading 
@@ -12,20 +12,19 @@ Pagine:
       - PrenotaAppuntamento(Form)
       - RichiesteSospeso (button)
         - ElencoSospeso
-  - Interno:
-    - NavBar - Pulsanti(per ruoli)
+  - Interno: (NavBar - Pulsanti(per ruoli))
     - Componenti:
       - ProssimiAppuntamenti (scroll)
       - UtentiAdmin (scroll)
-      - Receptionist:
+      - Receptionist-view:
         - InfoOspite
         - StroricoOpsite 
-      - Referente:
+      - Referente-view:
         - Bottoni:
           - Appuntamento
           - Sospeso
           - DaAccettare
-      - Admin:
+      - Admin-view:
         - Utente:
           - StoricoUtente
           - Warning

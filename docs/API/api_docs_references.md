@@ -74,9 +74,17 @@
     - **Description**: Get the list of all registered impiegati.
     - **Response**: JSON array containing the impiegati.
 
-- "/impiegati/{id}/ruolo" ✅
+- "/admin/impiegati/{id}/ruolo" ✅
     - **Method**: POST
     - **Parameters**:
       - `idRuolo`: integer, required (ID of the role to set)
     - **Description**: Set a role for a specified impiegato.
     - **Response**: JSON array containing the impiegati.
+
+- "/admin/{id}/password" 🕒
+    - **Method**: POST
+    - **Parameters**:
+      - `userType`: string, required (Type of the user: "ospite" or "impiegato")
+      - `password`: string, required (new password)
+    - **Description**: Set a new password for a specified user (ospite or impiegato).
+    - **Response**: JSON object containing the updated user.

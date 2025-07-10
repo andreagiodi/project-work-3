@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-benvenuto',
-  imports: [],
+  imports: [
+    RouterOutlet
+  ],
   templateUrl: './benvenuto.component.html',
   styleUrl: './benvenuto.component.css'
 })

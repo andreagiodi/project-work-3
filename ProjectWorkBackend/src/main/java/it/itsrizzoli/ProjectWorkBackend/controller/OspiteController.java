@@ -24,7 +24,6 @@ public class OspiteController {
     @Autowired
     private OspiteRepository ospiteRepository;
 
-    // Aggiungi questa istanza di BCryptPasswordEncoder
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping("/all")
@@ -48,7 +47,9 @@ public class OspiteController {
             return ResponseEntity.badRequest()
                     .body("Email già registrata");
         }
-
+        if (ospite.getPassword() == null || ospite.getPassword().length() < 6) {
+            return ResponseEntity.badRequest().body("Password deve essere di almeno 6 caratteri");
+        }
         ospite.setPassword(passwordEncoder.encode(ospite.getPassword()));
         Ospite nuovoOspite = ospiteRepository.save(ospite);
         nuovoOspite.setPassword(null);
@@ -85,7 +86,6 @@ public class OspiteController {
         ospiteRepository.deleteById(id);
     }
 
-    //utility routes
     @GetMapping("/migrate-passwords")
     public ResponseEntity<?> migratePasswords() {
         Iterable<Ospite> ospiti = ospiteRepository.findAll();

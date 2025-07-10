@@ -5,7 +5,7 @@ import it.itsrizzoli.ProjectWorkBackend.Ospite;
 
 public class AuthenticatedUser {
 
-    private Object user; 
+    private Object user;
     private String userType;
 
     public AuthenticatedUser() {
@@ -95,5 +95,9 @@ public class AuthenticatedUser {
 
     public boolean isAmministratore() {
         return isImpiegato() && getUserRoleId() != null && getUserRoleId() == 4;
+    }
+
+    public boolean isReferente() {// referente
+        return isImpiegato() && getUserRoleId() != null && getUserRoleId() == 2;
     }
 }

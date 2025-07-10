@@ -40,4 +40,5 @@ public class ImpiegatoController {
     public void delete(@PathVariable Integer id) {
         impiegatoRepository.deleteById(id);
     }
+
 }

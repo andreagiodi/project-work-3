@@ -1,3 +1,21 @@
+<p>questo è login component</p>
+
+<div class="containerLogin">
+  <h1>LOGIN</h1>
+  <div class="formWrapper">
+    <img src="" alt="foto profilo default">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
+      <input id="email" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
+      <button type="submit" [disabled]="!loginForm.valid">LOGIN</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!--
 <form #loginForm="ngForm" class="login-form" (ngSubmit)="onSubmit()">
   <div>
     <label for="email">Email</label>
@@ -25,3 +43,4 @@
   </div>
   <button type="submit" [disabled]="!loginForm.valid">Login</button>
 </form>
+-->

@@ -10,14 +10,14 @@ export class AuthService {
 
 
 
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'https://tee-loops-lean-decades.trycloudflare.com';
 
   private userSubject = new BehaviorSubject<any>(null);
   user$ = this.userSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string | null | undefined, password: string | null | undefined): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }, { withCredentials: true });
   }
 
@@ -32,7 +32,7 @@ export class AuthService {
       this.userSubject.next(user);
 
       if (user) {
-        
+
         if (user.userType === 'impiegato') {
           this.router.navigate(['/dashboard']);
         } else if (user.userType === 'ospite') {

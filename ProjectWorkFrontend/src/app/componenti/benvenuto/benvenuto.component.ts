@@ -6,9 +6,9 @@ import {RouterOutlet} from '@angular/router';
   imports: [
     RouterOutlet
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './benvenuto.component.html',
+  styleUrl: './benvenuto.component.css'
 })
-export class HomeComponent {
+export class BenvenutoComponent {
 
 }

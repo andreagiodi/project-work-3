@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   authService = inject(AuthService);
 
   ngOnInit() {
-    this.authService.loadUser();
+    /*this.authService.loadUser();*/
+    console.log("onInitFired, uncomment when ready")
   }
 }

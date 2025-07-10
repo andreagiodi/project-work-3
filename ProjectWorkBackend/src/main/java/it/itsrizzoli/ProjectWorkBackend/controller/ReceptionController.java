@@ -3,7 +3,7 @@ package it.itsrizzoli.ProjectWorkBackend.controller;
 import it.itsrizzoli.ProjectWorkBackend.Ospite;
 import it.itsrizzoli.ProjectWorkBackend.dto.AuthenticatedUser;
 import it.itsrizzoli.ProjectWorkBackend.services.AuthService;
-import it.itsrizzoli.ProjectWorkBackend.services.ReceptionService; 
+import it.itsrizzoli.ProjectWorkBackend.services.ReceptionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +24,7 @@ public class ReceptionController {
     @PostMapping("/ingresso")
     public ResponseEntity<?> registraIngresso(
             @CookieValue(value = "auth_token", required = false) String token,
-            @RequestBody Ospite ospite 
-    ) {
+            @RequestBody Ospite ospite) {
         AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
         if (user == null || !user.isImpiegato()) {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'ingresso");
@@ -38,8 +37,7 @@ public class ReceptionController {
     @PostMapping("/uscita/{id}")
     public ResponseEntity<?> registraUscita(
             @CookieValue(value = "auth_token", required = false) String token,
-            @PathVariable Integer id 
-    ) {
+            @PathVariable Integer id) {
         AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
         if (user == null || !user.isImpiegato()) {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'uscita");
@@ -62,5 +60,23 @@ public class ReceptionController {
 
         List<Ospite> presenti = receptionService.getOspitiPresenti();
         return ResponseEntity.ok(presenti);
+    }
+
+    @PostMapping("/non-presentato/{id}")
+    public ResponseEntity<?> segnaNonPresentato(
+            @CookieValue(value = "auth_token", required = false) String token,
+            @PathVariable Integer id) {
+        AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
+        if (user == null || !user.isImpiegato()) {
+            return ResponseEntity.status(403)
+                    .body("Accesso negato: solo impiegati possono registrare il non presentato");
+        }
+
+        boolean esito = receptionService.segnaNonPresentato(id);
+        if (!esito) {
+            return ResponseEntity.status(404).body("Prenotazione non trovata o già gestita");
+        }
+
+        return ResponseEntity.ok("Prenotazione segnata come non presentato");
     }
 }

@@ -27,7 +27,7 @@ public class ReceptionService {
         Prenotazione prenotazione = new Prenotazione();
         prenotazione.setIdOspite(savedOspite.getId());
         prenotazione.setEntrata(LocalDateTime.now());
-        prenotazione.setStato(1); 
+        prenotazione.setStato(1);
         prenotazioneRepository.save(prenotazione);
 
         return savedOspite;
@@ -38,7 +38,19 @@ public class ReceptionService {
         for (Prenotazione p : prenotazioni) {
             if (p.getStato() != null && p.getStato() == 1 && p.getUscita() == null) {
                 p.setUscita(LocalDateTime.now());
-                p.setStato(2); 
+                p.setStato(2);
+                prenotazioneRepository.save(p);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean segnaNonPresentato(Integer idOspite) {
+        Iterable<Prenotazione> prenotazioni = prenotazioneRepository.findByIdOspite(idOspite);
+        for (Prenotazione p : prenotazioni) {
+            if (p.getStato() != null && p.getStato() == 1 && p.getUscita() == null) {
+                p.setStato(3); // 3 = non presentato
                 prenotazioneRepository.save(p);
                 return true;
             }

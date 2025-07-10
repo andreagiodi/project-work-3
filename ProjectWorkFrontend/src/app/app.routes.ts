@@ -3,36 +3,36 @@ import {HomeComponent} from './pages/home/home.component';
 import {InternoComponent} from './pages/interno/interno.component';
 import {OspiteComponent} from './pages/ospite/ospite.component';
 import {BenvenutoComponent} from './componenti/benvenuto/benvenuto.component';
-import {LoginFormComponent} from './componenti/benvenuto/childrenComponents/login-form/login-form.component';
+import {LoginFormComponent} from './componenti/benvenuto/childCmp/login-form/login-form.component';
 import {
   RegisterFormInternoComponent
-} from './componenti/benvenuto/childrenComponents/register-form-interno/register-form-interno.component';
+} from './componenti/benvenuto/childCmp/register-form-interno/register-form-interno.component';
 import {
   RegisterFormEsternoComponent
-} from './componenti/benvenuto/childrenComponents/register-form-esterno/register-form-esterno.component';
+} from './componenti/benvenuto/childCmp/register-form-esterno/register-form-esterno.component';
 import {ReceptionistViewComponent} from './componenti/receptionist-view/receptionist-view.component';
 import {ReferenteViewComponent} from './componenti/referente-view/referente-view.component';
 import {
   NuovoAppuntamentoComponent
-} from './componenti/referente-view/childrenComponents/nuovo-appuntamento/nuovo-appuntamento.component';
+} from './componenti/referente-view/childCmp/nuovo-appuntamento/nuovo-appuntamento.component';
 import {
   AppuntamentiSospesoComponent
-} from './componenti/referente-view/childrenComponents/appuntamenti-sospeso/appuntamenti-sospeso.component';
+} from './componenti/referente-view/childCmp/appuntamenti-sospeso/appuntamenti-sospeso.component';
 import {
   AccettaAppuntamentoComponent
-} from './componenti/referente-view/childrenComponents/accetta-appuntamento/accetta-appuntamento.component';
-import {InfoOspiteComponent} from './componenti/receptionist-view/childrenComponents/info-ospite/info-ospite.component';
+} from './componenti/referente-view/childCmp/accetta-appuntamento/accetta-appuntamento.component';
+import {InfoOspiteComponent} from './componenti/receptionist-view/childCmp/info-ospite/info-ospite.component';
 import {
   StoricoOspiteComponent
-} from './componenti/receptionist-view/childrenComponents/info-ospite/childrenComponents/storico-ospite/storico-ospite.component';
+} from './componenti/receptionist-view/childCmp/info-ospite/childCmp/storico-ospite/storico-ospite.component';
 import {AdminViewComponent} from './componenti/admin-view/admin-view.component';
-import {UtenteComponent} from './componenti/admin-view/childrenComponents/utente/utente.component';
+import {UtenteComponent} from './componenti/admin-view/childCmp/utente/utente.component';
 import {
   StoricoUtenteComponent
-} from './componenti/admin-view/childrenComponents/utente/childrenComponents/storico-utente/storico-utente.component';
+} from './componenti/admin-view/childCmp/utente/childCmp/storico-utente/storico-utente.component';
 import {
   WarningComponent
-} from './componenti/admin-view/childrenComponents/utente/childrenComponents/warning/warning.component';
+} from './componenti/admin-view/childCmp/utente/childCmp/warning/warning.component';
 import {RichiesteSospesoComponent} from './componenti/richieste-sospeso/richieste-sospeso.component';
 
 export const routes: Routes = [

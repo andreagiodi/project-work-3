@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-interno',
-  imports: [],
+  imports: [
+    RouterOutlet
+  ],
   templateUrl: './interno.component.html',
   styleUrl: './interno.component.css'
 })

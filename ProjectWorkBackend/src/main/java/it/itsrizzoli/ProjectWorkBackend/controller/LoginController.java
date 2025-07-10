@@ -59,9 +59,13 @@ public class LoginController {
             sessionCookie.setHttpOnly(true);
             sessionCookie.setPath("/");
             sessionCookie.setSecure(true);
+            response.setHeader("Set-Cookie",
+                    sessionCookie.getName() + "=" + sessionCookie.getValue()
+                    + "; Max-Age=" + sessionCookie.getMaxAge()
+                    + "; Path=" + sessionCookie.getPath()
+                    + "; HttpOnly; Secure; SameSite=None");
 
-            response.addCookie(sessionCookie);
-
+            //response.addCookie(sessionCookie);
 
             //impiegato.setPassword(null); TO FIX; IMPORTANT
             return ResponseEntity.ok(impiegato);
@@ -76,12 +80,17 @@ public class LoginController {
         String token = jwtService.generateTokenForOspite(ospite.getId());
 
         Cookie sessionCookie = new Cookie("auth_token", token);
-        System.out.println("Token " + token);
-        sessionCookie.setMaxAge(24 * 60 * 60);
-        sessionCookie.setHttpOnly(true);
-        sessionCookie.setPath("/");
-        sessionCookie.setSecure(true);
-        response.addCookie(sessionCookie);
+            System.out.println("Token " + token);
+            sessionCookie.setMaxAge(24 * 60 * 60);
+            sessionCookie.setHttpOnly(true);
+            sessionCookie.setPath("/");
+            sessionCookie.setSecure(true);
+            response.setHeader("Set-Cookie",
+                    sessionCookie.getName() + "=" + sessionCookie.getValue()
+                    + "; Max-Age=" + sessionCookie.getMaxAge()
+                    + "; Path=" + sessionCookie.getPath()
+                    + "; HttpOnly; Secure; SameSite=None");
+        //response.addCookie(sessionCookie);
 
         ospite.setPassword(null);
         return ResponseEntity.ok(ospite);

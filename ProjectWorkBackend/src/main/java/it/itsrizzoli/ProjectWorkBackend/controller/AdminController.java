@@ -2,6 +2,7 @@ package it.itsrizzoli.ProjectWorkBackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.itsrizzoli.ProjectWorkBackend.dto.AuthenticatedUser;
+import it.itsrizzoli.ProjectWorkBackend.dto.SetPasswordRequest;
 import it.itsrizzoli.ProjectWorkBackend.dto.SetRuoloRequest;
 import it.itsrizzoli.ProjectWorkBackend.repository.AdminRepository;
 import it.itsrizzoli.ProjectWorkBackend.services.AuthService;
@@ -24,6 +26,8 @@ public class AdminController {
 
     @Autowired
     private AuthService authService;
+
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping("/ospiti")
     public ResponseEntity<?> getAllOspiti(@CookieValue(value = "auth_token", required = false) String token) {
@@ -67,6 +71,44 @@ public class AdminController {
             return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono modificare i ruoli");
         }
         adminRepository.setImpiegatoRole(id, request.getIdRuolo());
+        return ResponseEntity.ok().build();
+    }
+
+
+    // set ospite password
+    @PostMapping("/ospiti/{id}/password")
+    public ResponseEntity<?> setOspitePassword(
+            @PathVariable("id") Integer id,
+            @RequestBody SetPasswordRequest request,
+            @CookieValue(value = "auth_token", required = false) String token
+    ) {
+        System.out.println(token);
+        AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
+        if (user == null) {
+            return ResponseEntity.status(401).body("Non autenticato");
+        }
+        if (!user.isAmministratore()) {
+            return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono modificare le password");
+        }
+        adminRepository.setOspitePassword(id, passwordEncoder.encode(request.getPassword()));
+        return ResponseEntity.ok().build();
+    }
+
+    // set impiegato password
+    @PostMapping("/impiegati/{id}/password")
+    public ResponseEntity<?> setImpiegatoPassword(
+            @PathVariable("id") Integer id,
+            @RequestBody SetPasswordRequest request,
+            @CookieValue(value = "auth_token", required = false) String token
+    ) {
+        AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
+        if (user == null) {
+            return ResponseEntity.status(401).body("Non autenticato");
+        }
+        if (!user.isAmministratore()) {
+            return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono modificare le password");
+        }
+        adminRepository.setImpiegatoPassword(id, passwordEncoder.encode(request.getPassword()));
         return ResponseEntity.ok().build();
     }
 

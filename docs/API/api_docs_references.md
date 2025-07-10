@@ -121,10 +121,16 @@
     - **Description**: Set a role for a specified impiegato.
     - **Response**: JSON array containing the impiegati.
 
-- "/admin/{id}/password" 🕒
+- "/admin/impiegati/{id}/password" ✅
     - **Method**: POST
     - **Parameters**:
-      - `userType`: string, required (Type of the user: "ospite" or "impiegato")
       - `password`: string, required (new password)
-    - **Description**: Set a new password for a specified user (ospite or impiegato).
+    - **Description**: Set a new password for a specified impiegato.
+    - **Response**: JSON object containing the updated user.
+
+- "/admin/ospiti/{id}/password" ✅
+    - **Method**: POST
+    - **Parameters**:
+      - `password`: string, required (new password)
+    - **Description**: Set a new password for a specified ospite.
     - **Response**: JSON object containing the updated user.

@@ -24,4 +24,14 @@ public interface AdminRepository extends JpaRepository<Impiegato, Integer> {
     @Transactional
     @Query("UPDATE Impiegato i SET i.idRuolo = :idRuolo WHERE i.id = :id")
     void setImpiegatoRole(@Param("id") Integer id, @Param("idRuolo") Integer idRuolo);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Ospite o SET o.password = :password WHERE o.id = :id")
+    void setOspitePassword(@Param("id") Integer id, @Param("password") String password);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Impiegato i SET i.password = :password WHERE i.id = :id")
+    void setImpiegatoPassword(@Param("id") Integer id, @Param("password") String password);
 }

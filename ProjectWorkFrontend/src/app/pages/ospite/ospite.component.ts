@@ -13,8 +13,7 @@ import {
     RouterOutlet,
     PrenotaAppuntamentoComponent,
     ProssimiAppuntamentiComponent,
-    RichiesteSospesoComponent,
-    ElencoSospesoComponent
+    RichiesteSospesoComponent
   ],
   templateUrl: './ospite.component.html',
   styleUrl: './ospite.component.css'

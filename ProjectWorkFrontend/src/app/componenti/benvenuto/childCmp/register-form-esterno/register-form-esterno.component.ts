@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {RegisterService} from '../../../../services/register-service.service';
 
 @Component({
   selector: 'app-register-form-esterno',
@@ -11,6 +12,8 @@ import {AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModul
   styleUrl: './register-form-esterno.component.css'
 })
 export class RegisterFormEsternoComponent {
+  /*injecting register service*/
+  registrationService = inject(RegisterService)
 
   registerEsternoForm= new FormGroup({
     datiAnagrafici: new FormGroup({
@@ -23,21 +26,19 @@ export class RegisterFormEsternoComponent {
       telefono: new FormControl<number|null>(null,[Validators.required, Validators.minLength(10)])
     }),
     azienda: new FormControl('',[Validators.required]),
+    tipoOspite: new FormControl('',[Validators.required]),
 
     passwords: new FormGroup({
       password: new FormControl('',[Validators.required, Validators.minLength(6)]),
       newPassword: new FormControl ('',[Validators.required, Validators.minLength(6)])
-    }, {validators: this.passwordMatch})
+    }, {validators: this.registrationService.passwordMatch})
   })
 
-  passwordMatch(group:AbstractControl){
-    const password = group.get('password')?.value;
-    const confirm = group.get('newPassword')?.value;
-
-    return password===confirm ? null : { passwordMissMatch : true}
-  }
-
+  /*submit form logic*/
   onSubmit(){
     console.log(this.registerEsternoForm.value);
+    if(this.registerEsternoForm.valid){
+      this.registrationService.registerEsterno(this.registerEsternoForm)
+    }
   }
 }

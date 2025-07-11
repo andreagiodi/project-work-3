@@ -8,8 +8,6 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-
-
   private apiUrl = 'https://tee-loops-lean-decades.trycloudflare.com';
 
   private userSubject = new BehaviorSubject<any>(null);

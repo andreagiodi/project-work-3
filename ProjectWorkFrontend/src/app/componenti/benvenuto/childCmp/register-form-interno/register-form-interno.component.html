@@ -7,8 +7,15 @@
       <input id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
       <input id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
       <input id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
-      <input id="password" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
-      <input id="newPasssword" type="password" placeholder="NUOVA PASSWORD" formControlName="newPassword"/> <br/>
+
+      <label for="tipoStaff">SEI ESTERNO?</label>
+      <input id="tipoStaff" name="tipoStaff" type="checkbox" formControlName="tipoStaff"/>
+
+      <div formGroupName="passwords">
+        <input id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password"/> <br/>
+        <input id="newPasssword" type="password" placeholder="RIPETI PASSWORD" formControlName="newPassword"/> <br/>
+      </div>
+
       <button type="submit" [disabled]="!registerInternoForm.valid">REGISTRATI</button>
     </form>
   </div>

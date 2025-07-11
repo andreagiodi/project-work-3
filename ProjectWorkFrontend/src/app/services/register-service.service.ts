@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import {AbstractControl, FormGroup} from '@angular/forms';
 

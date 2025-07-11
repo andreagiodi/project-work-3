@@ -1,1 +1,32 @@
 <p>register-form-esterno works!</p>
+<div class="containerRegisterEst">
+  <h1>CREA ACCOUNT</h1>
+  <div class="regiEstWrapper">
+    <img src="" alt="foto profilo default">
+    <form [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
+
+      <div formGroupName="datiAnagrafici">
+        <h3>DATI ANAGRAFICI</h3>
+        <input id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
+        <input id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
+        <input id="codiceFiscale" type="text" placeholder="CODICE FISCALE" formControlName="codiceFiscale"/> <br/>
+      </div>
+
+      <div formGroupName="contatti">
+        <h3>CONTATTI</h3>
+        <input id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
+        <input id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
+      </div>
+
+      <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
+      <input id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda"/> <br/>
+
+      <div formGroupName="passwords">
+        <h3>PASSWORD</h3>
+        <input id="password" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
+        <input id="newPasssword" type="password" placeholder="NUOVA PASSWORD" formControlName="newPassword"/> <br/>
+      </div>
+      <button type="submit" [disabled]="!registerEsternoForm.valid">LOGIN</button>
+    </form>
+  </div>
+</div>

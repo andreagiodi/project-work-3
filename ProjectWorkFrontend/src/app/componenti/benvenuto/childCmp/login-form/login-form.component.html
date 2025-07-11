@@ -6,7 +6,7 @@
     <img src="" alt="foto profilo default">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <input id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
-      <input id="email" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
+      <input id="passsword" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
       <button type="submit" [disabled]="!loginForm.valid">LOGIN</button>
     </form>
   </div>

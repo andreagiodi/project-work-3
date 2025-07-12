@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private apiUrl = 'https://tee-loops-lean-decades.trycloudflare.com';
+  private apiUrl = 'http://localhost:8080';
 
   private userSubject = new BehaviorSubject<any>(null);
   user$ = this.userSubject.asObservable();
@@ -28,16 +28,14 @@ export class AuthService {
   loadUser() {
     this.checkAuth().subscribe(user => {
       this.userSubject.next(user);
-
       if (user) {
-
         if (user.userType === 'impiegato') {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/interno']);
         } else if (user.userType === 'ospite') {
-          this.router.navigate(['/dashboard-ospite']);
+          this.router.navigate(['/esterno']);
         }
       } else {
-        this.router.navigate(['/']);
+        this.router.navigate(['/benvenuto/login']);
       }
     });
 

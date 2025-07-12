@@ -104,8 +104,12 @@
   --shadow-heavy: var(--shadow-heavy-dark);
 }
 
-.body{
+body{
+  backgroung: var(--surface);
+  background: var(--background-gradient);
+
 }
+
 .AllWrapper{
-  background-color: var(--window);
+  background-color: var(--window)
 }

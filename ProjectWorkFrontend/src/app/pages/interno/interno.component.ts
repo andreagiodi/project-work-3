@@ -10,11 +10,11 @@ import {AuthService} from '../../services/auth-service.service';
   templateUrl: './interno.component.html',
   styleUrl: './interno.component.css'
 })
-export class InternoComponent implements OnInit {
+export class InternoComponent {
   router = inject(Router);
   authService = inject(AuthService);
 
-  ngOnInit() {
+  /*ngOnInit() {
     this.authService.currentUser.subscribe((user: any) => {
       if(user){
         switch (user.idRuolo) {
@@ -37,5 +37,5 @@ export class InternoComponent implements OnInit {
         }
       }
     });
-  }
+  }*/
 }

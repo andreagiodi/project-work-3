@@ -1,4 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+  --green-olive: #94b16f;
+  --green-olive-dark: #6f9145;
+  --green-pistachio: #b3d07f;
+  --green-tea: #beda9d;
+  --green-nyanza: #e4f1d7;
+  --green-hover: #a1c76b;
+  --green-soft: #d9e5be;
+  --green-dark-accent: #9db97c;
+  --gray-gunmetal: #1b2727;
+  --gray-silver: #717274;
+  --gray-border-light: #cbd5c0;
+  --gray-border-dark: #7c9274;
+  --text-white: #ffffff;
+  --text-black: #1b2727;
+  --status-success: #4caf50;
+  --status-warning: #f5a623;
+  --status-error: #d84545;
+  --status-info: #2f80ed;
+  --shadow-light: rgba(27, 39, 39, 0.1);
+  --shadow-heavy: rgba(27, 39, 39, 0.3);
+
+  --background: var(--green-tea);
+  --background-gradient: linear-gradient(45deg,var(--surface) 0%, var(--background) 50%, var(--sidebar) 100%);
+  --surface: var(--green-nyanza);
+  --window: var(--green-pistachio);
+  --sidebar: var(--green-olive);
+
+  --text-primary: var(--gray-gunmetal);
+  --text-secondary: var(--gray-silver);
+  --text-on-primary: var(--text-white);
+  --text-on-secondary: var(--text-black);
+
+  --button-primary-bg: var(--green-olive-dark);
+  --button-primary-text: var(--text-white);
+  --button-secondary-bg: var(--green-soft);
+  --button-secondary-text: var(--text-black);
+  --button-hover: var(--green-hover);
+
+  --border-light: var(--gray-border-light);
+  --border-dark: var(--gray-border-dark);
+
+  /*Feedback colors*/
+  --color-success: var(--status-success);
+  --color-warning: var(--status-warning);
+  --color-error: var(--status-error);
+  --color-info: var(--status-info);
+
+}
+:root[data-theme="dark"] {
+  --background-dark: #1b2727;           /* dark gunmetal */
+  --surface-dark: #263536;              /* slightly lighter than background */
+  --window-dark: #315441;               /* muted dark green */
+  --sidebar-dark: #4a5c3b;              /* darker olive */
+
+  --text-primary-dark: #e4f1d7;         /* light green-nyanza */
+  --text-secondary-dark: #b3d07f;       /* lighter pistachio */
+  --text-on-primary-dark: #1b2727;      /* dark text on light backgrounds */
+  --text-on-secondary-dark: #ffffff;    /* white text on dark backgrounds */
+
+  --button-primary-bg-dark: #6f9145;    /* green-olive-dark */
+  --button-primary-text-dark: #ffffff;  /* white text */
+  --button-secondary-bg-dark: #9db97c;  /* green-dark-accent */
+  --button-secondary-text-dark: #1b2727;/* dark text */
+  --button-hover-dark: #a1c76b;         /* green-hover */
+
+  --color-success-dark: #81c784;        /* lighter success green */
+  --color-warning-dark: #f7b64c;        /* slightly lighter warning */
+  --color-error-dark: #ef5350;          /* lighter error red */
+  --color-info-dark: #56a3f1;           /* lighter info blue */
+
+  --border-light-dark: rgba(255, 255, 255, 0.1); /* translucent white borders */
+  --border-dark-dark: rgba(255, 255, 255, 0.3);
+
+  --shadow-light-dark: rgba(0, 0, 0, 0.1);
+  --shadow-heavy-dark: rgba(0, 0, 0, 0.3);
+
+  --background: var(--background-dark);
+  --surface: var(--surface-dark);
+  --window: var(--window-dark);
+  --sidebar: var(--sidebar-dark);
+
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --text-on-primary: var(--text-on-primary-dark);
+  --text-on-secondary: var(--text-on-secondary-dark);
+
+  --button-primary-bg: var(--button-primary-bg-dark);
+  --button-primary-text: var(--button-primary-text-dark);
+  --button-secondary-bg: var(--button-secondary-bg-dark);
+  --button-secondary-text: var(--button-secondary-text-dark);
+  --button-hover: var(--button-hover-dark);
+
+  --color-success: var(--color-success-dark);
+  --color-warning: var(--color-warning-dark);
+  --color-error: var(--color-error-dark);
+  --color-info: var(--color-info-dark);
+
+  --border-light: var(--border-light-dark);
+  --border-dark: var(--border-dark-dark);
+
+  --shadow-light: var(--shadow-light-dark);
+  --shadow-heavy: var(--shadow-heavy-dark);
+}
+
 .body{
 }
 .AllWrapper{

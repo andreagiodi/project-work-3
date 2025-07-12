@@ -18,14 +18,16 @@
     <p>...</p>
     <h3>MOTIVO DELLA VISITA:</h3>
     <p>...</p>
-    <h3>DATA:</h3>
-    <input type="date">
-    <h3>ORA:</h3>
-    <input type="time">
   </div>
-  <div class="pulsanti">
-    <button>MODIFICA</button>
-    <button>RIFIUTA</button>
-    <button>ACCETTA</button>
-  </div>
+  <form [formGroup]="accettaAppuntamento" (ngSubmit)="onSubmit()">
+      <h3>DATA:</h3>
+      <input id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
+      <h3>ORA:</h3>
+      <input id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
+    <div class="pulsanti">
+      <button>MODIFICA</button>
+      <button>RIFIUTA</button>
+      <button type="submit" [disabled]="!accettaAppuntamento.valid">ACCETTA</button>
+    </div>
+  </form>
 </div>

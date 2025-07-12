@@ -9,7 +9,7 @@ import {AbstractControl, FormGroup} from '@angular/forms';
 })
 export class RegisterService{
 
-  private apiUrl = 'https://tee-loops-lean-decades.trycloudflare.com';
+  private apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient, private router: Router) { }
 
   passwordMatch(group:AbstractControl){

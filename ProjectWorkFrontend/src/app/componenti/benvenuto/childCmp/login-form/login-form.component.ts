@@ -21,10 +21,12 @@ export class LoginFormComponent {
     this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe({
       next: (response) => {
         console.log('Login successful', response);
+        this.authService.loadUser();
       },
       error: (error) => {
         console.error('Login failed', error);
         this.error = 'Login failed. Please check your credentials.';
+        this.authService.loadUser();
       }
     });
   }

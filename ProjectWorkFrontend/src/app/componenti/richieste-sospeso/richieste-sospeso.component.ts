@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {ElencoSospesoComponent} from './childCmp/elenco-sospeso/elenco-sospeso.component';
 import {RouterOutlet} from '@angular/router';
 
 @Component({

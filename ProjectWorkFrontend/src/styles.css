@@ -2,8 +2,14 @@
 @import "./colorPalette.css";
 
 body {
-  backgroung: var(--surface);
+  background: var(--surface);
   background: var(--background-gradient);
+  display: grid;
+  grid-template-areasarea:
+    "header header header",
+  "side1 body side2"
+  "side1  "
+
 
 }
 
@@ -50,5 +56,9 @@ background-color: var(--button-secondary-bg);
 
 .infoAppuntamento{
   background-color: var(--background);
+}
+
+button{
+  cursor: pointer;
 }
 

@@ -39,3 +39,16 @@ body {
   background-color: var(--color-info);
   color: var(--button-primary-text)
 }
+
+.wrappStorico{
+  background-color: var(--button-primary-bg);
+}
+
+.caselleTesto{
+background-color: var(--button-secondary-bg);
+}
+
+.infoAppuntamento{
+  background-color: var(--background);
+}
+

@@ -2,18 +2,18 @@
 <div class="containerRegisterInt">
   <div class="AllWrapper">
     <h1>CREA ACCOUNT</h1>
-    <img src="" alt="foto profilo default">
+    <img class="caselleTesto" src="" alt="foto profilo default">
     <form [formGroup]="registerInternoForm" (ngSubmit)="onSubmit()">
-      <input id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
-      <input id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
-      <input id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
+      <input class="caselleTesto" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
+      <input class="caselleTesto" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
+      <input class="caselleTesto" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
 
       <label for="tipoStaff">SEI ESTERNO?</label>
-      <input id="tipoStaff" name="tipoStaff" type="checkbox" formControlName="tipoStaff"/>
+      <input class="caselleTesto" id="tipoStaff" name="tipoStaff" type="checkbox" formControlName="tipoStaff"/>
 
       <div formGroupName="passwords">
-        <input id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password"/> <br/>
-        <input id="newPasssword" type="password" placeholder="RIPETI PASSWORD" formControlName="newPassword"/> <br/>
+        <input class="caselleTesto" id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password"/> <br/>
+        <input class="caselleTesto" id="newPasssword" type="password" placeholder="RIPETI PASSWORD" formControlName="newPassword"/> <br/>
       </div>
 
       <button type="submit" [disabled]="!registerInternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>

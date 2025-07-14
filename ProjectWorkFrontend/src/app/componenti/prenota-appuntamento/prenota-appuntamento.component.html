@@ -3,14 +3,14 @@
   <h1>PRENOTA APPUNTAMENTO</h1>
   <form [formGroup]="prenotaAppOspite" (ngSubmit)="onSubmit()">
     <h3>Data:</h3>
-    <input id="data" type="date" formControlName="data">
+    <input class="caselleTesto" id="data" type="date" formControlName="data">
     <h3>Ora:</h3>
-    <input id="ora" type="time" formControlName="ora">
+    <input class="caselleTesto" id="ora" type="time" formControlName="ora">
     <h3>Indentificazione professionale:</h3>
-    <input id="professione" type="text" formControlName="professione">
+    <input class="caselleTesto" id="professione" type="text" formControlName="professione">
     <h3>Motivo della visita:</h3>
     <div class="motivo">
-      <textarea id="motivo"  placeholder="Scrivi qui..." formControlName="motivo"></textarea>
+      <textarea class="caselleTesto" id="motivo"  placeholder="Scrivi qui..." formControlName="motivo"></textarea>
     </div>
     <button type="submit" [disabled]="!prenotaAppOspite.valid" class="bottoneVerdeScuro">PrenotaMe</button>
   </form>

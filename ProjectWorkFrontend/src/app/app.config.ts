@@ -6,8 +6,10 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
   ]
 };
+
+export const apiURL = 'https://trap-those-lamb-pumps.trycloudflare.com';

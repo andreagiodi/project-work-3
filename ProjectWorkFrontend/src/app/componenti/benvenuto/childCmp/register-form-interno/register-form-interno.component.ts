@@ -23,11 +23,13 @@ export class RegisterFormInternoComponent {
     passwords: new FormGroup({
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       newPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
-    }, {validators: this.registrationService.passwordMatch})
+    })
   })
 
   onSubmit(){
-    console.log(this.registerInternoForm.value);
-    this.registrationService.registerInterno(this.registerInternoForm);
+    console.log(this.registerInternoForm.valid)
+    if(this.registerInternoForm.valid) {
+      this.registrationService.register(this.registerInternoForm, true);
+    }
   }
 }

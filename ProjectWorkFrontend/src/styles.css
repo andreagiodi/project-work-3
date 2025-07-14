@@ -2,9 +2,7 @@
 @import "./colorPalette.css";
 
 body{
-  backgroung: var(--surface);
   background: var(--background-gradient);
-
 }
 
 .AllWrapper{

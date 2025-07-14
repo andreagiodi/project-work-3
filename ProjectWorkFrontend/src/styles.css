@@ -5,10 +5,10 @@ body {
   background: var(--surface);
   background: var(--background-gradient);
   display: grid;
-  grid-template-areasarea:
+  grid-template-area:
     "header header header",
   "side1 body side2"
-  "side1  "
+  "side1 body side2";
 
 
 }

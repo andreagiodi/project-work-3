@@ -12,7 +12,7 @@ export class RegisterService{
 
   apiURL="https://trap-those-lamb-pumps.trycloudflare.com"
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   passwordMatch(group:AbstractControl){
     const password = group.get('password')?.value;

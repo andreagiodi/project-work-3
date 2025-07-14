@@ -25,9 +25,9 @@
       <h3>ORA:</h3>
       <input id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
     <div class="pulsanti">
-      <button>MODIFICA</button>
-      <button>RIFIUTA</button>
-      <button type="submit" [disabled]="!accettaAppuntamento.valid">ACCETTA</button>
+      <button class="bottoneGiallo">MODIFICA</button>
+      <button class="bottoneRosso">RIFIUTA</button>
+      <button class="bottoneVerdeChiaro" type="submit" [disabled]="!accettaAppuntamento.valid">ACCETTA</button>
     </div>
   </form>
 </div>

@@ -21,9 +21,9 @@
       </div>
 
       <div class="pulsantiInfo">
-        <button>NON PRESENTATO</button>
-        <button>MODIFICA</button>
-        <button type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
+        <button class="bottoneRosso">NON PRESENTATO</button>
+        <button class="bottoneGiallo">MODIFICA</button>
+        <button class="bottoneVerdeChiaro" type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
       </div>
     </form>
     <router-outlet></router-outlet>

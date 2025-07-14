@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { apiURL } from '../app.config';
+import {FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(email: string | null | undefined, password: string | null | undefined): Observable<any> {
+  login(loginForm : FormGroup): Observable<any> {
+    const email :string =loginForm.get('email')?.value;
+    const password :string = loginForm.get('password')?.value;
     return this.http.post(`${apiURL}/login`, { email, password }, { withCredentials: true });
   }
 

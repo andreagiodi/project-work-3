@@ -18,7 +18,7 @@ export class LoginFormComponent {
 
   authService = inject(AuthService);
   onSubmit() {
-    this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe({
+    this.authService.login(this.loginForm).subscribe({
       next: (response) => {
         console.log('Login successful', response);
         this.authService.loadUser();

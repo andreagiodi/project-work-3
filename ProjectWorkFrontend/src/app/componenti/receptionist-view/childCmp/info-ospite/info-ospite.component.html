@@ -8,22 +8,22 @@
     <h3>REFERENTE:...</h3>
     <form [formGroup]="infoOspite" (ngSubmit)="onSubmit()">
 
-      <div formGroupName="ore">
+      <div formGroupName="ore" >
         <h3>ENTRA ORE:</h3>
-        <input id="entarata" type="time" formControlName="entrata">
+        <input class="caselleTesto" id="entarata" type="time" formControlName="entrata">
         <h3>ESCE ORE:</h3>
-        <input id="uscita" type="time" formControlName="uscita">
+        <input class="caselleTesto" id="uscita" type="time" formControlName="uscita">
       </div>
 
       <div class="note">
         <label for="note">Note:</label>
-        <textarea id="note" placeholder="Scrivi qui..." formControlName="note"> </textarea>
+        <textarea class="caselleTesto" id="note" placeholder="Scrivi qui..." formControlName="note"> </textarea>
       </div>
 
       <div class="pulsantiInfo">
-        <button>NON PRESENTATO</button>
-        <button>MODIFICA</button>
-        <button type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
+        <button class="bottoneRosso">NON PRESENTATO</button>
+        <button class="bottoneGiallo">MODIFICA</button>
+        <button class="bottoneVerdeChiaro" type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
       </div>
     </form>
     <router-outlet></router-outlet>

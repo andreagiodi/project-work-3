@@ -1,11 +1,11 @@
 <div class="containerLogin">
   <h1>LOGIN</h1>
   <div class="AllWrapper">
-    <img src="" alt="foto profilo default">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
-      <input id="passsword" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
-      <button type="submit" [disabled]="!loginForm.valid">LOGIN</button>
+    <img class="caselleTesto" src="" alt="foto profilo default">
+    <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input class="caselleTesto" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
+      <input class="caselleTesto" id="passsword" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
+      <button type="submit" [disabled]="!loginForm.valid" class="bottoneVerdeScuro">LOGIN</button>
     </form>
   </div>
 </div>

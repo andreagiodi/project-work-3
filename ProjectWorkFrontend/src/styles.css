@@ -1,10 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./colorPalette.css";
 
-body{
+body {
+  backgroung: var(--surface);
   background: var(--background-gradient);
+
 }
 
-.AllWrapper{
+.AllWrapper {
   background-color: var(--window)
 }
+
+.sideBar {
+  background-color: var(--sidebar);
+}
+
+.bottoneVerdeScuro {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text)
+}
+
+.bottoneVerdeChiaro {
+  background-color: var(--color-success);
+  color: var(--button-primary-text)
+}
+
+.bottoneGiallo {
+  background-color: var(--color-warning);
+  color: var(--button-primary-text)
+}
+
+.bottoneRosso {
+  background-color: var(--color-error);
+  color: var(--button-primary-text)
+}
+
+.bottoneAzzurro {
+  background-color: var(--color-info);
+  color: var(--button-primary-text)
+}
+
+.wrappStorico{
+  background-color: var(--button-primary-bg);
+}
+
+.caselleTesto{
+background-color: var(--button-secondary-bg);
+}
+
+.infoAppuntamento{
+  background-color: var(--background);
+}
+

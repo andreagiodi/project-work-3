@@ -3,25 +3,25 @@
   <form [formGroup]="newAppuntamento" (ngSubmit)="onSubmit()">
     <h1>NUOVO APPUNTAMENTO</h1>
     <h3>CODICE FISCALE:</h3>
-    <input id="codiceFiscale" type="text" placeholder="CODICE FISCALE" formControlName="codiceFiscale"/> <br/>
+    <input class="caselleTesto" id="codiceFiscale" type="text" placeholder="CODICE FISCALE" formControlName="codiceFiscale"/> <br/>
     <h3>COGNOME:</h3>
-    <input id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
+    <input class="caselleTesto" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
     <h3>NOME:</h3>
-    <input id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
+    <input class="caselleTesto" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
     <h3>EMAIL:</h3>
-    <input id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
+    <input class="caselleTesto" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
     <h3>TELEFONO:</h3>
-    <input id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
+    <input class="caselleTesto" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
     <div formGroupName="tempo">
       <h3>DATA:</h3>
-      <input id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
+      <input class="caselleTesto" id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
       <h3>ORA:</h3>
-      <input id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
+      <input class="caselleTesto" id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
     </div>
     <div class="pulsanti">
-      <button>MODIFICA</button>
-      <button>RIFIUTA</button>
-      <button type="submit" [disabled]="!newAppuntamento.valid">ACCETTA</button>
+      <button class="bottoneGiallo">MODIFICA</button>
+      <button class="bottoneRosso">RIFIUTA</button>
+      <button class="bottoneVerdeChiaro" type="submit" [disabled]="!newAppuntamento.valid">ACCETTA</button>
     </div>
   </form>
 </div>

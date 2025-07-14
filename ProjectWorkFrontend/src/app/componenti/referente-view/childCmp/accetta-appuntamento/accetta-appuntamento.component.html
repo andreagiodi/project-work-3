@@ -21,13 +21,13 @@
   </div>
   <form [formGroup]="accettaAppuntamento" (ngSubmit)="onSubmit()">
       <h3>DATA:</h3>
-      <input id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
+      <input class="caselleTesto" id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
       <h3>ORA:</h3>
-      <input id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
+      <input class="caselleTesto" id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
     <div class="pulsanti">
-      <button>MODIFICA</button>
-      <button>RIFIUTA</button>
-      <button type="submit" [disabled]="!accettaAppuntamento.valid">ACCETTA</button>
+      <button class="bottoneGiallo">MODIFICA</button>
+      <button class="bottoneRosso">RIFIUTA</button>
+      <button class="bottoneVerdeChiaro" type="submit" [disabled]="!accettaAppuntamento.valid">ACCETTA</button>
     </div>
   </form>
 </div>

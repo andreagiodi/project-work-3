@@ -12,4 +12,4 @@ export const appConfig: ApplicationConfig = {
   ]
 };
 
-export const apiURL = 'https://trap-those-lamb-pumps.trycloudflare.com';
+export const apiURL = 'https://emperor-macintosh-balanced-notes.trycloudflare.com';

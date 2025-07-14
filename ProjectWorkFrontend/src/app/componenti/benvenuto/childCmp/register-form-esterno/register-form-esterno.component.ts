@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnDestroy} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RegisterService} from '../../../../services/register-service.service';
 
@@ -11,7 +11,7 @@ import {RegisterService} from '../../../../services/register-service.service';
   templateUrl: './register-form-esterno.component.html',
   styleUrl: './register-form-esterno.component.css'
 })
-export class RegisterFormEsternoComponent {
+export class RegisterFormEsternoComponent implements OnDestroy {
   /*injecting register service*/
   registrationService = inject(RegisterService)
 
@@ -34,11 +34,17 @@ export class RegisterFormEsternoComponent {
     }, {validators: this.registrationService.passwordMatch})
   })
 
-  /*submit form logic*/
+  /*submit register Form logic*/
   onSubmit() {
-    console.log(this.registerEsternoForm.value);
     if (this.registerEsternoForm.valid) {
+      //safety unsubscribe in case it already exists
+      this.registrationService.unRegister();
+      //call register for subscription
       this.registrationService.register(this.registerEsternoForm, false);
     }
   }
+  //safety unsubscribe
+  ngOnDestroy(){
+    this.registrationService.unRegister()
+}
 }

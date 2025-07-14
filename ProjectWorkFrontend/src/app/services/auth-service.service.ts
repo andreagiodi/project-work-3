@@ -43,8 +43,9 @@ export class AuthService {
 
   }
 
+  /*return current User logged*/
   get currentUser() {
-    return this.userSubject.value;
+    return this.user$;
   }
 
   isAuthenticated(): boolean {

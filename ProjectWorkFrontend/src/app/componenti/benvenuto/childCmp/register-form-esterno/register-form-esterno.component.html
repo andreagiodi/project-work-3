@@ -1,23 +1,23 @@
-<p>register-form-esterno works!</p>
-<div class="containerRegisterEst">
-  <div class="AllWrapper">
-    <h1>CREA ACCOUNT</h1>
-    <img class="caselleTesto" src="" alt="foto profilo default">
-    <form [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
+<div class="AllWrapper">
+  <h2>CREA ACCOUNT</h2>
+  <img class="caselleTesto" src="" alt="foto profilo default">
+  <form [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()" class="registerForm">
 
-      <div formGroupName="datiAnagrafici">
-        <h3>DATI ANAGRAFICI</h3>
-        <input class="caselleTesto" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
-        <input class="caselleTesto" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
-        <input class="caselleTesto" id="codiceFiscale" type="text" placeholder="CODICE FISCALE" formControlName="codiceFiscale"/> <br/>
-      </div>
+    <div formGroupName="datiAnagrafici" id="datiAnagrafici">
+      <h3>DATI ANAGRAFICI</h3>
+      <input class="caselleTesto" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
+      <input class="caselleTesto" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
+      <input class="caselleTesto" id="codiceFiscale" type="text" placeholder="CODICE FISCALE"
+             formControlName="codiceFiscale"/> <br/>
+    </div>
 
-      <div formGroupName="contatti">
-        <h3>CONTATTI</h3>
-        <input class="caselleTesto" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
-        <input class="caselleTesto" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
-      </div>
+    <div formGroupName="contatti">
+      <h3>CONTATTI</h3>
+      <input class="caselleTesto" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
+      <input class="caselleTesto" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
+    </div>
 
+    <div>
       <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
       <input class="caselleTesto" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda"/> <br/>
       <h3>CHE TIPO DI OSPITE SEI</h3>
@@ -27,13 +27,19 @@
         <option value="3">Esterno</option>
         <option value="4">Cliente</option>
       </select>
+    </div>
 
-      <div formGroupName="passwords">
-        <h3>PASSWORD</h3>
-        <input class="caselleTesto" id="password" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
-        <input class="caselleTesto" id="newPasssword" type="password" placeholder="NUOVA PASSWORD" formControlName="newPassword"/> <br/>
-      </div>
-      <button type="submit" [disabled]="!registerEsternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
-    </form>
-  </div>
+    <div formGroupName="passwords">
+      <h3>PASSWORD</h3>
+      <input class="caselleTesto" id="password" type="password" placeholder="PASSWORD" formControlName="password"/>
+      <br/>
+      <input class="caselleTesto" id="newPasssword" type="password" placeholder="NUOVA PASSWORD"
+             formControlName="newPassword"/> <br/>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!registerEsternoForm.valid" class="bottoneVerdeScuro" id="registratiEst">
+        REGISTRATI
+      </button>
+    </div>
+  </form>
 </div>

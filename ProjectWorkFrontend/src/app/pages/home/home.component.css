@@ -1,0 +1,14 @@
+/*header styling */
+.HomeHeader{
+  height: 15vh;
+}
+.HomeHeader img{
+  height: 100%;
+}
+
+/*grid layout for homeComponent*/
+#homeLayout{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: repeat(auto-fit, 1fr );
+}

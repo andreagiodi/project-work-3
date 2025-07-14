@@ -1,11 +1,9 @@
-<div class="containerLogin">
-  <h1>LOGIN</h1>
-  <div class="AllWrapper">
-    <img class="caselleTesto" src="" alt="foto profilo default">
-    <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div class="childContainer">
+  <h2>LOGIN</h2>
+    <form  class="AllWrapper" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <img class="caselleTesto" src="" alt="foto profilo default">
       <input class="caselleTesto" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
       <input class="caselleTesto" id="passsword" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
       <button type="submit" [disabled]="!loginForm.valid" class="bottoneVerdeScuro">LOGIN</button>
     </form>
-  </div>
 </div>

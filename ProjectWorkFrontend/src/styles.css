@@ -3,12 +3,21 @@
 /*import color palette*/
 @import "./colorPalette.css";
 
+/*importing font*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  /*font settings*/
+  font-family: 'Inter', sans-serif;
+  font-size: 16px; /*NEW: default font-size --> !!1rem unit = font-size defined here!! */
+}
+
 body {
   /*body styling:
     !!!WARNING!!!: styling this will style all body tags, be aware of using body tags
   */
   margin: 0;
-  background-color: var(--background);
+  background-color: var(--background-color);
   background: var(--background-gradient);
   /*setting height and width based on 100% viewport*/
   width: 100vw;
@@ -16,18 +25,54 @@ body {
 }
 
 /*floating green box usually for components*/
-.box{}
+.box{
+  background-color: var(--window);
+  border-radius: var(--border-radius);
+  color: var(--text-primary); /*default text color for texts*/
+  box-shadow: var(--box-shadow); /*adding subtle shadow*/
+}
+
+/*all buttons style these same characteristics, therefore unified in one general tag selector*/
+button{
+  color: var(--button-primary-text);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow); /*subtle shadow*/
+}
 
 /*buttons styling common for all project*/
-.pulsanteVerdeScuro{}
-.pulsanteRosso{}
-.pulsanteGiallo{}
-.pulsanteVerdeChiaro{}
-.pulsanteAzzurro{}
+.primaryButton{
+  /*primaryButton = bottoneVerdeScuro, renamed for clarity*/
+  background-color: var(--button-primary-bg);
+}
+
+/*actions button: success, warning, info, error*/
+.pulsanteVerdeChiaro{
+  background-color: var(--color-success);
+}
+.pulsanteGiallo{
+  background-color: var(--color-warning);
+  }
+.pulsanteAzzurro{
+  background-color: var(--color-info);
+}
+.pulsanteRosso{
+  background-color: var(--color-error);
+}
 
 /*sidabar background with blur*/
-.sfondoSideBar{}
+.sfondoSideBar{
+  height: 100vh; /*height set to whole screen by default*/
+  width: 20vw; /*width set as 1/5 of screen width by default*/
+  background-color: var(--sidebar-bg);
+  box-shadow: var(--custom-bg-blur); /*add the blur effect shown on Figma*/
+  color: var(--text-primary);
+}
 
 /*modified name from caselle --> caselleInput for clarity (caselleInput are input fields of form)*/
-.caselleInput{}
+.caselleInput{
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: var(--input-border);
+  font-size: 0.75rem; /*text in input based on base font-size*/
+}
 

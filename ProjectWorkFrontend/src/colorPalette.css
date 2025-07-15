@@ -1,5 +1,5 @@
 :root {
-  /*GENERAL COLOR PALETTE*/
+/*===GENERAL COLOR PALETTE===*/
   --green-olive: #94b16f;
   --green-olive-dark: #6f9145;
   --green-pistachio: #b3d07f;
@@ -19,18 +19,18 @@
   --light-grey: #F0F0F0; /*NEW --> alternative to pure white*/
   --text-black: #1b2727;
 
-  /*FEEDBACK COLORS*/
+/*===FEEDBACK COLORS===*/
   --status-success: #4caf50;
   --status-warning: #f5a623;
   --status-error: #d84545;
   --status-info: #2f80ed;
 
-  /*SHADOWS*/
+/*===SHADOWS===*/
   --shadow-light: rgba(27, 39, 39, 0.1);
   --shadow-heavy: rgba(27, 39, 39, 0.3);
   --box-shadow: 10px 10px 10px 3px var(--shadow-light); /*NEW --> equivalent to drop shadow in Figma, add this in the
                                                                   BOX-SHADOW CSS property*/
-  /*FUNCTIONAL VARIABLES*/
+/*===FUNCTIONAL VARIABLES===*/
   --background-color: var(--green-tea);
   --background-gradient: linear-gradient(135deg, var(--surface-color) 0%, var(--background-color) 50%, var(--sidebar-bg) 100%);
   --surface-color: var(--green-nyanza);
@@ -41,11 +41,13 @@
   --footbar-bg: var(--green-nyanza); /*NEW --> footbar color*/
   --custom-bg-blur: 30px 0 40px -10px rgba(0, 0, 0, 0.2); /*NEW --> sidebar blur effect applied to BOX-SHADOW CSS property */
 
+  /*texts*/
   --text-primary: var(--gray-gunmetal);
   --text-secondary: var(--gray-silver);
   --text-on-primary: var(--off-white); /*NEW --> changed to pure whites*/
   --text-on-secondary: var(--text-black);
 
+  /*buttons*/
   --button-primary-bg: var(--dark-teal-green); /*NEW --> corrected primary bg color*/
   --button-primary-text: var(--off-white); /*NEW --> changed text color to avoid pure whites*/
   --button-secondary-bg: var(--green-soft);
@@ -55,6 +57,7 @@
   /*Borders*/
   --border-color: var(--gray-silver); /*NEW --> modified border color to match Figma*/
   --input-border: 1px solid var(--border-color); /*NEW --> predefined border style*/
+  --border-radius: 25px;
 
   /*Feedback colors*/
   --color-success: var(--status-success);

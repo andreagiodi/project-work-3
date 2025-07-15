@@ -17,7 +17,10 @@ Componente singolo CSS:
 - ecc...
 
 
-classe = "box" (sfondo quello verde):
+classe = "box" (sfondo quello verde): ->
+{
+background color: --window
+}
 - Benvenuto
 - Login
 - Registrazione
@@ -36,7 +39,11 @@ classe = "box" (sfondo quello verde):
   - Warning
 
 
-classe = "pulsanteVerdeScuro":
+classe = "pulsanteVerdeScuro": ->
+{
+background color: --button-primary-bg
+text: --button-primary-text
+}
 - Benvenuto:
   - LOGIN
   - REGISTRAZIONE INTERNO
@@ -58,7 +65,11 @@ classe = "pulsanteVerdeScuro":
   - Receptionist
 
 
-classe = "pulsanteRosso":
+classe = "pulsanteRosso": ->
+{
+background color: --color-error,
+text: --button-primary-text
+}
 - Receptionist: 
   - NON PRESENTATO
 - Referente: 
@@ -69,7 +80,11 @@ classe = "pulsanteRosso":
   - ANNULLA (Warning)
 
 
-classe = "pulsanteGiallo"
+classe = "pulsanteGiallo" ->
+{
+background color: --color-warning,
+text: --button-primary-text
+}
 - Receptionist:
  - MODIFICA (info opsite)
 - Referente:
@@ -80,7 +95,11 @@ classe = "pulsanteGiallo"
   - MODIFICA (Utente)
 
 
-classe = "pulsanteVerdeChiaro"
+classe = "pulsanteVerdeChiaro" ->
+{
+background color: --color-success,
+text: --button-primary-text
+}
 - Receptionist:
   - APLLICA (info opsite)
 - Referente:
@@ -91,14 +110,21 @@ classe = "pulsanteVerdeChiaro"
   - CONFERMA (Warning)
 
 
-classe = "pulsanteAzzurro"
+classe = "pulsanteAzzurro" ->
+{
+background color: --color-info,
+text: --button-primary-text
+}
 - Referente:
   - APPUNTAMENTI IN SOSPESO
 - Admin:
   - STORICO UTENTE (Utente)
 
 
-classe = "sfondoSideBar"
+classe = "sfondoSideBar" ->
+{
+background color:--sidebar
+}
 - Prossimi appuntamenti
 - Admin:
   -Utenti
@@ -106,7 +132,10 @@ classe = "sfondoSideBar"
  - Appuntamenti in Sospeso (i box)
 
 
-classe = "caselle"
+classe = "caselle"->
+{
+background color:--button-secondary-bg
+}
 - Login:
   - IMG
   - Email

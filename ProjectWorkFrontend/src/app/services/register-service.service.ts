@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {AbstractControl, FormGroup} from '@angular/forms';
 import {apiURL} from '../app.config';
 import {Router} from '@angular/router';
@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class RegisterService{
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -30,7 +30,7 @@ export class RegisterService {
     const idTipoOspite: number = formData.get('tipoOspite')?.value;
     const password: string = formData.get('passwords')?.get('password')?.value;
 
-    return this.http.post(`${apiURL}/register/staff`, {
+    return this.http.post(`${apiURL}/register/ospite`, {
       nome,
       cognome,
       email,
@@ -58,21 +58,29 @@ export class RegisterService {
     }, {withCredentials: true});
   }
 
+  /*general subscription*/
+  subscription?: Subscription;
   register(formInput: FormGroup, isInterno: Boolean) {
     if (isInterno) {
+      //register interno staff
       console.log('registrazione interno in corso....')
-        this.registerInterno(formInput).subscribe({
+        //subscribe for post
+        this.subscription = this.registerInterno(formInput).subscribe({
           next: () => {
             console.log('register successful');
             this.router.navigate(['/benvenuto/login']);
           }, error: (error) => {
             console.error("registration error: ", error);
+          }, complete: ()=>{
+
           }
         }
       );
     } else {
+      //register esterno opsite
       console.log('registrazione esterno in corso....')
-        this.registerEsterno(formInput).subscribe({
+      //subscribe for post
+      this.subscription = this.registerEsterno(formInput).subscribe({
           next: () => {
             console.log('register successful');
             this.router.navigate(['/benvenuto/login']);
@@ -82,4 +90,9 @@ export class RegisterService {
         });
       }
     }
+
+    /*unsubscribe to call on destroying of components using service*/
+  unRegister(){
+    this.subscription?.unsubscribe();
+  }
 }

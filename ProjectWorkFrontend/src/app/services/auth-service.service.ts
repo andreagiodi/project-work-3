@@ -1,53 +1,58 @@
-import { Injectable } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, take } from 'rxjs';
 import { Router } from '@angular/router';
 import { apiURL } from '../app.config';
-import {FormGroup} from '@angular/forms';
+import {User, LoginRequest} from '../modelli/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  //current logged user
+  private user = signal<User | null>(null);
+  //flag for authenticated, false = not authed true = authed
+  isAuthenticated = computed(() => !!this.user());
 
-  private userSubject = new BehaviorSubject<any>(null);
-  user$ = this.userSubject.asObservable();
+  constructor(private http: HttpClient, private router: Router) {}
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-  login(loginForm : FormGroup): Observable<any> {
-    const email :string =loginForm.get('email')?.value;
-    const password :string = loginForm.get('password')?.value;
-    return this.http.post(`${apiURL}/login`, { email, password }, { withCredentials: true });
+  /*send a POST request for login, passing a custom LoginRequest type, defined in user.model */
+  login(credentials:LoginRequest): Observable<User> {
+    return this.http.post<User>(`${apiURL}/login`, credentials, { withCredentials: true });
   }
 
-  checkAuth(): Observable<any> {
-    return this.http.get(`${apiURL}/auth/me`, { withCredentials: true }).pipe(
-      catchError(() => of(null))
-    );
+  /*check user token*/
+  checkAuth(): Observable<User | null> {
+    return this.http.get<User>(`${apiURL}/auth/me`, { withCredentials: true })
+      .pipe(catchError(() => of(null)));
   }
 
+  /*load user handles the current user set / redirect to correct page*/
   loadUser() {
-    this.checkAuth().subscribe(user => {
-      this.userSubject.next(user);
-      if (user) {
-        if (user.userType === 'impiegato') {
-          this.router.navigate(['/interno']);
-        } else if (user.userType === 'ospite') {
-          this.router.navigate(['/esterno']);
-        }
-      } else {
-        this.router.navigate(['/benvenuto/login']);
-      }
+    this.checkAuth().pipe(take(1)).subscribe(user => {
+      this.user.set(user); // set logged user
+      this.redirectUser(user); //external method handles redirect
     });
-
   }
 
-  get currentUser() {
-    return this.userSubject.value;
+  /*redirect user function*/
+  private redirectUser(user: User | null): void {
+    //if user is null or not logged in, redirect to login page
+    if (!user) {
+      this.router.navigate(['/benvenuto/login']);
+      return;
+    }
+    //define a map to allow redirecting based on userType
+    const routeMap = {
+      impiegato: '/interno',
+      ospite: '/esterno'
+    };
+    //user redirection
+    this.router.navigate([routeMap[user.userType]]);
   }
 
-  isAuthenticated(): boolean {
-    return !!this.currentUser;
+
+  getCurrentUser() {
+    return this.user.asReadonly();
   }
 }

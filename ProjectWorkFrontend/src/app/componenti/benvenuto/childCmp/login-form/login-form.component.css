@@ -1,0 +1,13 @@
+h2{
+  text-align: center;
+}
+
+.AllWrapper{
+  padding:32px;
+  display:flex;
+  flex-direction: column;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
+

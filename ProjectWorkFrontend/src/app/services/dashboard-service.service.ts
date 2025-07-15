@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
+import {apiURL} from '../app.config';
+import {BehaviorSubject, Observable, catchError, of, Subscription} from 'rxjs';
+import {FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardServiceService {
-
-  private apiUrl = 'http://localhost:8080';
+export class DashboardService{
 
   constructor(private http: HttpClient) { }
 
-  createPrenotazione(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/prenotazione/create`, {}, { withCredentials: true });
+  createPrenotazione(formPre: FormGroup): Observable<any> {
+    return this.http.post(`${apiURL}/prenotazione/create`, {}, { withCredentials: true });
   }
 }

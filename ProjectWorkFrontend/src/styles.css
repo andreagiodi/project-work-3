@@ -40,8 +40,7 @@ button{
 }
 
 /*buttons styling common for all project*/
-.primaryButton{
-  /*primaryButton = bottoneVerdeScuro, renamed for clarity*/
+.pulsanteVerdeScuro{
   background-color: var(--button-primary-bg);
 }
 
@@ -69,7 +68,7 @@ button{
 }
 
 /*modified name from caselle --> caselleInput for clarity (caselleInput are input fields of form)*/
-.caselleInput{
+.caselle{
   background-color: var(--button-secondary-bg);
   color: var(--button-secondary-text);
   border: var(--input-border);

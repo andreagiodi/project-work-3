@@ -1,54 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*import color palette*/
 @import "./colorPalette.css";
 
 body {
-  backgroung: var(--surface);
-  background: var(--background-gradient);
-
-}
-
-.AllWrapper {
-  background-color: var(--window)
-}
-
-.sideBar {
-  background-color: var(--sidebar);
-}
-
-.bottoneVerdeScuro {
-  background-color: var(--button-primary-bg);
-  color: var(--button-primary-text)
-}
-
-.bottoneVerdeChiaro {
-  background-color: var(--color-success);
-  color: var(--button-primary-text)
-}
-
-.bottoneGiallo {
-  background-color: var(--color-warning);
-  color: var(--button-primary-text)
-}
-
-.bottoneRosso {
-  background-color: var(--color-error);
-  color: var(--button-primary-text)
-}
-
-.bottoneAzzurro {
-  background-color: var(--color-info);
-  color: var(--button-primary-text)
-}
-
-.wrappStorico{
-  background-color: var(--button-primary-bg);
-}
-
-.caselleTesto{
-background-color: var(--button-secondary-bg);
-}
-
-.infoAppuntamento{
+  /*body styling:
+    !!!WARNING!!!: styling this will style all body tags, be aware of using body tags
+  */
+  margin: 0;
   background-color: var(--background);
+  background: var(--background-gradient);
+  /*setting height and width based on 100% viewport*/
+  width: 100vw;
+  height: 100vh;
 }
+
+/*floating green box usually for components*/
+.box{}
+
+/*buttons styling common for all project*/
+.pulsanteVerdeScuro{}
+.pulsanteRosso{}
+.pulsanteGiallo{}
+.pulsanteVerdeChiaro{}
+.pulsanteAzzurro{}
+
+/*sidabar background with blur*/
+.sfondoSideBar{}
+
+/*modified name from caselle --> caselleInput for clarity (caselleInput are input fields of form)*/
+.caselleInput{}
 

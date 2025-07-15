@@ -34,6 +34,7 @@ import {
   WarningComponent
 } from './componenti/admin-view/childCmp/utente/childCmp/warning/warning.component';
 import {RichiesteSospesoComponent} from './componenti/richieste-sospeso/richieste-sospeso.component';
+import {ElencoSospesoComponent} from './componenti/richieste-sospeso/childCmp/elenco-sospeso/elenco-sospeso.component';
 
 export const routes: Routes = [
     {
@@ -130,7 +131,7 @@ export const routes: Routes = [
       children: [
         {
           path:"richiesteSospeso",
-          component:RichiesteSospesoComponent
+          component:ElencoSospesoComponent
         },
       ],
     },

@@ -1,16 +1,16 @@
 <p>prenota-appuntamento works!</p>
-<div class="AllWrapper">
+<div class="box">
   <h1>PRENOTA APPUNTAMENTO</h1>
   <form [formGroup]="prenotaAppOspite" (ngSubmit)="onSubmit()">
     <h3>Data:</h3>
-    <input class="caselleTesto" id="data" type="date" formControlName="data">
+    <input class="caselle" id="data" type="date" formControlName="data">
     <h3>Ora:</h3>
-    <input class="caselleTesto" id="ora" type="time" formControlName="ora">
+    <input class="caselle" id="ora" type="time" formControlName="ora">
     <h3>Indentificazione professionale:</h3>
-    <input class="caselleTesto" id="professione" type="text" formControlName="professione">
+    <input class="caselle" id="professione" type="text" formControlName="professione">
     <h3>Motivo della visita:</h3>
     <div class="motivo">
-      <textarea class="caselleTesto" id="motivo"  placeholder="Scrivi qui..." formControlName="motivo"></textarea>
+      <textarea class="caselle" id="motivo"  placeholder="Scrivi qui..." formControlName="motivo"></textarea>
     </div>
     <button type="submit" [disabled]="!prenotaAppOspite.valid" class="bottoneVerdeScuro">PrenotaMe</button>
   </form>

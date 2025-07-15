@@ -37,6 +37,7 @@ button{
   color: var(--button-primary-text);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow); /*subtle shadow*/
+  border:none; /*resetting default border*/
 }
 
 /*buttons styling common for all project*/

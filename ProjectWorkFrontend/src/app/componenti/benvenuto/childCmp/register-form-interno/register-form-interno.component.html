@@ -1,22 +1,21 @@
-<div class="AllWrapper">
-  <h2>CREA ACCOUNT</h2>
-  <img class="caselleTesto" src="" alt="foto profilo default">
-  <form [formGroup]="registerInternoForm" (ngSubmit)="onSubmit()">
-    <input class="caselleTesto" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
-    <input class="caselleTesto" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
-    <input class="caselleTesto" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
+<p>register-form-interno works!</p>
+<div class="principale">
+  <div class="box">
+    <h1>CREA ACCOUNT</h1>
+    <form [formGroup]="registerInternoForm" (ngSubmit)="onSubmit()">
+      <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
+      <input class="caselle" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
+      <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
 
-    <label for="tipoStaff">SEI ESTERNO?</label>
-    <input class="caselleTesto" id="tipoStaff" name="tipoStaff" type="checkbox" formControlName="tipoStaff"/>
+      <label for="tipoStaff">SEI ESTERNO?</label>
+      <input class="caselle" id="tipoStaff" name="tipoStaff" type="checkbox" formControlName="tipoStaff"/>
 
-    <div formGroupName="passwords">
-      <input class="caselleTesto" id="password" type="password" placeholder="INSERISCI PASSWORD"
-             formControlName="password"/> <br/>
-      <input class="caselleTesto" id="newPasssword" type="password" placeholder="RIPETI PASSWORD"
-             formControlName="newPassword"/> <br/>
-    </div>
+      <div formGroupName="passwords">
+        <input class="caselle" id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password"/> <br/>
+        <input class="caselle" id="newPasssword" type="password" placeholder="RIPETI PASSWORD" formControlName="newPassword"/> <br/>
+      </div>
 
-    <button type="submit" [disabled]="!registerInternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
-  </form>
+      <button type="submit" [disabled]="!registerInternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
+    </form>
+  </div>
 </div>
-

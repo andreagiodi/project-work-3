@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
+import {AuthService} from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-benvenuto',
@@ -10,5 +11,6 @@ import {RouterOutlet} from '@angular/router';
   styleUrl: './benvenuto.component.css'
 })
 export class BenvenutoComponent {
-
+  private authService = inject(AuthService);
+  /*note for Luck: add the redirect to user page if cookie exist*/
 }

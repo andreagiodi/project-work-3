@@ -2,17 +2,26 @@
 @import "./colorPalette.css";
 
 body {
-  backgroung: var(--surface);
+  background: var(--surface);
   background: var(--background-gradient);
+  /*background-repeat: no-repeat;*/
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+}
 
+.outletWrapper{
+  height: 100vh;
 }
 
 .AllWrapper {
-  background-color: var(--window)
+  background-color: var(--window);
+  border-radius: 25px;
 }
 
 .sideBar {
   background-color: var(--sidebar);
+  border-radius: 25px;
 }
 
 .bottoneVerdeScuro {
@@ -40,15 +49,30 @@ body {
   color: var(--button-primary-text)
 }
 
-.wrappStorico{
+.wrappStorico {
   background-color: var(--button-primary-bg);
+  border-radius: 25px;
 }
 
-.caselleTesto{
-background-color: var(--button-secondary-bg);
+.caselleTesto {
+  background-color: var(--button-secondary-bg);
+  border-radius: 25px;
 }
 
-.infoAppuntamento{
+.infoAppuntamento {
   background-color: var(--background);
+  border-radius: 25px;
 }
+
+button{
+  border-radius: 25px;
+  cursor:pointer;
+}
+
+h1{
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+
 

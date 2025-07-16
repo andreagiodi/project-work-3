@@ -13,13 +13,7 @@ export class RegisterService{
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  passwordMatch(group: AbstractControl) {
-    const password = group.get('password')?.value;
-    const confirm = group.get('newPassword')?.value;
-
-    return password === confirm ? null : {passwordMissMatch: true}
-  }
-
+  /*NOTE: modify according to auth service!!!!!! (use the types already set in user.models)*/
   registerEsterno(formData: FormGroup): Observable<any> {
     const nome: string = formData.get('datiAnagrafici')?.get('nome')?.value;
     const cognome: string = formData.get('datiAnagrafici')?.get('cognome')?.value;

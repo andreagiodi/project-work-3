@@ -51,7 +51,6 @@ export class AuthService {
     this.router.navigate([routeMap[user.userType]]);
   }
 
-
   getCurrentUser() {
     return this.user.asReadonly();
   }

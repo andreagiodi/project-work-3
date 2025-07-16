@@ -16,11 +16,19 @@ export function strongPassword():ValidatorFn{
     return pswdRegex.test(password.value) ? null : {weakPassword: true};
   }
 }
-
+/*phone number Validation*/
 export function phoneNumber():ValidatorFn{
   return (telefono: AbstractControl):ValidationErrors  | null =>{
     /*validates any type of phone numbers ALSO with delimiters such as space, dots, ecc*/
     const phoneRegex:RegExp = /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
     return phoneRegex.test(telefono.value) ? null : {invalidPhone: true}
+  }
+}
+/*codice fiscale validation*/
+export function codiceFiscale():ValidatorFn{
+  return (codiceFisc: AbstractControl):ValidationErrors  | null =>{
+    /*validates any type of phone numbers ALSO with delimiters such as space, dots, ecc*/
+    const CFRegex:RegExp = /^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$/
+    return CFRegex.test(codiceFisc.value) ? null : {invalidPhone: true}
   }
 }

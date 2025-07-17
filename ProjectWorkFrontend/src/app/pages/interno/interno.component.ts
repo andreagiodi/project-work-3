@@ -15,7 +15,6 @@ export class InternoComponent{
   authService = inject(AuthService);
   /*logout function call*/
   logOutFunc(){
-    console.log(this.authService.logout())
     this.authService.logout();
   }
 }

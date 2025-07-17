@@ -34,11 +34,12 @@ body {
 
 /*all buttons style these same characteristics, therefore unified in one general tag selector*/
 button{
+  justify-content: center;
   color: var(--button-primary-text);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow); /*subtle shadow*/
   border:none; /*resetting default border*/
-  cursor: pointer; /*cursor pointer*/
+  cursor:pointer; /*cursor pointer*/
 }
 
 /*buttons styling common for all project*/

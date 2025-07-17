@@ -2,12 +2,42 @@ h2{
   text-align: center;
 }
 
-.AllWrapper{
-  padding:32px;
-  margin-top: 30px;
-  display:flex;
+.box {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
   border: 1px solid black;
+  border-radius: 25px;
+  margin:5%
+
 }
+
+.caselle {
+  padding:3%;
+  margin:2%;
+  border-radius: 25px;
+
+}
+
+img {
+  border-radius: 100%;
+}
+
+button {
+  margin:5%;
+  padding:8%;
+}
+
+.registerInternoForm div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin:3%
+}
+
+
+

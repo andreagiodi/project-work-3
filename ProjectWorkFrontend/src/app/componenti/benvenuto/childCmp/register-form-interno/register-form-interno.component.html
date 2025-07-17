@@ -1,8 +1,7 @@
-<p>register-form-interno works!</p>
 <div class="principale">
   <div class="box">
     <h1>CREA ACCOUNT</h1>
-    <form [formGroup]="registerInternoForm" (ngSubmit)="onSubmit()">
+    <form class="registerInternoForm" [formGroup]="registerInternoForm" (ngSubmit)="onSubmit()">
       <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
       <input class="caselle" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
       <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
@@ -11,11 +10,14 @@
       <input class="caselle" id="tipoStaff" name="tipoStaff" type="checkbox" formControlName="tipoStaff"/>
 
       <div formGroupName="passwords">
-        <input class="caselle" id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password"/> <br/>
-        <input class="caselle" id="newPasssword" type="password" placeholder="RIPETI PASSWORD" formControlName="newPassword"/> <br/>
+        <input class="caselle" id="password" type="password" placeholder="INSERISCI PASSWORD"
+               formControlName="password"/>
+        <input class="caselle" id="newPasssword" type="password" placeholder="RIPETI PASSWORD"
+               formControlName="newPassword"/>
       </div>
-
-      <button type="submit" [disabled]="!registerInternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
+      <div class="pulsanti">
+        <button type="submit" [disabled]="!registerInternoForm.valid" class="pulsanteVerdeScuro">REGISTRATI</button>
+      </div>
     </form>
   </div>
 </div>

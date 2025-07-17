@@ -109,18 +109,11 @@ export const routes: Routes = [
             {
               path:":idUtente",
               component: UtenteComponent,
-              children:[
-                {
-                  path:"storicoUtente",
-                  component:StoricoUtenteComponent,
-                  outlet:"storicoUt"
-                },
-                {
-                  path:"warning",
-                  component:WarningComponent,
-                  outlet:"warning"
-                },
-              ]
+            },
+            {
+              path:"warning",
+              component:WarningComponent,
+              outlet:"warning"
             },
           ]
         },

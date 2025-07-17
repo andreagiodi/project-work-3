@@ -1,37 +1,23 @@
-/*position of the benvenutoComponent in the grid of homeLayout*/
-.containerHome{
-  grid-column-start: 2;
-  grid-column-end: 3;
-  height: 75vh;
+.benvComp {
+  display: grid;
+  grid-template-areas:
+    "topL header topR"
+    "sideL main sideR";
 }
-h1{
-text-align: center;
+
+h1 {
+  text-align: center;
 }
-.pulsantiHome{
+
+.pulsanti {
   display: flex;
-  justify-content: center;
-  height: 10%;
-  gap: 10px;
+  justify-content: space-between;
 }
 
-.pulsantiHome button {
-  cursor: pointer;
-  border-radius: 25px;
-  height: 100%;
-  width: 25%;
-  font-size: 1.2rem;
+.benvenuto {
+  grid-area: header;
 }
 
-/*define height for Children components*/
-#benvenutoOutlet{
-  height: 75%;
+.tempWrap {
+  grid-area: main;
 }
-
-/*child container (login, register...)*/
-.childContainer{
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-

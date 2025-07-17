@@ -1,15 +1,15 @@
-<p>register-form-esterno works!</p>
 <div class="principale">
   <div class="box">
     <h1>CREA ACCOUNT</h1>
     <img class="caselle" src="" alt="foto profilo default">
-    <form [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
+    <form class="registerEsternoForm" [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
 
       <div formGroupName="datiAnagrafici">
         <h3>DATI ANAGRAFICI</h3>
         <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
         <input class="caselle" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
-        <input class="caselle" id="codiceFiscale" type="text" placeholder="CODICE FISCALE" formControlName="codiceFiscale"/> <br/>
+        <input class="caselle" id="codiceFiscale" type="text" placeholder="CODICE FISCALE"
+               formControlName="codiceFiscale"/> <br/>
       </div>
 
       <div formGroupName="contatti">
@@ -17,23 +17,27 @@
         <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
         <input class="caselle" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
       </div>
-
-      <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
-      <input class="caselle" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda"/> <br/>
-      <h3>CHE TIPO DI OSPITE SEI</h3>
-      <select class="caselle" id="tipoOspite" name="tipoOspite" formControlName="tipoOspite">
-        <option value="1">Visitatore</option>
-        <option value="2">Fornitore</option>
-        <option value="3">Esterno</option>
-        <option value="4">Cliente</option>
-      </select>
+      <div formGroupName="altro">
+        <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
+        <input class="caselle" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda"/> <br/>
+        <h3>CHE TIPO DI OSPITE SEI</h3>
+        <select class="caselle" id="tipoOspite" name="tipoOspite" formControlName="tipoOspite">
+          <option value="1">Visitatore</option>
+          <option value="2">Fornitore</option>
+          <option value="3">Esterno</option>
+          <option value="4">Cliente</option>
+        </select>
+      </div>
 
       <div formGroupName="passwords">
         <h3>PASSWORD</h3>
         <input class="caselle" id="password" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
-        <input class="caselle" id="newPasssword" type="password" placeholder="NUOVA PASSWORD" formControlName="newPassword"/> <br/>
+        <input class="caselle" id="newPasssword" type="password" placeholder="NUOVA PASSWORD"
+               formControlName="newPassword"/> <br/>
       </div>
-      <button type="submit" [disabled]="!registerEsternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
+      <div class="pulsanti">
+        <button type="submit" [disabled]="!registerEsternoForm.valid" class="pulsanteVerdeScuro">REGISTRATI</button>
+      </div>
     </form>
   </div>
 </div>

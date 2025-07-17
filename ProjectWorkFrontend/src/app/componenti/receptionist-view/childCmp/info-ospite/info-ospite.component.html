@@ -18,10 +18,10 @@
       <textarea class="caselle" id="note" placeholder="Scrivi qui..." formControlName="note"> </textarea>
     </div>
 
-    <div class="pulsantiInfo">
-      <button class="bottoneRosso">NON PRESENTATO</button>
-      <button class="bottoneGiallo">MODIFICA</button>
-      <button class="bottoneVerdeChiaro" type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
+    <div class="pulsanti">
+      <button class="pulsanteRosso">NON PRESENTATO</button>
+      <button class="pulsanteGiallo">MODIFICA</button>
+      <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
     </div>
   </form>
   <router-outlet></router-outlet>

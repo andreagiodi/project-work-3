@@ -10,7 +10,6 @@ import {WarningComponent} from './childCmp/utente/childCmp/warning/warning.compo
   imports: [
     RouterOutlet,
     UtentiAdminComponent,
-    UtenteComponent,
     StoricoUtenteComponent,
     WarningComponent
   ],

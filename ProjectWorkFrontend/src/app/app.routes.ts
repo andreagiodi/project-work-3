@@ -28,9 +28,6 @@ import {
 import {AdminViewComponent} from './componenti/admin-view/admin-view.component';
 import {UtenteComponent} from './componenti/admin-view/childCmp/utente/utente.component';
 import {
-  StoricoUtenteComponent
-} from './componenti/admin-view/childCmp/utente/childCmp/storico-utente/storico-utente.component';
-import {
   WarningComponent
 } from './componenti/admin-view/childCmp/utente/childCmp/warning/warning.component';
 import {ElencoSospesoComponent} from './componenti/richieste-sospeso/childCmp/elenco-sospeso/elenco-sospeso.component';

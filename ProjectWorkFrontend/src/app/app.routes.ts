@@ -112,11 +112,13 @@ export const routes: Routes = [
               children:[
                 {
                   path:"storicoUtente",
-                  component:StoricoUtenteComponent
+                  component:StoricoUtenteComponent,
+                  outlet:"storicoUt"
                 },
                 {
                   path:"warning",
-                  component:WarningComponent
+                  component:WarningComponent,
+                  outlet:"warning"
                 },
               ]
             },

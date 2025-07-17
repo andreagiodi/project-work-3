@@ -46,4 +46,44 @@ export class DashboardService{
       password
     }, {withCredentials: true})
   }
+
+  //reception
+
+  //MANCA SET ENTRATA OSPITE DA RIVEDERE
+
+  setUscitaOspite(id: number): Observable<any> {
+    return this.http.post(`${apiURL}/reception/uscita/${id}`, {
+      id: id
+    }, {withCredentials: true})
+  }
+
+  getPresenti(): Observable<any> {
+    return this.http.get(`${apiURL}"/reception/presenti"`, {withCredentials: true});
+  }
+  
+  setNonPresentatoOspite(id: number): Observable<any> {
+    return this.http.post(`${apiURL}/reception/non-presentato/${id}`, {
+      id: id
+    }, {withCredentials: true})
+  }
+
+  //Referente
+
+   getPrenotazioniReferente(): Observable<any> {
+    return this.http.get(`${apiURL}"/api/referente/prenotazioni"`, {withCredentials: true});
+  }
+  
+  approvaPrenotazione(id: number): Observable<any> {
+    return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/approva`, {
+      id: id // ID PRENOTAIAZONE
+    }, {withCredentials: true})
+  }
+
+  rifiutaPrenotazione(id: number): Observable<any> {
+    return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/rifiuta`, {
+      id: id // ID PRENOTAIAZONE
+    }, {withCredentials: true})
+  }
+
+  
 }

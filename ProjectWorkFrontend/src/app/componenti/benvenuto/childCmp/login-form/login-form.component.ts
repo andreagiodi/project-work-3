@@ -22,16 +22,19 @@ export class LoginFormComponent{
 
   loginError = '';
 
+  /*on Submit*/
   async onSubmit() {
+    /*checks if form valid, if not then return error message*/
     if (this.loginForm.invalid) {
       this.loginError = 'Credenziali non valide';
       return;
     }
-
-    try {
+    /*try to wait for a response, using firstValueFrom to only get one call and one answer*/
+    try{
       const response = await firstValueFrom(this.authService.login(this.loginForm.getRawValue()));
       console.log('Login successful', response);
-      this.authService.loadUser(); // Consider awaiting this if modified
+      this.loginError = '';
+      this.authService.loadUser();
     } catch (error) {
       console.error('Login failed', error);
       this.loginError = 'Login failed. Please check your credentials.';

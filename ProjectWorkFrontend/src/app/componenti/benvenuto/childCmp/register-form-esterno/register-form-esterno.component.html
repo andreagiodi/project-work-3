@@ -15,7 +15,7 @@
       <div formGroupName="contatti">
         <h3>CONTATTI</h3>
         <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
-        <input class="caselle" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
+        <input class="caselle" id="telefono" type="text" placeholder="TELEFONO" formControlName="telefono"/> <br/>
       </div>
 
       <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
@@ -31,7 +31,7 @@
       <div formGroupName="passwords">
         <h3>PASSWORD</h3>
         <input class="caselle" id="password" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
-        <input class="caselle" id="newPasssword" type="password" placeholder="NUOVA PASSWORD" formControlName="newPassword"/> <br/>
+        <input class="caselle" id="confirmPswd" type="password" placeholder="CONFERMA PASSWORD" formControlName="confirm"/> <br/>
       </div>
       <button type="submit" [disabled]="!registerEsternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
     </form>

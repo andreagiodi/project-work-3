@@ -12,7 +12,7 @@
 
       <div formGroupName="passwords">
         <input class="caselle" id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password"/> <br/>
-        <input class="caselle" id="newPasssword" type="password" placeholder="RIPETI PASSWORD" formControlName="newPassword"/> <br/>
+        <input class="caselle" id="confirmPswd" type="password" placeholder="CONFERMA PASSWORD" formControlName="confirm"/> <br/>
       </div>
 
       <button type="submit" [disabled]="!registerInternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>

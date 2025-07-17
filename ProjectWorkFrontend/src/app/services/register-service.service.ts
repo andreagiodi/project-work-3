@@ -1,29 +1,32 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subscription} from 'rxjs';
-import {AbstractControl, FormGroup} from '@angular/forms';
+import {firstValueFrom, Observable} from 'rxjs';
 import {apiURL} from '../app.config';
 import {Router} from '@angular/router';
+import {Impiegato, Ospite, User} from '../modelli/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService{
+export class RegisterService {
 
-  constructor(private http: HttpClient, private router: Router) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  /*NOTE: modify according to auth service!!!!!! (use the types already set in user.models)*/
-  registerEsterno(formData: FormGroup): Observable<any> {
-    const nome: string = formData.get('datiAnagrafici')?.get('nome')?.value;
-    const cognome: string = formData.get('datiAnagrafici')?.get('cognome')?.value;
-    const codiceFiscale: string = formData.get('datiAnagrafici')?.get('codiceFiscale')?.value;
-    const email: string = formData.get('contatti')?.get('email')?.value;
-    const telefono: number = formData.get('contatti')?.get('telefono')?.value;
-    const azienda: string = formData.get('azienda')?.value;
-    const idTipoOspite: number = formData.get('tipoOspite')?.value;
-    const password: string = formData.get('passwords')?.get('password')?.value;
-
+  registerEsterno(dataOspite: Ospite): Observable<any> {
+    /*destructuring the data received as input*/
+    const {
+      nome,
+      cognome,
+      email,
+      password,
+      telefono,
+      codiceFiscale,
+      azienda,
+      idTipoOspite
+    } = dataOspite;
+    console.log(dataOspite);
+    console.log(nome, cognome, email, password, telefono, codiceFiscale, azienda, idTipoOspite);
+    /*calling API for register*/
     return this.http.post(`${apiURL}/register/ospite`, {
       nome,
       cognome,
@@ -36,13 +39,16 @@ export class RegisterService{
     }, {withCredentials: true});
   }
 
-  registerInterno(formData: FormGroup): Observable<any> {
-    const nome: string = formData.get('nome')?.value;
-    const cognome: string = formData.get('cognome')?.value;
-    const email: string = formData.get('email')?.value;
-    const isEsterno: boolean = formData.get('tipoStaff')?.value;
-    const password: string = formData.get('passwords')?.get('password')?.value;
-
+  registerInterno(dataStaff: Impiegato): Observable<any> {
+    /*destructuring the data received as input*/
+    const {
+      email,
+      password,
+      nome,
+      cognome,
+      isEsterno
+    } = dataStaff;
+    /*calling API for register*/
     return this.http.post(`${apiURL}/register/staff`, {
       email,
       password,
@@ -52,41 +58,42 @@ export class RegisterService{
     }, {withCredentials: true});
   }
 
-  /*general subscription*/
-  subscription?: Subscription;
-  register(formInput: FormGroup, isInterno: Boolean) {
-    if (isInterno) {
+  /*general registration for both types of users*/
+  errorMessage: string = 'ops, qualcosa è andato storto';
+  registerError: unknown;
+
+  async register(formData: User) {
+    if (formData.userType === 'impiegato') {
       //register interno staff
       console.log('registrazione interno in corso....')
-        //subscribe for post
-        this.subscription = this.registerInterno(formInput).subscribe({
-          next: () => {
-            console.log('register successful');
-            this.router.navigate(['/benvenuto/login']);
-          }, error: (error) => {
-            console.error("registration error: ", error);
-          }, complete: ()=>{
-
-          }
-        }
-      );
+      /*try for a response*/
+      try {
+        const response = await firstValueFrom(this.registerInterno(formData));
+        console.log('Register successful', response);
+        this.redirectUser();
+      }catch (error) {
+        console.error("Registration error: ", error);
+        this.registerError = error;
+      }
     } else {
       //register esterno opsite
       console.log('registrazione esterno in corso....')
-      //subscribe for post
-      this.subscription = this.registerEsterno(formInput).subscribe({
-          next: () => {
-            console.log('register successful');
-            this.router.navigate(['/benvenuto/login']);
-          }, error: (error) => {
-            console.error("registration error: ", error);
-          }
-        });
+      /*try for a response*/
+      try {
+        const response = await firstValueFrom(this.registerEsterno(formData)); //await response
+        console.log('Register successful', response); //give response
+        this.redirectUser();
+      }catch (error) {
+        console.error("Registration error: ", error);
+        this.registerError = error;
       }
     }
+  }
 
-    /*unsubscribe to call on destroying of components using service*/
-  unRegister(){
-    this.subscription?.unsubscribe();
+  /*redirect user once registration success*/
+  private redirectUser= ():void => {
+    //redirect to login page
+    this.router.navigate(['/benvenuto/login']);
+    return;
   }
 }

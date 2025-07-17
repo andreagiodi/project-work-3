@@ -9,11 +9,11 @@ import { AuthService } from './services/auth-service.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
-  title = 'ProjectWorkFrontend';
   authService = inject(AuthService);
-
+  /*checks if user has already logged in (through cookies)*/
   ngOnInit() {
-    /*this.authService.loadUser();*/
-    console.log("onInitFired, uncomment when ready")
+    if(this.authService.isAuthenticated()){
+      this.authService.loadUser()
+    }
   }
 }

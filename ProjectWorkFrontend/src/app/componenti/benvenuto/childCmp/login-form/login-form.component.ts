@@ -40,7 +40,7 @@ export class LoginFormComponent{
       this.loginError = 'Login fallito: '+error.error;
     }
   }
-
+  /*error handling, shows a message on template (see @if block) */
   getErrorMessage(controlName: string): string | null {
     const control = this.loginForm.get(controlName);
     return ValidationErrorService.getMessage(control!);

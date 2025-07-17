@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {PrenotaAppuntamentoComponent} from '../../componenti/prenota-appuntamento/prenota-appuntamento.component';
 import {ProssimiAppuntamentiComponent} from '../../componenti/prossimi-appuntamenti/prossimi-appuntamenti.component';
+import {AuthService} from '../../services/auth-service.service';
 
 
 @Component({
@@ -15,5 +16,10 @@ import {ProssimiAppuntamentiComponent} from '../../componenti/prossimi-appuntame
   styleUrl: './ospite.component.css'
 })
 export class OspiteComponent {
-
+  authService = inject(AuthService);
+  /*logout function call*/
+  logOutFunc(){
+    console.log(this.authService.logout())
+    this.authService.logout();
+  }
 }

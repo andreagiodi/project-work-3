@@ -53,7 +53,7 @@ export class RegisterFormInternoComponent{
     }
   }
 
-  /*returns error message based on passed controll*/
+  /*returns error message based on passed control*/
   getErrorMessage(controlName: string): string | null {
     const control = this.registerInternoForm.get(controlName);
     return ValidationErrorService.getMessage(control!);

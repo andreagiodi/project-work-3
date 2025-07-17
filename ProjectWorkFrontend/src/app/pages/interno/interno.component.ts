@@ -13,29 +13,9 @@ import {AuthService} from '../../services/auth-service.service';
 export class InternoComponent{
   router = inject(Router);
   authService = inject(AuthService);
-
-  /*ngOnInit() {
-    this.authService.currentUser.subscribe((user: any) => {
-      if(user){
-        switch (user.idRuolo) {
-          case '1':{
-            this.router.navigate(['/receptionist']);
-            break;
-          }
-          case '2':{
-            this.router.navigate(['/referente']);
-            break;
-          }
-          case '4':{
-            this.router.navigate(['/admin']);
-            break;
-          }
-          default: {
-            this.router.navigate(['/benvenuto/login']);
-            break;
-          }
-        }
-      }
-    });
-  }*/
+  /*logout function call*/
+  logOutFunc(){
+    console.log(this.authService.logout())
+    this.authService.logout();
+  }
 }

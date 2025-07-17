@@ -68,7 +68,7 @@ export class RegisterFormEsternoComponent {
       this.registrationService.register(this.mapToOspite());
     }
   }
-
+  /*returns error message based on passed control*/
   getErrorMessage(controlName: string): string | null {
     const control = this.registerEsternoForm.get(controlName);
     return ValidationErrorService.getMessage(control!);

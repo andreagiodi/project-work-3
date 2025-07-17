@@ -10,6 +10,7 @@ import {
   strongPassword,
 } from '../../../../validators/customValid.validator';
 import {Ospite} from '../../../../modelli/user.model';
+import {ValidationErrorService} from '../../../../validators/validationErrors';
 
 @Component({
   selector: 'app-register-form-esterno',
@@ -66,5 +67,10 @@ export class RegisterFormEsternoComponent {
       //call register passing mapped form
       this.registrationService.register(this.mapToOspite());
     }
+  }
+
+  getErrorMessage(controlName: string): string | null {
+    const control = this.registerEsternoForm.get(controlName);
+    return ValidationErrorService.getMessage(control!);
   }
 }

@@ -3,9 +3,23 @@
   <div class="box">
     <img class="caselle" src="/icons/freeUser.svg" alt="foto profilo default">
 
-    <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
-      <input class="caselle" id="passsword" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"
+             autocomplete="email"/><br/>
+      <!--EMAIL VALIDATION-->
+      @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+        <small class="error">
+          {{ getErrorMessage('email') }}
+        </small>
+      }<br/>
+      <!--PASSWORD VALIDATION(not really useful but ok)-->
+      <input class="caselle" id="password" type="password" placeholder="PASSWORD" formControlName="password"/><br/>
+      @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+        <small class="error">
+          {{ getErrorMessage('password') }}
+        </small>
+      }<br/>
       <button type="submit" [disabled]="!loginForm.valid" class="bottoneVerdeScuro">LOGIN</button>
     </form>
   </div>

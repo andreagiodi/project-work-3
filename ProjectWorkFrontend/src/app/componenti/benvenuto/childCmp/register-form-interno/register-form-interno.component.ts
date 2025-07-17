@@ -5,6 +5,7 @@ import {RegisterService} from '../../../../services/register-service.service';
 /*importing validators*/
 import {passwordMatch, strongPassword} from '../../../../validators/customValid.validator';
 import {Impiegato} from '../../../../modelli/user.model';
+import {ValidationErrorService} from '../../../../validators/validationErrors';
 
 @Component({
   selector: 'app-register-form-interno',
@@ -50,5 +51,11 @@ export class RegisterFormInternoComponent{
       //call register passing mapped form
       this.registrationService.register(this.mapToImpiegato());
     }
+  }
+
+  /*returns error message based on passed controll*/
+  getErrorMessage(controlName: string): string | null {
+    const control = this.registerInternoForm.get(controlName);
+    return ValidationErrorService.getMessage(control!);
   }
 }

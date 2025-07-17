@@ -1,7 +1,8 @@
-import {Component, inject, OnDestroy} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {AuthService} from '../../../../services/auth-service.service';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {firstValueFrom, Subscription} from 'rxjs';
+import {firstValueFrom} from 'rxjs';
+import {ValidationErrorService} from '../../../../validators/validationErrors';
 
 @Component({
   selector: 'app-login-form',
@@ -19,14 +20,13 @@ export class LoginFormComponent{
 
   /*login handling*/
   authService = inject(AuthService); //authService injection
-
   loginError = '';
 
   /*on Submit*/
   async onSubmit() {
     /*checks if form valid, if not then return error message*/
     if (this.loginForm.invalid) {
-      this.loginError = 'Credenziali non valide';
+      this.loginError = 'Credenziali inserite non valide';
       return;
     }
     /*try to wait for a response, using firstValueFrom to only get one call and one answer*/
@@ -35,9 +35,14 @@ export class LoginFormComponent{
       console.log('Login successful', response);
       this.loginError = '';
       this.authService.loadUser();
-    } catch (error) {
+    } catch (error:any) {
       console.error('Login failed', error);
-      this.loginError = 'Login failed. Please check your credentials.';
+      this.loginError = 'Login fallito: '+error.error;
     }
+  }
+
+  getErrorMessage(controlName: string): string | null {
+    const control = this.loginForm.get(controlName);
+    return ValidationErrorService.getMessage(control!);
   }
 }

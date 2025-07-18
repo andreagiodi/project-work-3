@@ -37,7 +37,7 @@ export class PrenotaAppuntamentoComponent {
     });
     if(this.authService.isAuthenticated()) {
       console.log(this.prenotaAppOspite.value, currentUser());
-      this.dashboardService.createPrenotazione(this.prenotaAppOspite)
+      this.dashboardService.createPrenotazione()
     }else{
       console.log('Not authenticated!');
       this.router.navigate(['benvenuto/login']);

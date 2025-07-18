@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {apiURL} from '../app.config';
-import {BehaviorSubject, Observable, catchError, of, Subscription} from 'rxjs';
-import {FormGroup} from '@angular/forms';
-import { getLocaleDayNames } from '@angular/common';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +10,7 @@ export class DashboardService{
 
   constructor(private http: HttpClient) { }
 
-  createPrenotazione(formPre: FormGroup): Observable<any> {
+  createPrenotazione(): Observable<any> {
     return this.http.post(`${apiURL}/prenotazione/create`, {}, { withCredentials: true });
   }
 
@@ -60,7 +58,7 @@ export class DashboardService{
   getPresenti(): Observable<any> {
     return this.http.get(`${apiURL}"/reception/presenti"`, {withCredentials: true});
   }
-  
+
   setNonPresentatoOspite(id: number): Observable<any> {
     return this.http.post(`${apiURL}/reception/non-presentato/${id}`, {
       id: id
@@ -72,7 +70,7 @@ export class DashboardService{
    getPrenotazioniReferente(): Observable<any> {
     return this.http.get(`${apiURL}"/api/referente/prenotazioni"`, {withCredentials: true});
   }
-  
+
   approvaPrenotazione(id: number): Observable<any> {
     return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/approva`, {
       id: id // ID PRENOTAIAZONE
@@ -85,5 +83,5 @@ export class DashboardService{
     }, {withCredentials: true})
   }
 
-  
+
 }

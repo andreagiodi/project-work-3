@@ -40,7 +40,9 @@ public class AuthController {
         java.util.Map<String, Object> response = new java.util.HashMap<>();
         response.put("id", user.getUserId());
         response.put("email", user.getUserEmail());
-        response.put("fullName", user.getUserFullName());
+        //modified to return both name and lastname separately
+        response.put("nome", user.getUserName());
+        response.put("cognome", user.getUserLastName());
         response.put("userType", user.getUserType());
 
 

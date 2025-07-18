@@ -73,14 +73,25 @@ public class AuthenticatedUser {
         }
         return null;
     }
-
-    public String getUserFullName() {
+    //modified to get only name
+    public String getUserName() {
         if (isOspite()) {
             Ospite ospite = (Ospite) user;
-            return ospite.getNome() + " " + ospite.getCognome();
+            return ospite.getNome();
         } else if (isImpiegato()) {
             Impiegato impiegato = (Impiegato) user;
-            return impiegato.getNome() + " " + impiegato.getCognome();
+            return impiegato.getNome();
+        }
+        return null;
+    }
+    //modified to get only LastName
+    public String getUserLastName() {
+        if (isOspite()) {
+            Ospite ospite = (Ospite) user;
+            return ospite.getCognome();
+        } else if (isImpiegato()) {
+            Impiegato impiegato = (Impiegato) user;
+            return impiegato.getCognome();
         }
         return null;
     }

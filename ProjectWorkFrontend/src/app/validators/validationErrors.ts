@@ -15,10 +15,10 @@ export class ValidationErrorService{
     if (errors['maxlength'])
       return `La massima lunghezza consentita è ${errors['maxlength'].requiredLength}`;
     if (errors['passwordMissMatch']) return "Le due password inserite non corrispondono";
-    if (errors['weakPassword']) return "La password è troppo debole";
-    if (errors['invalidPhone']) return "Il numero di telefono non è valido";
-    if (errors['invalidCF']) return "Codice Fiscale non valido";
-
-    return 'Invalid field';
+    if (errors['weakPassword']) return "La password inserita è troppo debole";
+    if (errors['invalidPhone']) return "Il numero di telefono inserito non è valido";
+    if (errors['invalidCF']) return "Codice Fiscale inserito non valido";
+    if (errors['notFuture']) return "La data e ora inserite devono essere successiva a quelle attuali";
+    return 'validationError Not Found';
   }
 }

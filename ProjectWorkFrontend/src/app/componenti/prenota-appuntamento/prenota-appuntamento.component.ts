@@ -3,6 +3,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {DashboardService} from '../../services/dashboard-service.service';
 import {AuthService} from '../../services/auth-service.service';
 import {Router} from '@angular/router';
+import {futureDateTimeValidator} from '../../validators/customValid.validator';
+import {ValidationErrorService} from '../../validators/validationErrors';
 
 @Component({
   selector: 'app-prenota-appuntamento',
@@ -14,13 +16,18 @@ import {Router} from '@angular/router';
   styleUrl: './prenota-appuntamento.component.css'
 })
 export class PrenotaAppuntamentoComponent {
+  /*services injection*/
   private dashboardService = inject(DashboardService)
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  today = new Date().toISOString().split('T')[0];
+
   prenotaAppOspite= new FormGroup({
-    data: new FormControl('', [Validators.required]),
-    ora: new FormControl('', [Validators.required]),
+    dataOra: new FormGroup({
+      data: new FormControl('', [Validators.required]),
+      ora: new FormControl('', [Validators.required]),
+    },[futureDateTimeValidator()]),
     professione: new FormControl('', [Validators.required]),
     motivo: new FormControl('', [Validators.required]),
   })
@@ -36,5 +43,9 @@ export class PrenotaAppuntamentoComponent {
       this.router.navigate(['benvenuto/login']);
     }
   }
-
+  /*returns error message based on passed control*/
+  getErrorMessage(controlName: string): string | null {
+    const control = this.prenotaAppOspite.get(controlName);
+    return ValidationErrorService.getMessage(control!);
+  }
 }

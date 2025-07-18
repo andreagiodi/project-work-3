@@ -2,10 +2,17 @@
 <div class="box">
   <h1>PRENOTA APPUNTAMENTO</h1>
   <form [formGroup]="prenotaAppOspite" (ngSubmit)="onSubmit()">
-    <h3>Data:</h3>
-    <input class="caselle" id="data" type="date" formControlName="data">
-    <h3>Ora:</h3>
-    <input class="caselle" id="ora" type="time" formControlName="ora">
+    <div formGroupName="dataOra">
+      <h3>Data:</h3>
+      <input class="caselle" id="data" type="date" [min]="today" formControlName="data">
+      <h3>Ora:</h3>
+      <input class="caselle" id="ora" type="time" formControlName="ora">
+    </div>
+    @if (prenotaAppOspite.get('dataOra')?.touched && prenotaAppOspite.get('dataOra')?.invalid) {
+      <small class="error">
+        {{ getErrorMessage('dataOra') }}
+      </small>
+    }<br/>
     <h3>Indentificazione professionale:</h3>
     <input class="caselle" id="professione" type="text" formControlName="professione">
     <h3>Motivo della visita:</h3>

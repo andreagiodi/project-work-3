@@ -46,3 +46,36 @@ export function codiceFiscale():ValidatorFn{
     return CFRegex.test(codiceFisc.value) ? null : {invalidCF: true}
   }
 }
+/*future date validation, invalid if selected date is in the past*/
+export function futureDateTimeValidator(): ValidatorFn {
+  return (input: AbstractControl): ValidationErrors | null => {
+    //get data and ora from the group
+    const data = input.get('data')?.value;
+    const ora = input.get('ora')?.value;
+    //returns null for empty values, Required will handle empty inputs
+    if (!data || !ora) return null;
+    //map data e ora for confrontation
+    const [hour, minute] = ora.split(':').map(Number);
+    const selectedDateTime = new Date(data);
+    selectedDateTime.setHours(hour, minute, 0, 0);
+    //get current date time
+    const now = new Date();
+    //confrontation
+    return !(selectedDateTime <= now) ? null : { notFuture: true };
+  };
+};
+/*only time validation*/
+export function futureTime():ValidatorFn {
+  return (ora:AbstractControl):ValidationErrors | null =>{
+    const oraValue = ora.value;
+    if(!oraValue) return null;
+
+    const [hour, minute] = oraValue.split(':').map(Number);
+    const selectedDateTime = new Date();
+    selectedDateTime.setHours(hour, minute, 0, 0);
+
+    const now = new Date();
+
+    return !(selectedDateTime <= now) ? null : { notFutureTime: true };
+  }
+}

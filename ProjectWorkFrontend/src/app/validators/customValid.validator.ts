@@ -63,7 +63,7 @@ export function futureDateTimeValidator(): ValidatorFn {
     //confrontation
     return !(selectedDateTime <= now) ? null : { notFuture: true };
   };
-};
+}
 /*only time validation*/
 export function futureTime():ValidatorFn {
   return (ora:AbstractControl):ValidationErrors | null =>{

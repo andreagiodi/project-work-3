@@ -3,6 +3,7 @@ import {AuthService} from '../../../../services/auth-service.service';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {firstValueFrom} from 'rxjs';
 import {ValidationErrorService} from '../../../../validators/validationErrors';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -13,6 +14,19 @@ import {ValidationErrorService} from '../../../../validators/validationErrors';
 })
 export class LoginFormComponent{
 
+  constructor(private activatedRoute: ActivatedRoute,) {
+    /*get an error message from query params*/
+    this.activatedRoute.queryParams.subscribe(params => {
+      if(params['success']){
+        this.loginMessage = params['success'];
+      }else if(params['error']){
+        this.loginMessage = params['error'];
+      }
+    })
+  }
+  loginMessage: string | undefined; //handles message passed through query params
+
+  /*create the loginForm*/
   loginForm = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),

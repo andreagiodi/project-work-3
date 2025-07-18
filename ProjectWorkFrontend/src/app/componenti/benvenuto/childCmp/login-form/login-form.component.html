@@ -1,6 +1,7 @@
 <div class="principale">
   <h2>LOGIN</h2>
   <div class="box">
+    @if (loginMessage){<h4 id="loginError">{{loginMessage}}</h4>}
     <img class="caselle" src="/icons/freeUser.svg" alt="foto profilo default">
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

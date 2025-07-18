@@ -36,14 +36,18 @@ export class InternoComponent implements OnInit {
           break;
         }
         default: {
-          console.log('account not yet activated')
-          this.router.navigate(['benvenuto/login']);
+          console.log('account not yet activated...redirect to login page');
+          this.router.navigate(['benvenuto/login'],{
+            queryParams: { error: 'Account non ancora attivato' }
+          });
           break;
         }
       }
     else{
-      console.log('restricted to employee only')
-      this.router.navigate(['benvenuto/login']);
+      console.log('restricted to employee only');
+      this.router.navigate(['benvenuto/login'], {
+        queryParams: { error: 'Accesso negato' }
+      });
     }
   }
 

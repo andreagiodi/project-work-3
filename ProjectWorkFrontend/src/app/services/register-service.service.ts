@@ -93,7 +93,9 @@ export class RegisterService {
   /*redirect user once registration success*/
   private redirectUser= ():void => {
     //redirect to login page
-    this.router.navigate(['/benvenuto/login']);
+    this.router.navigate(['/benvenuto/login'], {
+      queryParams: { success: 'Registrazione completata con successo'}
+    });
     return;
   }
 }

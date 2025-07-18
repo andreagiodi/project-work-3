@@ -34,24 +34,23 @@ export class LoginFormComponent{
 
   /*login handling*/
   authService = inject(AuthService); //authService injection
-  loginError = '';
 
   /*on Submit*/
   async onSubmit() {
     /*checks if form valid, if not then return error message*/
     if (this.loginForm.invalid) {
-      this.loginError = 'Credenziali inserite non valide';
+      this.loginMessage = 'Credenziali inserite non valide';
       return;
     }
     /*try to wait for a response, using firstValueFrom to only get one call and one answer*/
     try{
       const response = await firstValueFrom(this.authService.login(this.loginForm.getRawValue()));
       console.log('Login successful', response);
-      this.loginError = '';
+      this.loginMessage = '';
       this.authService.loadUser();
     } catch (error:any) {
       console.error('Login failed', error);
-      this.loginError = 'Login fallito: '+error.error;
+      this.loginMessage = 'Login fallito: '+error.error;
     }
   }
   /*error handling, shows a message on template (see @if block) */

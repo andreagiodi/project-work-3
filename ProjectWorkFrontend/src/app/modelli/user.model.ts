@@ -28,3 +28,11 @@ export type LoginRequest = {
   email: string | null;
   password: string | null;
 }
+
+export type Prenotazione = {
+  data: string,
+  ora: string,
+  identificazioneProfessionale: string,
+  motivoVisita: string,
+  stato?: number,
+}

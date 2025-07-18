@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {apiURL} from '../app.config';
 import { Observable} from 'rxjs';
+import {Prenotazione} from '../modelli/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,10 @@ export class DashboardService{
 
   constructor(private http: HttpClient) { }
 
-  createPrenotazione(): Observable<any> {
-    return this.http.post(`${apiURL}/prenotazione/create`, {}, { withCredentials: true });
+  //sends a prenotazione create POST with data from custom type
+  createPrenotazione(request: Prenotazione): Observable<any> {
+    console.log(request);
+    return this.http.post(`${apiURL}/prenotazione/create`, request, { withCredentials: true });
   }
 
   getPrenotazioni(): Observable<any> {

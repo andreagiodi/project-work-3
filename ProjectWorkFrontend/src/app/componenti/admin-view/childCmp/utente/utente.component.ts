@@ -5,7 +5,6 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 @Component({
   selector: 'app-utente',
   imports: [
-    RouterOutlet,
     ReactiveFormsModule
   ],
   templateUrl: './utente.component.html',

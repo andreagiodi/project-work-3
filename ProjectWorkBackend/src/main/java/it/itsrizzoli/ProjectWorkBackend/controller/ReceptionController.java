@@ -2,6 +2,7 @@ package it.itsrizzoli.ProjectWorkBackend.controller;
 
 import it.itsrizzoli.ProjectWorkBackend.Ospite;
 import it.itsrizzoli.ProjectWorkBackend.dto.AuthenticatedUser;
+import it.itsrizzoli.ProjectWorkBackend.dto.IdRequest;
 import it.itsrizzoli.ProjectWorkBackend.services.AuthService;
 import it.itsrizzoli.ProjectWorkBackend.services.ReceptionService;
 
@@ -24,13 +25,15 @@ public class ReceptionController {
     @PostMapping("/ingresso")
     public ResponseEntity<?> registraIngresso(
             @CookieValue(value = "auth_token", required = false) String token,
-            @RequestBody Ospite ospite) {
+            @RequestBody IdRequest idRequest) {
         AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
         if (user == null || !user.isImpiegato()) {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'ingresso");
         }
-        ospite.setPassword(null);
-        Ospite salvato = receptionService.registraIngresso(ospite);
+        Ospite salvato = receptionService.registraIngresso(idRequest.getId());
+        if (salvato == null) {
+            return ResponseEntity.status(404).body("Ospite non trovato");
+        }
         return ResponseEntity.ok(salvato);
     }
 

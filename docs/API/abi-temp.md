@@ -3,19 +3,22 @@
 - "/reception/ingresso" ✅
 
 * **Method**: POST
-* **Description**: Registra l'ingresso di un ospite. Solo il personale può effettuare questa operazione.
+* **Description**: Registra l'ingresso di un ospite già esistente tramite il suo ID. Solo il personale può effettuare questa operazione.
 * **Headers**:
     * `Cookie: auth_token=...`
 * **Body Parameters** (JSON):
-    * `id`: integer (facoltativo, se già esistente)
-    * `nome`: string, required
-    * `cognome`: string, required
-    * `email`: string, required
-    * `telefono`: string, required
-    * `codiceFiscale`: string, required
-    * `azienda`: string, required
-    * `idTipoOspite`: integer, required
+    * `id`: integer, **required** – ID dell'ospite già registrato
 * **Response**: JSON object contenente l’oggetto `Ospite` aggiornato con la data di entrata.
+    * 200 OK: oggetto `Ospite`
+    * 404 Not Found: `Ospite non trovato`
+    * 403 Forbidden: `Accesso negato: solo impiegati possono registrare l'ingresso`
+
+Esempio di richiesta:
+```json
+{
+  "id": 123
+}
+```
 
 - "/reception/uscita/{id}" ✅
 

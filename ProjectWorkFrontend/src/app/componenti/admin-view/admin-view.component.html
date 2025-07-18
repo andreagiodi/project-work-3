@@ -1,7 +1,20 @@
-<div class="pulsantiAdmin">
-  <button class="pulsanteVerdeScuro">ADMIN</button>
-  <button class="pulsanteVerdeScuro">REFERENTE</button>
-  <button class="pulsanteVerdeScuro">RECEPTIONIST</button>
+<div class="adminClass">
+  <div class="pulsanti">
+    <button class="pulsanteVerdeScuro">ADMIN</button>
+    <button class="pulsanteVerdeScuro">REFERENTE</button>
+    <button class="pulsanteVerdeScuro">RECEPTIONIST</button>
+  </div>
+  <section class="utenti">
+    <app-utenti-admin></app-utenti-admin>
+  </section>
+  <section class="storico">
+    <app-storico-utente></app-storico-utente>
+  </section>
+  <section class="warning">
+    <app-warning></app-warning>
+  </section>
+  <section class="utente">
+    <router-outlet></router-outlet>
+  </section>
 </div>
-<app-utenti-admin></app-utenti-admin>
-<router-outlet></router-outlet>
+

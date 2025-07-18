@@ -1,0 +1,25 @@
+.sfondoSideBar{
+  border-radius: 35px;
+  width:80%;
+  padding-top: 5%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.box{
+  padding:5%;
+  border-radius: 25px;
+  width:80%;
+  align-self:center;
+  margin:5%;
+}
+
+.caselle{
+  display: flex;
+  border-radius: 25px;
+  height: 10%;
+  align-items: center;
+
+}

@@ -28,7 +28,7 @@
 
       <!-- Passwords -->
       <div formGroupName="passwords">
-        <!-- Password -->
+        <!--Main Password -->
         <input class="caselle" id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password" /><br />
         @if (registerInternoForm.get('passwords.password')?.touched && registerInternoForm.get('passwords.password')?.invalid) {
           <small class="error">{{ getErrorMessage('passwords.password') }}</small>
@@ -40,7 +40,6 @@
           <small class="error">{{ getErrorMessage('passwords.confirm') }}</small>
         }<br />
       </div>
-
       <!-- Group-level password match error -->
       @if (
         registerInternoForm.get('passwords')?.touched &&
@@ -50,7 +49,9 @@
       }<br />
 
       <!-- Submit -->
-      <button type="submit" [disabled]="!registerInternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
+      <div class="pulsanti">
+        <button type="submit" [disabled]="!registerInternoForm.valid" class="pulsanteVerdeScuro">REGISTRATI</button>
+      </div>
     </form>
   </div>
 </div>

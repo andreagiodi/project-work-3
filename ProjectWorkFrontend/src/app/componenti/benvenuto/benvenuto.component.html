@@ -1,12 +1,15 @@
-<div class="principale">
-  <h1>Benvenuto!</h1>
-  <div class="pulsantiHome">
-
+<div class="benvComp">
+  <div class="benvenuto">
+    <div class="titolo">
+      <h1>Benvenuto!</h1>
+    </div>
+    <div class="pulsanti">
     <button routerLink="login" class="pulsanteVerdeScuro">Login</button>
-    <button class="pulsanteVerdeScuro" routerLink="registerInterno">Registrati come Ospite</button>
-    <button class="pulsanteVerdeScuro" routerLink="registerEsterno">Registrati come Esterno</button>
+    <button routerLink="registerInterno" class="pulsanteVerdeScuro">Registrati come Ospite</button>
+    <button routerLink="registerEsterno" class="pulsanteVerdeScuro">Registrati come Interno</button>
+    </div>
   </div>
-  <section class="outletWrapper" id="benvenutoOutlet">
+  <section class="tempWrap">
   <router-outlet></router-outlet>
   </section>
 </div>

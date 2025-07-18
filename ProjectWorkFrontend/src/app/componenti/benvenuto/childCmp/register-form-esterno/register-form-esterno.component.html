@@ -1,14 +1,13 @@
 <div class="principale">
   <div class="box">
     <h1>CREA ACCOUNT</h1>
-    <img class="caselle" src="" alt="foto profilo default" />
+    <img class="caselle" src="/icons/freeUser.svg" alt="foto profilo default" />
 
-    <form [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
+    <form class="registerEsternoForm" [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
 
       <!-- Dati Anagrafici -->
       <div formGroupName="datiAnagrafici">
         <h3>DATI ANAGRAFICI</h3>
-
         <!-- Nome -->
         <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome" /><br />
         @if (registerEsternoForm.get('datiAnagrafici.nome')?.touched && registerEsternoForm.get('datiAnagrafici.nome')?.invalid) {
@@ -22,7 +21,8 @@
         }<br />
 
         <!-- Codice Fiscale -->
-        <input class="caselle" id="codiceFiscale" type="text" placeholder="CODICE FISCALE" formControlName="codiceFiscale" /><br />
+        <input class="caselle" id="codiceFiscale" type="text" placeholder="CODICE FISCALE"
+               formControlName="codiceFiscale" /><br />
         @if (registerEsternoForm.get('datiAnagrafici.codiceFiscale')?.touched && registerEsternoForm.get('datiAnagrafici.codiceFiscale')?.invalid) {
           <small class="error">{{ getErrorMessage('datiAnagrafici.codiceFiscale') }}</small>
         }<br />
@@ -45,25 +45,27 @@
         }<br />
       </div>
 
-      <!-- Azienda -->
-      <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
-      <input class="caselle" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda" /><br />
-      @if (registerEsternoForm.get('azienda')?.touched && registerEsternoForm.get('azienda')?.invalid) {
-        <small class="error">{{ getErrorMessage('azienda') }}</small>
-      }<br />
+      <div> <!--in Natalia Version she wrapped it in a div, so did i (Luck) to allow her styling to word-->
+        <!-- Azienda -->
+        <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
+        <input class="caselle" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda" /><br />
+        @if (registerEsternoForm.get('azienda')?.touched && registerEsternoForm.get('azienda')?.invalid) {
+          <small class="error">{{ getErrorMessage('azienda') }}</small>
+        }<br />
 
-      <!-- Tipo Ospite -->
-      <h3>CHE TIPO DI OSPITE SEI</h3>
-      <select class="caselle" id="tipoOspite" name="tipoOspite" formControlName="tipoOspite">
-        <option value="" disabled selected>Seleziona un tipo</option>
-        <option value="1">Visitatore</option>
-        <option value="2">Fornitore</option>
-        <option value="3">Esterno</option>
-        <option value="4">Cliente</option>
-      </select><br />
-      @if (registerEsternoForm.get('tipoOspite')?.touched && registerEsternoForm.get('tipoOspite')?.invalid) {
-        <small class="error">{{ getErrorMessage('tipoOspite') }}</small>
-      }<br />
+        <!-- Tipo Ospite -->
+        <h3>CHE TIPO DI OSPITE SEI</h3>
+        <select class="caselle" id="tipoOspite" name="tipoOspite" formControlName="tipoOspite">
+          <option value="" disabled selected>Seleziona un tipo</option> <!--default empty option-->
+          <option value="1">Visitatore</option>
+          <option value="2">Fornitore</option>
+          <option value="3">Esterno</option>
+          <option value="4">Cliente</option>
+        </select> <br />
+        @if (registerEsternoForm.get('tipoOspite')?.touched && registerEsternoForm.get('tipoOspite')?.invalid) {
+          <small class="error">{{ getErrorMessage('tipoOspite') }}</small>
+        }<br />
+      </div>
 
       <!-- Passwords -->
       <div formGroupName="passwords">
@@ -85,7 +87,9 @@
         <small class="error">{{ getErrorMessage('passwords') }}</small>
       }<br />
 
-      <button type="submit" [disabled]="!registerEsternoForm.valid" class="bottoneVerdeScuro">REGISTRATI</button>
+      <div class="pulsanti">
+        <button type="submit" [disabled]="!registerEsternoForm.valid" class="pulsanteVerdeScuro">REGISTRATI</button>
+      </div>
     </form>
   </div>
 </div>

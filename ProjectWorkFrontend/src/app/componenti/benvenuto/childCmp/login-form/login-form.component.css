@@ -1,13 +1,36 @@
-h2{
+h2 {
   text-align: center;
 }
 
-.AllWrapper{
-  padding:32px;
-  display:flex;
+.box {
+  display: flex;
+  padding: 5%;
   flex-direction: column;
   border: 1px solid black;
+  border-radius: 25px;
   justify-content: center;
   align-items: center;
+}
+
+.caselle {
+  margin: 5%;
+  padding: 5%;
+  border-radius: 25px;
+}
+
+img {
+  border-radius: 100%;
+}
+
+.pulsanteVerdeScuro {
+  padding: 10%;
+  align-items: center;
+}
+.pulsanti{
+  align-items: center;
+}
+
+.principale{
+  grid-area: main;
 }
 

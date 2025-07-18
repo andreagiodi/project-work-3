@@ -1,0 +1,50 @@
+.box {
+  padding: 3%;
+}
+.storico{
+  position: fixed;
+  top: 5%;
+  right: 5%;
+}
+#utente{
+  grid-area: main;
+}
+
+.ruolo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+.permessi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 35%;
+}
+
+.password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55%;
+}
+
+
+.pulsanteVerdeScuro {
+  height: 2%;
+  padding: 2%;
+}
+
+.caselle {
+  padding: 1%;
+  height: 3%;
+  border-radius: 25px;
+}
+
+.pulsanti {
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,23 +1,29 @@
-<div class="box">
+<div class="box" id="utente">
   <form [formGroup]="utente" (ngSubmit)="onSubmit()">
     <h1>Utente</h1>
     <h3>ID: ...</h3>
-    <h3>...RUOLO:</h3>
-    <input class="caselle" id="ruolo" type="text" placeholder="RUOLO" formControlName="ruolo">
-    <button class="bottoneVerdeScuro">VEDI DETTAGLI</button>
+    <div class="ruolo">
+      <h3>RUOLO:</h3>
+      <input class="caselle" id="ruolo" type="text" placeholder="RUOLO" formControlName="ruolo">
+      <button class="pulsanteVerdeScuro">VEDI DETTAGLI</button>
+    </div>
     <h3>COGNOME:...</h3>
     <h3>NOME:...</h3>
     <h3>EMAIL:...</h3>
-    <h3>PASSWORD:...</h3>
-    <input class="caselle" id="password" type="text" placeholder="PASSWORD" formControlName="password">
-    <h3>PERMESSI:</h3>
-    <button class="bottoneVerdeScuro">PERMESSI</button>
-    <div class="pulsantiUtente">
-      <button class="bottoneRosso">DISATTIVA UTENTE</button>
-      <button class="bottoneGiallo">MODIFICA</button>
-      <button  class="bottoneVerdeChiaro" type="submit" [disabled]="!utente.valid">SALVA MODIFICHE</button>
-      <button class="bottoneAzzurro">STORICO UTENTE</button>
+    <div class="password">
+      <h3>PASSWORD:</h3>
+      <input class="caselle" id="password" type="text" placeholder="PASSWORD" formControlName="password">
+    </div>
+    <div class="permessi">
+      <h3>PERMESSI:</h3>
+      <button class="pulsanteVerdeScuro">PERMESSI</button>
+    </div>
+    <div class="pulsanti">
+      <button class="pulsanteRosso">DISATTIVA UTENTE</button>
+      <button class="pulsanteGiallo">MODIFICA</button>
+      <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!utente.valid">SALVA MODIFICHE</button>
+      <button class="pulsanteAzzurro">STORICO UTENTE</button>
     </div>
   </form>
-  <router-outlet></router-outlet>
+
 </div>

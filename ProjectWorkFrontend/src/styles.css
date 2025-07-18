@@ -30,6 +30,11 @@ body {
   border-radius: var(--border-radius);
   color: var(--text-primary); /*default text color for texts*/
   box-shadow: var(--box-shadow); /*adding subtle shadow*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:5%
 }
 
 /*all buttons style these same characteristics, therefore unified in one general tag selector*/

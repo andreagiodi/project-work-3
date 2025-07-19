@@ -8,12 +8,9 @@ import { AuthService } from './services/auth-service.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-  authService = inject(AuthService);
+export class AppComponent{
   /*checks if user has already logged in (through cookies)*/
-  ngOnInit() {
-    if(this.authService.isAuthenticated()){
-      this.authService.loadUser()
-    }
+  constructor(private authService: AuthService) {
+    this.authService.loadUser()
   }
 }

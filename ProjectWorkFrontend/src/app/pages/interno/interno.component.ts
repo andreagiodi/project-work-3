@@ -16,7 +16,7 @@ export class InternoComponent implements OnInit {
   authService = inject(AuthService);
   currentUser: User | null = null;
   ngOnInit() {
-    this.currentUser = this.authService.getCurrentUser()
+    this.currentUser = this.authService.getCurrentUser()();
     this.redirectUser(this.currentUser);
   }
 

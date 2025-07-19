@@ -5,7 +5,7 @@ import {AuthService} from '../../services/auth-service.service';
 import {Router} from '@angular/router';
 import {futureDateTimeValidator} from '../../validators/customValid.validator';
 import {ValidationErrorService} from '../../validators/validationErrors';
-import {Prenotazione} from '../../modelli/user.model';
+import {PrenotazioneRequest} from '../../modelli/user.model';
 import {firstValueFrom} from 'rxjs';
 
 @Component({
@@ -47,7 +47,7 @@ export class PrenotaAppuntamentoComponent{
   }
 
   /*map the form data to match Appuntamento custom type*/
-  private mapToAppuntamento(): Prenotazione {
+  private mapToAppuntamento(): PrenotazioneRequest {
     const formData = this.prenotaAppOspite.getRawValue();
     return{
       data: formData.dataOra.data ?? '',
@@ -62,7 +62,7 @@ export class PrenotaAppuntamentoComponent{
     if(this.authService.isAuthenticated()) {
       if(this.prenotaAppOspite.valid) {
         try{
-          const response:Prenotazione = await firstValueFrom(this.dashboardService.createPrenotazione(this.mapToAppuntamento()));
+          const response:PrenotazioneRequest = await firstValueFrom(this.dashboardService.createPrenotazione(this.mapToAppuntamento()));
           console.log('Appointment created', response);
           this.feedBack = 'Prenotazione avvenuta con successo, in attesa di accettazione...'
         }catch(error:any){

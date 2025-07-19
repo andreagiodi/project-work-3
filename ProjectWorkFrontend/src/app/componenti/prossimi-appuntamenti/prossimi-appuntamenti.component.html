@@ -1,15 +1,25 @@
 <div class="sfondoSideBar">
   <h1>PROSSIMI APPUNTAMENTI</h1>
-  <div class="box">
+  @for (date of groupedAppointments(); track date[0]){
+    <div class="box">
+      <h3>{{ date[0] }}</h3>
+      @for(entry of date[1]; track entry.id){
+      <div class="caselle">
+        <h4>{{currentUser?.cognome}} {{currentUser?.nome}} | {{entry.dataPrenotazione.split("T")[1].slice(0, 5)}}</h4>
+      </div>
+      }
+    </div>
+  }
+</div>
+  <!--<div class="box">
     <h3>data</h3>
     <p>...</p>
     <div class="caselle">
-    <h4>Cognome:</h4>
-    <p>...</p>
-    <h4>Nome:</h4>
-    <p>...</p>
-    <h4>Ora:</h4>
-    <p>...</p>
+      <h4>Cognome:</h4>
+      <p>...</p>
+      <h4>Nome:</h4>
+      <p>...</p>
+      <h4>Ora:</h4>
+      <p>...</p>
     </div>
-  </div>
-</div>
+  </div>-->

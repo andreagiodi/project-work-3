@@ -4,6 +4,7 @@ export type User = Ospite | Impiegato;
 
 export interface Ospite {
   userType: 'ospite';
+  id?: number;
   nome: string;
   cognome: string;
   email: string;
@@ -16,6 +17,7 @@ export interface Ospite {
 
 export interface Impiegato {
   userType: 'impiegato';
+  id?: number;
   nome: string;
   cognome: string;
   email: string;
@@ -29,10 +31,21 @@ export type LoginRequest = {
   password: string | null;
 }
 
-export type Prenotazione = {
+export type PrenotazioneRequest = {
   data: string,
   ora: string,
   identificazioneProfessionale: string,
   motivoVisita: string,
   stato?: number,
+}
+
+export type Prenotazione = {
+  id: number,
+  idOspite: number,
+  stato: number,
+  entrata: any,
+  uscita: any,
+  identificazioneProfessionale: string,
+  motivo: string,
+  dataPrenotazione: string
 }

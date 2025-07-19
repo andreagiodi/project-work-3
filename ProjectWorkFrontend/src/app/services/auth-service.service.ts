@@ -24,7 +24,7 @@ export class AuthService {
 
   /*sends a POST request to logout endpoint, also setting user back to Null and redirect to login page*/
   logout(): void {
-    this.http.post(`${apiURL}/logout`, {}, {withCredentials: true}).subscribe({
+    this.http.post(`${apiURL}/logout`, {}, {withCredentials: true}).pipe(take(1)).subscribe({
       next: () => {
         this.user.set(null);
         this.redirectUser(null)
@@ -68,6 +68,6 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    return this.user();
+    return this.user.asReadonly();
   }
 }

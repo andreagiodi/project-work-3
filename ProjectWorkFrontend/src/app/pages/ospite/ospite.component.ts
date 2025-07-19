@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {PrenotaAppuntamentoComponent} from '../../componenti/prenota-appuntamento/prenota-appuntamento.component';
 import {ProssimiAppuntamentiComponent} from '../../componenti/prossimi-appuntamenti/prossimi-appuntamenti.component';
 import {AuthService} from '../../services/auth-service.service';
@@ -12,6 +12,7 @@ import {User} from '../../modelli/user.model';
     RouterOutlet,
     PrenotaAppuntamentoComponent,
     ProssimiAppuntamentiComponent,
+    RouterLink,
   ],
   templateUrl: './ospite.component.html',
   styleUrl: './ospite.component.css'

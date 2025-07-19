@@ -12,7 +12,6 @@ export class DashboardService{
   constructor(private http: HttpClient) { }
 
 /*===Appointments management ===*/
-
   // reactive state for appointments using signals
   private appointmentsSignal = signal<Prenotazione[]>([]);
 
@@ -54,19 +53,6 @@ export class DashboardService{
         console.error('Error refreshing appointments:', error);
       }
     });
-  }
-
-  // update stato to a specific appointment
-  updateAppointmentStatus(appointmentId: number, newStato: number): void {
-    //get the current list from signal
-    const currentAppointments = this.appointmentsSignal();
-    //create the updated list using map
-    const updatedAppointments = currentAppointments.map(appointment=>
-      //search for specific id then change stato
-      appointment.id === appointmentId ? { ...appointment, stato: newStato } : appointment
-    );
-    //set the current list to the updated one
-    this.appointmentsSignal.set(updatedAppointments);
   }
 
   //RECEPTIONIST SPECIFIC

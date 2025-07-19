@@ -30,7 +30,7 @@ import {UtenteComponent} from './componenti/admin-view/childCmp/utente/utente.co
 import {
   WarningComponent
 } from './componenti/admin-view/childCmp/utente/childCmp/warning/warning.component';
-import {ElencoSospesoComponent} from './componenti/richieste-sospeso/childCmp/elenco-sospeso/elenco-sospeso.component';
+import {ElencoSospesoComponent} from './componenti/elenco-sospeso(to review!!)/elenco-sospeso.component';
 
 export const routes: Routes = [
     {

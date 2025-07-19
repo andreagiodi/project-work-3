@@ -1,9 +1,9 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {Router} from '@angular/router';
 import {PrenotaAppuntamentoComponent} from '../../componenti/prenota-appuntamento/prenota-appuntamento.component';
 import {ProssimiAppuntamentiComponent} from '../../componenti/prossimi-appuntamenti/prossimi-appuntamenti.component';
 import {AuthService} from '../../services/auth-service.service';
-import {User} from '../../modelli/user.model';
+import {Prenotazione, User} from '../../modelli/user.model';
 
 
 @Component({
@@ -46,5 +46,11 @@ export class OspiteComponent implements OnInit {
         queryParams: { error: "Non hai ancora effettuato l'accesso" }
       });
     }
+  }
+
+  entryDetails = signal<Prenotazione | null>(null)
+  getEntryData(entry:Prenotazione){
+    this.entryDetails.set(entry);
+    console.log('got this from event', this.entryDetails());
   }
 }

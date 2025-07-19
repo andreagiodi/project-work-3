@@ -1,4 +1,4 @@
-import {Component, computed, effect, inject, signal} from '@angular/core';
+import {Component, computed, effect, inject, output, signal} from '@angular/core';
 import {DashboardService} from '../../services/dashboard-service.service';
 import {Prenotazione, User} from '../../modelli/user.model';
 import {firstValueFrom} from 'rxjs';
@@ -89,5 +89,10 @@ export class ProssimiAppuntamentiComponent {
       groupsByDate.get(dateString)!.push(entry);
     });
     return groupsByDate;
+  }
+
+  passData = output<Prenotazione>();
+  passEntry(entry: Prenotazione) {
+    this.passData.emit(entry);
   }
 }

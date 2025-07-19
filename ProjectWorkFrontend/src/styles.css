@@ -69,7 +69,8 @@ button{
 /*sidabar background with blur*/
 .sfondoSideBar{
   height: 100vh; /*height set to whole screen by default*/
-  width: 20vw; /*width set as 1/5 of screen width by default*/
+  width: 25vw; /*width set as 1/5 of screen width by default*/
+  overflow: scroll; /*overflowing content enables scrolling*/
   background-color: var(--sidebar-bg);
   box-shadow: var(--custom-bg-blur); /*add the blur effect shown on Figma*/
   color: var(--text-primary);
@@ -83,3 +84,20 @@ button{
   font-size: 0.75rem; /*text in input based on base font-size*/
 }
 
+/*this is the base layout for each of the page wrapper
+HOW?
+  each pages template( interno html and ospite html EXCLUDED home html) will NEED
+  to have a div wrapping ALL of the template with this class (.baseLayout)
+  allowing to correctly divide all of the template in grid sections
+*/
+.baseLayout {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    "sideL header topR"
+    "sideL main sideR"
+    "sideL footer botR";
+  gap: 1rem;
+}

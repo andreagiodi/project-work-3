@@ -1,23 +1,33 @@
 <p>accetta-appuntamento works!</p>
-<div class="contenitoreAccetta">
-  <div class="infoAppuntamento">
+<div class="box">
+  <div class="sfondoAppuntamento">
     <h1>ACCETTA APPUNTAMENTO</h1>
     <h3>CODICE FISCALE:</h3>
+    <p>...</p>
     <h3>COGNOME:</h3>
+    <p>...</p>
     <h3>NOME:</h3>
+    <p>...</p>
     <h3>EMAIL:</h3>
+    <p>...</p>
     <h3>TELEFONO:</h3>
+    <p>...</p>
     <h3>AZIENDA:</h3>
+    <p>...</p>
     <h3>PROFESSIONE:</h3>
+    <p>...</p>
     <h3>MOTIVO DELLA VISITA:</h3>
-    <h3>DATA:</h3>
-    <input type="date">
-    <h3>ORA:</h3>
-    <input type="time">
+    <p>...</p>
   </div>
-  <div class="pulsanti">
-    <button>MODIFICA</button>
-    <button>RIFIUTA</button>
-    <button>ACCETTA</button>
-  </div>
+  <form [formGroup]="accettaAppuntamento" (ngSubmit)="onSubmit()">
+      <h3>DATA:</h3>
+      <input class="caselle" id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
+      <h3>ORA:</h3>
+      <input class="caselle" id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
+    <div class="pulsanti">
+      <button class="pulsanteGiallo">MODIFICA</button>
+      <button class="pulsanteRosso">RIFIUTA</button>
+      <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!accettaAppuntamento.valid">ACCETTA</button>
+    </div>
+  </form>
 </div>

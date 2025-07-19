@@ -1,1 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*import color palette*/
+@import "./colorPalette.css";
+
+/*importing font*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  /*font settings*/
+  font-family: 'Inter', sans-serif;
+  font-size: 16px; /*NEW: default font-size --> !!1rem unit = font-size defined here!! */
+}
+
+body {
+  /*body styling:
+    !!!WARNING!!!: styling this will style all body tags, be aware of using body tags
+  */
+  margin: 0;
+  background-color: var(--background-color);
+  background: var(--background-gradient);
+  /*setting height and width based on 100% viewport*/
+  width: 100vw;
+  height: 100vh;
+}
+
+/*floating green box usually for components*/
+.box{
+  background-color: var(--window);
+  border-radius: var(--border-radius);
+  color: var(--text-primary); /*default text color for texts*/
+  box-shadow: var(--box-shadow); /*adding subtle shadow*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:5%
+}
+
+/*all buttons style these same characteristics, therefore unified in one general tag selector*/
+button{
+  justify-content: center;
+  color: var(--button-primary-text);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow); /*subtle shadow*/
+  border:none; /*resetting default border*/
+  cursor: pointer; /*sets cursor as pointer*/
+}
+
+/*buttons styling common for all project*/
+.pulsanteVerdeScuro{
+  background-color: var(--button-primary-bg);
+}
+
+/*actions button: success, warning, info, error*/
+.pulsanteVerdeChiaro{
+  background-color: var(--color-success);
+}
+.pulsanteGiallo{
+  background-color: var(--color-warning);
+  }
+.pulsanteAzzurro{
+  background-color: var(--color-info);
+}
+.pulsanteRosso{
+  background-color: var(--color-error);
+}
+
+/*sidabar background with blur*/
+.sfondoSideBar{
+  height: 100vh; /*height set to whole screen by default*/
+  width: 25vw; /*width set as 1/5 of screen width by default*/
+  overflow: scroll; /*overflowing content enables scrolling*/
+  background-color: var(--sidebar-bg);
+  box-shadow: var(--custom-bg-blur); /*add the blur effect shown on Figma*/
+  color: var(--text-primary);
+}
+
+/*modified name from caselle --> caselleInput for clarity (caselleInput are input fields of form)*/
+.caselle{
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: var(--input-border);
+  font-size: 0.75rem; /*text in input based on base font-size*/
+}
+
+/*this is the base layout for each of the page wrapper
+HOW?
+  each pages template( interno html and ospite html EXCLUDED home html) will NEED
+  to have a div wrapping ALL of the template with this class (.baseLayout)
+  allowing to correctly divide all of the template in grid sections
+*/
+.baseLayout {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    "sideL header topR"
+    "sideL main sideR"
+    "sideL footer botR";
+  gap: 1rem;
+}

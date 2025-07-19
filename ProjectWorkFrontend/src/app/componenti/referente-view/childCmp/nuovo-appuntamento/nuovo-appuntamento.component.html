@@ -1,26 +1,28 @@
 <p>nuovo-appuntamento works!</p>
-<div class="contenitoreNewApp">
-  <div class="infoAppuntamento">
+<div class="box">
+  <form [formGroup]="newAppuntamento" (ngSubmit)="onSubmit()">
     <h1>NUOVO APPUNTAMENTO</h1>
     <h3>CODICE FISCALE:</h3>
-    <input type="text">
+    <input class="caselle" id="codiceFiscale" type="text" placeholder="CODICE FISCALE" formControlName="codiceFiscale"/> <br/>
     <h3>COGNOME:</h3>
-    <input type="text">
+    <input class="caselle" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
     <h3>NOME:</h3>
-    <input type="text">
+    <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
     <h3>EMAIL:</h3>
-    <input type="text">
+    <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
     <h3>TELEFONO:</h3>
-    <input type="text">
-    <h3>DATA:</h3>
-    <input type="date">
-    <h3>ORA:</h3>
-    <input type="time">
-  </div>
-  <div class="pulsanti">
-    <button>MODIFICA</button>
-    <button>RIFIUTA</button>
-    <button>ACCETTA</button>
-  </div>
+    <input class="caselle" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
+    <div formGroupName="tempo">
+      <h3>DATA:</h3>
+      <input class="caselle" id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
+      <h3>ORA:</h3>
+      <input class="caselle" id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
+    </div>
+    <div class="pulsanti">
+      <button class="pulsanteGiallo">MODIFICA</button>
+      <button class="pulsanteRosso">RIFIUTA</button>
+      <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!newAppuntamento.valid">ACCETTA</button>
+    </div>
+  </form>
 </div>
 

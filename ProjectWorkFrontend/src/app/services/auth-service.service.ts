@@ -1,55 +1,73 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
-import { Router } from '@angular/router';
+import {Injectable, computed, signal} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, catchError, of, take} from 'rxjs';
+import {Router} from '@angular/router';
+import {apiURL} from '../app.config';
+import {User, LoginRequest} from '../modelli/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  //current logged user
+  private user = signal<User | null>(null);
+  //flag for authenticated, false = not authed true = authed
+  isAuthenticated = computed(() => !!this.checkAuth());
 
-
-
-  private apiUrl = 'http://localhost:8080';
-
-  private userSubject = new BehaviorSubject<any>(null);
-  user$ = this.userSubject.asObservable();
-
-  constructor(private http: HttpClient, private router: Router) { }
-
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { email, password }, { withCredentials: true });
+  constructor(private http: HttpClient, private router: Router) {
   }
 
-  checkAuth(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/auth/me`, { withCredentials: true }).pipe(
-      catchError(() => of(null))
-    );
+  /*send a POST request for login, passing a custom LoginRequest type, defined in user.model */
+  login(credentials: LoginRequest): Observable<User> {
+    return this.http.post<User>(`${apiURL}/login`, credentials, {withCredentials: true});
   }
 
-  loadUser() {
-    this.checkAuth().subscribe(user => {
-      this.userSubject.next(user);
-
-      if (user) {
-        
-        if (user.userType === 'impiegato') {
-          this.router.navigate(['/dashboard']);
-        } else if (user.userType === 'ospite') {
-          this.router.navigate(['/dashboard-ospite']);
-        }
-      } else {
-        this.router.navigate(['/']);
+  /*sends a POST request to logout endpoint, also setting user back to Null and redirect to login page*/
+  logout(): void {
+    this.http.post(`${apiURL}/logout`, {}, {withCredentials: true}).pipe(take(1)).subscribe({
+      next: () => {
+        this.user.set(null);
+        this.redirectUser(null)
+      },
+      error: () => {
+        // fallback in case logout endpoint fails
+        this.user.set(null);
+        this.router.navigate(['/benvenuto/login']);
       }
     });
-
   }
 
-  get currentUser() {
-    return this.userSubject.value;
+  /*check user token*/
+  checkAuth(): Observable<User | null> {
+    return this.http.get<User>(`${apiURL}/auth/me`, {withCredentials: true})
+      .pipe(catchError(() => of(null)));
   }
 
-  isAuthenticated(): boolean {
-    return !!this.currentUser;
+  /*load user handles the current user set / redirect to correct page*/
+  loadUser() {
+    this.checkAuth().pipe(take(1)).subscribe(user => {
+      this.user.set(user); // set logged user
+      this.redirectUser(user); //external method handles redirect
+    });
+  }
+
+  /*redirect user function*/
+  private redirectUser(user: User | null): void {
+    //if user is null or not logged in, redirect to login page
+    if (!user) {
+      this.router.navigate(['/benvenuto/login']);
+      return;
+    }
+    //define a map to allow redirecting based on userType
+    const routeMap = {
+      impiegato: '/interno',
+      ospite: '/esterno'
+    };
+    //user redirection
+    this.router.navigate([routeMap[user.userType]]);
+  }
+
+  getCurrentUser() {
+    return this.user.asReadonly();
   }
 }

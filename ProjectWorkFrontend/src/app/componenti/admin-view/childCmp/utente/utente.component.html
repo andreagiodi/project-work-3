@@ -1,19 +1,29 @@
-<p>utente works!</p>
-<div class="contenitoreUtAdmin">
-  <h1>Utente</h1>
-  <h3>ID:</h3>
-  <h3>RUOLO:</h3>
-  <input type="text">
-  <button>VEDI DETTAGLI</button>
-  <h3>COGNOME:</h3>
-  <h3>NOME:</h3>
-  <h3>EMAIL:</h3>
-  <input type="text">
-  <h3>PERMESSI:</h3>
-  <button>PERMESSI</button>
+<div class="box" id="utente">
+  <form [formGroup]="utente" (ngSubmit)="onSubmit()">
+    <h1>Utente</h1>
+    <h3>ID: ...</h3>
+    <div class="ruolo">
+      <h3>RUOLO:</h3>
+      <input class="caselle" id="ruolo" type="text" placeholder="RUOLO" formControlName="ruolo">
+      <button class="pulsanteVerdeScuro">VEDI DETTAGLI</button>
+    </div>
+    <h3>COGNOME:...</h3>
+    <h3>NOME:...</h3>
+    <h3>EMAIL:...</h3>
+    <div class="password">
+      <h3>PASSWORD:</h3>
+      <input class="caselle" id="password" type="text" placeholder="PASSWORD" formControlName="password">
+    </div>
+    <div class="permessi">
+      <h3>PERMESSI:</h3>
+      <button class="pulsanteVerdeScuro">PERMESSI</button>
+    </div>
+    <div class="pulsanti">
+      <button class="pulsanteRosso">DISATTIVA UTENTE</button>
+      <button class="pulsanteGiallo">MODIFICA</button>
+      <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!utente.valid">SALVA MODIFICHE</button>
+      <button class="pulsanteAzzurro">STORICO UTENTE</button>
+    </div>
+  </form>
 
-  <button>DISATTIVA UTENTE</button>
-  <button>MODIFICA</button>
-  <button>SALVA MODIFICHE</button>
-  <button>STORICO UTENTE</button>
 </div>

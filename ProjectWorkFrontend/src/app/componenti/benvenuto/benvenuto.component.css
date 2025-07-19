@@ -1,0 +1,23 @@
+.benvComp {
+  display: grid;
+  grid-template-areas:
+    "topL header topR"
+    "sideL main sideR";
+}
+
+h1 {
+  text-align: center;
+}
+
+.pulsanti {
+  display: flex;
+  justify-content: space-between;
+}
+
+.benvenuto {
+  grid-area: header;
+}
+
+.tempWrap {
+  grid-area: main;
+}

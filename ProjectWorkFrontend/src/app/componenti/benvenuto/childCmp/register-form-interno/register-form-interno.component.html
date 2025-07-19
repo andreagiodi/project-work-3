@@ -1,1 +1,57 @@
-<p>register-form-interno works!</p>
+<div class="principale">
+  <div class="box">
+    <h1>CREA ACCOUNT</h1>
+
+    <form [formGroup]="registerInternoForm" (ngSubmit)="onSubmit()">
+
+      <!-- Nome -->
+      <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome" /><br />
+      @if (registerInternoForm.get('nome')?.touched && registerInternoForm.get('nome')?.invalid) {
+        <small class="error">{{ getErrorMessage('nome') }}</small>
+      }<br />
+
+      <!-- Cognome -->
+      <input class="caselle" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome" /><br />
+      @if (registerInternoForm.get('cognome')?.touched && registerInternoForm.get('cognome')?.invalid) {
+        <small class="error">{{ getErrorMessage('cognome') }}</small>
+      }<br />
+
+      <!-- Email -->
+      <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email" /><br />
+      @if (registerInternoForm.get('email')?.touched && registerInternoForm.get('email')?.invalid) {
+        <small class="error">{{ getErrorMessage('email') }}</small>
+      }<br />
+
+      <!-- Checkbox -->
+      <label for="tipoStaff">SEI ESTERNO?</label>
+      <input class="caselle" id="tipoStaff" name="tipoStaff" type="checkbox" formControlName="tipoStaff" /><br />
+
+      <!-- Passwords -->
+      <div formGroupName="passwords">
+        <!--Main Password -->
+        <input class="caselle" id="password" type="password" placeholder="INSERISCI PASSWORD" formControlName="password" /><br />
+        @if (registerInternoForm.get('passwords.password')?.touched && registerInternoForm.get('passwords.password')?.invalid) {
+          <small class="error">{{ getErrorMessage('passwords.password') }}</small>
+        }<br />
+
+        <!-- Confirm Password -->
+        <input class="caselle" id="confirmPswd" type="password" placeholder="CONFERMA PASSWORD" formControlName="confirm" /><br />
+        @if (registerInternoForm.get('passwords.confirm')?.touched && registerInternoForm.get('passwords.confirm')?.invalid) {
+          <small class="error">{{ getErrorMessage('passwords.confirm') }}</small>
+        }<br />
+      </div>
+      <!-- Group-level password match error -->
+      @if (
+        registerInternoForm.get('passwords')?.touched &&
+        registerInternoForm.get('passwords')?.invalid
+        ) {
+        <small class="error">{{ getErrorMessage('passwords') }}</small>
+      }<br />
+
+      <!-- Submit -->
+      <div class="pulsanti">
+        <button type="submit" [disabled]="!registerInternoForm.valid" class="pulsanteVerdeScuro">REGISTRATI</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -28,12 +28,8 @@ import {
 import {AdminViewComponent} from './componenti/admin-view/admin-view.component';
 import {UtenteComponent} from './componenti/admin-view/childCmp/utente/utente.component';
 import {
-  StoricoUtenteComponent
-} from './componenti/admin-view/childCmp/utente/childCmp/storico-utente/storico-utente.component';
-import {
   WarningComponent
 } from './componenti/admin-view/childCmp/utente/childCmp/warning/warning.component';
-import {RichiesteSospesoComponent} from './componenti/richieste-sospeso/richieste-sospeso.component';
 
 export const routes: Routes = [
     {
@@ -109,16 +105,11 @@ export const routes: Routes = [
             {
               path:":idUtente",
               component: UtenteComponent,
-              children:[
-                {
-                  path:"storicoUtente",
-                  component:StoricoUtenteComponent
-                },
-                {
-                  path:"warning",
-                  component:WarningComponent
-                },
-              ]
+            },
+            {
+              path:"warning",
+              component:WarningComponent,
+              outlet:"warning"
             },
           ]
         },
@@ -127,11 +118,5 @@ export const routes: Routes = [
     {
       path: "esterno",
       component:OspiteComponent,
-      children: [
-        {
-          path:"richiesteSospeso",
-          component:RichiesteSospesoComponent
-        },
-      ],
     },
 ];

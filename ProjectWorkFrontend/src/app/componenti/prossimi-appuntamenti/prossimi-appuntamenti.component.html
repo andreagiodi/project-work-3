@@ -1,10 +1,32 @@
-<p>prossimi-appuntamenti works!</p>
-<h1>PROSSIMI APPUNTAMENTI</h1>
-<div class="contenitoreProssimi">
-  <h3>data</h3>
-  <div class="prossimiInfo">
-    <h4>Cognome:</h4>
-    <h4>Nome:</h4>
-    <h4>Ora:</h4>
-  </div>
+<div class="sfondoSideBar">
+  <h1>PROSSIMI APPUNTAMENTI</h1>
+  @for (date of groupedAppointments(); track date[0]){
+    <div class="box">
+      <h3>{{ date[0] }}</h3>
+      @for(entry of date[1]; track entry.id){
+      <div class="caselle" style="cursor: pointer" (click)="passEntry(entry)">
+        <!--you can modify and put these things in different tags as long as you don't separate whatever is inside {{....}}-->
+        <h4>{{currentUser?.cognome}} {{currentUser?.nome}}|</h4>
+        <h4>|{{entry.dataPrenotazione.split("T")[1].slice(0, 5)}} ||</h4>
+        @switch (entry?.stato){
+          @case(1){<h3 class="pulsanteGiallo">In attesa di conferma</h3>}
+          @case(2){<h3 class="pulsanteVerdeChiaro">Accettato</h3>}
+          @case(3){<h3 class="pulsanteRosso">Rifiutato</h3>}
+        }
+      </div>
+      }
+    </div>
+  }
 </div>
+  <!--<div class="box">
+    <h3>data</h3>
+    <p>...</p>
+    <div class="caselle">
+      <h4>Cognome:</h4>
+      <p>...</p>
+      <h4>Nome:</h4>
+      <p>...</p>
+      <h4>Ora:</h4>
+      <p>...</p>
+    </div>
+  </div>-->

@@ -1,0 +1,27 @@
+h2 {
+  text-align: center;
+}
+
+.caselle {
+  padding:1%;
+  border-radius: 25px;
+
+}
+
+img {
+  border-radius: 100%;
+}
+
+button {
+  margin:5%;
+}
+
+.registerEsternoForm div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+

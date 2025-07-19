@@ -1,0 +1,9 @@
+.box {
+  width: 75%;
+  padding:5%;
+}
+
+.caselle{
+  display: flex;
+  border-radius: 25px;
+}

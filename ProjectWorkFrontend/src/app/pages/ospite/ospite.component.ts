@@ -1,8 +1,9 @@
-import {Component, inject} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Component, inject, OnInit} from '@angular/core';
+import {Router, RouterOutlet} from '@angular/router';
 import {PrenotaAppuntamentoComponent} from '../../componenti/prenota-appuntamento/prenota-appuntamento.component';
 import {ProssimiAppuntamentiComponent} from '../../componenti/prossimi-appuntamenti/prossimi-appuntamenti.component';
 import {AuthService} from '../../services/auth-service.service';
+import {User} from '../../modelli/user.model';
 
 
 @Component({
@@ -15,10 +16,36 @@ import {AuthService} from '../../services/auth-service.service';
   templateUrl: './ospite.component.html',
   styleUrl: './ospite.component.css'
 })
-export class OspiteComponent {
+export class OspiteComponent implements OnInit {
+  /*service injection*/
   authService = inject(AuthService);
+  router = inject(Router);
+
+  currentUser: User | null = null;
+  ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser()();
+    this.redirectUser(this.currentUser);
+  }
+
   /*logout function call*/
   logOutFunc(){
     this.authService.logout();
+  }
+
+  redirectUser(user: User | null) {
+    if(user?.userType === 'ospite'){
+        this.router.navigate(['/esterno']);
+      }
+    else{
+      console.log('Access restricted to guests only');
+      this.router.navigate(['benvenuto/login'], {
+        queryParams: { error: 'Accesso ristretto ad Ospiti' }
+      });
+    }
+    if(!user){
+      this.router.navigate(['benvenuto/login'], {
+        queryParams: { error: "Non hai ancora effettuato l'accesso" }
+      });
+    }
   }
 }

@@ -44,9 +44,14 @@ export class InternoComponent implements OnInit {
         }
       }
     else{
-      console.log('restricted to employee only');
+      console.log('Access restricted to employee only');
       this.router.navigate(['benvenuto/login'], {
-        queryParams: { error: 'Accesso negato' }
+        queryParams: { error: 'Accesso ristretto ad impiegati' }
+      });
+    }
+    if(!user){
+      this.router.navigate(['benvenuto/login'], {
+        queryParams: { error: "Non hai ancora effettuato l'accesso" }
       });
     }
   }

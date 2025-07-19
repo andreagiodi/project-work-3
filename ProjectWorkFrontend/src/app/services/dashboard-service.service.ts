@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {apiURL} from '../app.config';
-import { Observable, BehaviorSubject, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import {Prenotazione, PrenotazioneRequest} from '../modelli/user.model';
 
 @Injectable({

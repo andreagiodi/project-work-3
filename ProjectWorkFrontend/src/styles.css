@@ -90,7 +90,14 @@ button{
 .sfondoSideBar{
   height: 100vh; /*height set to whole screen by default*/
   width: 25vw; /*width set as 1/5 of screen width by default*/
-  overflow: scroll; /*overflowing content enables scrolling*/
+  /*displaying grid to allow positioning of elements header and body*/
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 100%;
+  grid-template-areas:
+  "header"
+  "body";
+  /*color set up*/
   background-color: var(--sidebar-bg);
   box-shadow: var(--custom-bg-blur); /*add the blur effect shown on Figma*/
   color: var(--text-primary);
@@ -132,9 +139,12 @@ HOW?
 }
 /*specific style for logout button*/
 .logoutUserIcon .logoutButton{
-  font-size: 1rem;
-  font-weight: bold;
+  width: 6rem;
   height: 2.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 

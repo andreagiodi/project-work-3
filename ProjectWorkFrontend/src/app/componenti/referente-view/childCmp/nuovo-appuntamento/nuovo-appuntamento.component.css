@@ -1,0 +1,5 @@
+.pulsanti{
+  display: flex;
+  justify-content: space-between;
+  border-radius: 25px;
+}

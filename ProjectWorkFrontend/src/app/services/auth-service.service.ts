@@ -1,8 +1,8 @@
-import { Injectable, computed, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of, take } from 'rxjs';
-import { Router } from '@angular/router';
-import { apiURL } from '../app.config';
+import {Injectable, computed, signal} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, catchError, of, take} from 'rxjs';
+import {Router} from '@angular/router';
+import {apiURL} from '../app.config';
 import {User, LoginRequest} from '../modelli/user.model';
 
 @Injectable({
@@ -12,18 +12,34 @@ export class AuthService {
   //current logged user
   private user = signal<User | null>(null);
   //flag for authenticated, false = not authed true = authed
-  isAuthenticated = computed(() => !!this.user());
+  isAuthenticated = computed(() => !!this.checkAuth());
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   /*send a POST request for login, passing a custom LoginRequest type, defined in user.model */
-  login(credentials:LoginRequest): Observable<User> {
-    return this.http.post<User>(`${apiURL}/login`, credentials, { withCredentials: true });
+  login(credentials: LoginRequest): Observable<User> {
+    return this.http.post<User>(`${apiURL}/login`, credentials, {withCredentials: true});
+  }
+
+  /*sends a POST request to logout endpoint, also setting user back to Null and redirect to login page*/
+  logout(): void {
+    this.http.post(`${apiURL}/logout`, {}, {withCredentials: true}).pipe(take(1)).subscribe({
+      next: () => {
+        this.user.set(null);
+        this.redirectUser(null)
+      },
+      error: () => {
+        // fallback in case logout endpoint fails
+        this.user.set(null);
+        this.router.navigate(['/benvenuto/login']);
+      }
+    });
   }
 
   /*check user token*/
   checkAuth(): Observable<User | null> {
-    return this.http.get<User>(`${apiURL}/auth/me`, { withCredentials: true })
+    return this.http.get<User>(`${apiURL}/auth/me`, {withCredentials: true})
       .pipe(catchError(() => of(null)));
   }
 
@@ -50,7 +66,6 @@ export class AuthService {
     //user redirection
     this.router.navigate([routeMap[user.userType]]);
   }
-
 
   getCurrentUser() {
     return this.user.asReadonly();

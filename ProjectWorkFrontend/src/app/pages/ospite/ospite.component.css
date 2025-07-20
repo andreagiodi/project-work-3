@@ -1,9 +1,10 @@
-.ospiteClass {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: repeat(auto-fit, 1fr );
-  grid-template-areas:
-    "topL header topR"
-    "sideL main sideR"
-    "botL footer botR";
+/*prossimiAppuntamenti wrapper is a container for<app-prossimi-appuntamenti/> */
+#prossimiAppuntamentiWrapper{
+  grid-area: sideL;
+  height: 100%;
+}
+
+/*prenotaAppuntamenti wrapper is a container for <app-prenota-appuntamento/> */
+#prenotaAppuntamentiWrapper{
+  grid-area: main;
 }

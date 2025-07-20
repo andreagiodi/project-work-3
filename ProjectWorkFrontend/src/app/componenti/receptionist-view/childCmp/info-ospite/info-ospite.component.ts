@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {futureTime} from '../../../../validators/customValid.validator';
 
 @Component({
   selector: 'app-info-ospite',
@@ -15,8 +16,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular
 export class InfoOspiteComponent {
   infoOspite= new FormGroup({
     ore: new FormGroup({
-      entrata: new FormControl(''),
-      uscita: new FormControl(''),
+      entrata: new FormControl('', [futureTime()]),
+      uscita: new FormControl('', [futureTime()]),
     }),
     note: new FormControl('')
   })

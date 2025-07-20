@@ -1,15 +1,36 @@
 <div class="sfondoSideBar">
-  <h1>PROSSIMI APPUNTAMENTI</h1>
-  <div class="box">
+  <div id="boxHeaderWrapper">
+    <h1>PROSSIMI APPUNTAMENTI</h1>
+  </div>
+  <section id="listWrapper">
+  @for (date of groupedAppointments(); track date[0]){
+    <div class="box">
+      <h3>{{ date[0] }}</h3>
+      @for(entry of date[1]; track entry.id){
+      <div class="caselle" style="cursor: pointer" (click)="passEntry(entry)">
+        <!--you can modify and put these things in different tags as long as you don't separate whatever is inside {{....}}-->
+        <h4>{{currentUser?.cognome}} {{currentUser?.nome}}</h4>
+        <h4>{{entry.dataPrenotazione.split("T")[1].slice(0, 5)}}</h4>
+        @switch (entry?.stato){
+          @case(1){<button class="pulsanteGiallo"><h4>In attesa...</h4></button>}
+          @case(2){<button class="pulsanteVerdeChiaro"><h4>Accettato</h4></button>}
+          @case(3){<button class="pulsanteRosso"><h4>Rifiutato</h4></button>}
+        }
+      </div>
+      }
+    </div>
+  }
+  </section>
+</div>
+  <!--<div class="box">
     <h3>data</h3>
     <p>...</p>
     <div class="caselle">
-    <h4>Cognome:</h4>
-    <p>...</p>
-    <h4>Nome:</h4>
-    <p>...</p>
-    <h4>Ora:</h4>
-    <p>...</p>
+      <h4>Cognome:</h4>
+      <p>...</p>
+      <h4>Nome:</h4>
+      <p>...</p>
+      <h4>Ora:</h4>
+      <p>...</p>
     </div>
-  </div>
-</div>
+  </div>-->

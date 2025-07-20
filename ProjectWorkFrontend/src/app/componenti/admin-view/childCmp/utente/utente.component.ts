@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-utente',
   imports: [
-    RouterOutlet,
     ReactiveFormsModule
   ],
   templateUrl: './utente.component.html',

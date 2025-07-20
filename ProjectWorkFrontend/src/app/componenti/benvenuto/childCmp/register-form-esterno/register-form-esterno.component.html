@@ -1,40 +1,92 @@
 <div class="principale">
   <div class="box">
     <h1>CREA ACCOUNT</h1>
-    <img class="caselle" src="" alt="foto profilo default">
+    <img class="caselle" src="/icons/freeUser.svg" alt="foto profilo default" />
+
     <form class="registerEsternoForm" [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
 
+      <!-- Dati Anagrafici -->
       <div formGroupName="datiAnagrafici">
         <h3>DATI ANAGRAFICI</h3>
-        <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome"/> <br/>
-        <input class="caselle" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome"/> <br/>
+        <!-- Nome -->
+        <input class="caselle" id="nome" type="text" placeholder="NOME" formControlName="nome" /><br />
+        @if (registerEsternoForm.get('datiAnagrafici.nome')?.touched && registerEsternoForm.get('datiAnagrafici.nome')?.invalid) {
+          <small class="error">{{ getErrorMessage('datiAnagrafici.nome') }}</small>
+        }<br />
+
+        <!-- Cognome -->
+        <input class="caselle" id="cognome" type="text" placeholder="COGNOME" formControlName="cognome" /><br />
+        @if (registerEsternoForm.get('datiAnagrafici.cognome')?.touched && registerEsternoForm.get('datiAnagrafici.cognome')?.invalid) {
+          <small class="error">{{ getErrorMessage('datiAnagrafici.cognome') }}</small>
+        }<br />
+
+        <!-- Codice Fiscale -->
         <input class="caselle" id="codiceFiscale" type="text" placeholder="CODICE FISCALE"
-               formControlName="codiceFiscale"/> <br/>
+               formControlName="codiceFiscale" /><br />
+        @if (registerEsternoForm.get('datiAnagrafici.codiceFiscale')?.touched && registerEsternoForm.get('datiAnagrafici.codiceFiscale')?.invalid) {
+          <small class="error">{{ getErrorMessage('datiAnagrafici.codiceFiscale') }}</small>
+        }<br />
       </div>
 
+      <!-- Contatti -->
       <div formGroupName="contatti">
         <h3>CONTATTI</h3>
-        <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
-        <input class="caselle" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
+
+        <!-- Email -->
+        <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email" /><br />
+        @if (registerEsternoForm.get('contatti.email')?.touched && registerEsternoForm.get('contatti.email')?.invalid) {
+          <small class="error">{{ getErrorMessage('contatti.email') }}</small>
+        }<br />
+
+        <!-- Telefono -->
+        <input class="caselle" id="telefono" type="text" placeholder="TELEFONO" formControlName="telefono" /><br />
+        @if (registerEsternoForm.get('contatti.telefono')?.touched && registerEsternoForm.get('contatti.telefono')?.invalid) {
+          <small class="error">{{ getErrorMessage('contatti.telefono') }}</small>
+        }<br />
       </div>
-      <div formGroupName="altro">
+
+      <div> <!--in Natalia Version she wrapped it in a div, so did i (Luck) to allow her styling to word-->
+        <!-- Azienda -->
         <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
-        <input class="caselle" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda"/> <br/>
+        <input class="caselle" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda" /><br />
+        @if (registerEsternoForm.get('azienda')?.touched && registerEsternoForm.get('azienda')?.invalid) {
+          <small class="error">{{ getErrorMessage('azienda') }}</small>
+        }<br />
+
+        <!-- Tipo Ospite -->
         <h3>CHE TIPO DI OSPITE SEI</h3>
         <select class="caselle" id="tipoOspite" name="tipoOspite" formControlName="tipoOspite">
+          <option value="" disabled selected>Seleziona un tipo</option> <!--default empty option-->
           <option value="1">Visitatore</option>
           <option value="2">Fornitore</option>
           <option value="3">Esterno</option>
           <option value="4">Cliente</option>
-        </select>
+        </select> <br />
+        @if (registerEsternoForm.get('tipoOspite')?.touched && registerEsternoForm.get('tipoOspite')?.invalid) {
+          <small class="error">{{ getErrorMessage('tipoOspite') }}</small>
+        }<br />
       </div>
 
+      <!-- Passwords -->
       <div formGroupName="passwords">
         <h3>PASSWORD</h3>
-        <input class="caselle" id="password" type="password" placeholder="PASSWORD" formControlName="password"/> <br/>
-        <input class="caselle" id="newPasssword" type="password" placeholder="NUOVA PASSWORD"
-               formControlName="newPassword"/> <br/>
+
+        <!-- Password -->
+        <input class="caselle" id="password" type="password" placeholder="PASSWORD" formControlName="password" /><br />
+        @if (registerEsternoForm.get('passwords.password')?.touched && registerEsternoForm.get('passwords.password')?.invalid) {
+          <small class="error">{{ getErrorMessage('passwords.password') }}</small>
+        }<br />
+
+        <!-- Confirm Password -->
+        <input class="caselle" id="confirmPswd" type="password" placeholder="CONFERMA PASSWORD" formControlName="confirm" /><br />
+        @if (registerEsternoForm.get('passwords.confirm')?.touched && registerEsternoForm.get('passwords.confirm')?.invalid) {
+          <small class="error">{{ getErrorMessage('passwords.confirm') }}</small>
+        }<br />
       </div>
+      @if (registerEsternoForm.get('passwords')?.touched && registerEsternoForm.get('passwords')?.invalid) {
+        <small class="error">{{ getErrorMessage('passwords') }}</small>
+      }<br />
+
       <div class="pulsanti">
         <button type="submit" [disabled]="!registerEsternoForm.valid" class="pulsanteVerdeScuro">REGISTRATI</button>
       </div>

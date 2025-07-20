@@ -1,11 +1,13 @@
-.sfondoSideBar{
-  border-radius: 35px;
-  width:80%;
-  padding-top: 5%;
+#boxHeaderWrapper{
+  width: 100%;
+  grid-area: header;
+  text-align: center;
 }
 
-h1 {
-  text-align: center;
+#listWrapper{
+  width: 100%;
+  grid-area: body;
+  overflow: scroll;
 }
 
 .box{
@@ -16,10 +18,31 @@ h1 {
   margin:5%;
 }
 
-.caselle{
-  display: flex;
-  border-radius: 25px;
-  height: 10%;
-  align-items: center;
+.box > h3{
+  margin-top: 0;
+  text-align: center;
+}
 
+.caselle{
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 3rem;
+  width: 100%;
+}
+
+.caselle > *{
+  border-radius: var(--border-radius);
+  width: clamp(10px, 33%, 45%);
+  height: 90%;
+  text-align: center;
+  align-content: center;
+  padding: 0.3rem;
+  margin: 0.3rem;
+}
+
+.caselle > * > h4{
+  margin: 0;
+  font-size: 0.75rem;
 }

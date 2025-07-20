@@ -16,9 +16,6 @@ import {
   NuovoAppuntamentoComponent
 } from './componenti/referente-view/childCmp/nuovo-appuntamento/nuovo-appuntamento.component';
 import {
-  AppuntamentiSospesoComponent
-} from './componenti/referente-view/childCmp/appuntamenti-sospeso/appuntamenti-sospeso.component';
-import {
   AccettaAppuntamentoComponent
 } from './componenti/referente-view/childCmp/accetta-appuntamento/accetta-appuntamento.component';
 import {InfoOspiteComponent} from './componenti/receptionist-view/childCmp/info-ospite/info-ospite.component';

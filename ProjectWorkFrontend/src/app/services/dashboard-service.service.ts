@@ -1,15 +1,18 @@
-import { Injectable, signal } from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {apiURL} from '../app.config';
 import { Observable, tap } from 'rxjs';
-import {Prenotazione, PrenotazioneRequest} from '../modelli/user.model';
+import {Prenotazione, PrenotazioneRequest, User} from '../modelli/user.model';
+import {AuthService} from './auth-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService{
+export class DashBoardService {
 
-  constructor(private http: HttpClient) { }
+  /*service injection*/
+  http = inject(HttpClient);
+  authService = inject(AuthService);
 
 /*===Appointments management ===*/
   // reactive state for appointments using signals
@@ -33,7 +36,15 @@ export class DashboardService{
   }
 
   //sends a GET request to list all appointments of current user --> list of Prenotazione types
-  getPrenotazioni(): Observable<Prenotazione[]> {
+  getPrenotazioni(): Observable<Prenotazione[]>{
+    //check who is calling the function
+    const currentUser = this.authService.getCurrentUser()();
+    //based on caller, if it's an impiegato then gets a different list
+    if(currentUser?.userType === 'impiegato') {
+      if (currentUser.idRuolo === 1) {
+        return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/all`);
+      }
+    }
     return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/list`, {withCredentials: true})
       .pipe(
         tap(appointments => {
@@ -56,6 +67,7 @@ export class DashboardService{
   }
 
   //RECEPTIONIST SPECIFIC
+
   setUscitaOspite(id: number): Observable<any> {
     return this.http.post(`${apiURL}/reception/uscita/${id}`, {
       id: id

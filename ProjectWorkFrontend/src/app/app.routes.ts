@@ -89,10 +89,6 @@ export const routes: Routes = [
               component:NuovoAppuntamentoComponent
             },
             {
-              path:"appuntamentoSospeso",
-              component: AppuntamentiSospesoComponent
-            },
-            {
               path:"accettaAppuntamento",
               component: AccettaAppuntamentoComponent
             },

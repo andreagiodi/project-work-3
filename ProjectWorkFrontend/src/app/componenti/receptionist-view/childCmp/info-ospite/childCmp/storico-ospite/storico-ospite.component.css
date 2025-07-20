@@ -1,0 +1,13 @@
+.box{
+  background-color: var(--button-primary-bg);
+  border-radius: 25px;
+}
+
+.caselle{
+  display: flex;
+  border-radius: 25px;
+}
+
+.principale{
+  background-color: var(--surface-color);
+}

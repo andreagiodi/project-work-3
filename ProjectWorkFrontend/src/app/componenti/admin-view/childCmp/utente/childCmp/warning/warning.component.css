@@ -1,0 +1,23 @@
+.box{
+  padding:3%;
+  margin-top: 5%;
+  width:55%;
+}
+
+button {
+  padding:2%;
+  margin-top:3%;
+}
+.pulsanteVerdeChiaro {
+  margin-left: 3%;
+}
+
+h3{
+  text-align: center;
+}
+p{
+  text-align: center;
+}
+.caselle{
+  align-self: center;
+}

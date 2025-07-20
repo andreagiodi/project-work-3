@@ -2,7 +2,7 @@ import {inject, Injectable, signal} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {apiURL} from '../app.config';
 import { Observable, tap } from 'rxjs';
-import {Prenotazione, PrenotazioneRequest} from '../modelli/user.model';
+import {Prenotazione, PrenotazioneRequest, User} from '../modelli/user.model';
 import {AuthService} from './auth-service.service';
 
 @Injectable({
@@ -130,8 +130,8 @@ export class DashBoardService {
 /*===END Appointments management ===*/
 
   //sends a GET request to get that specific user's info
-  getProfileInfo(id: number): Observable<any> {
-    return this.http.get(`${apiURL}/profile/${id}`, {withCredentials: true});
+  getOspiteInfo(id: number): Observable<User> {
+    return this.http.get<User>(`${apiURL}/ospite/${id}`, {withCredentials: true});
   }
 
   //ADMIN SPECIFIC

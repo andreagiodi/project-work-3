@@ -1,5 +1,5 @@
 import {Component, computed, effect, inject, output, signal} from '@angular/core';
-import {DashboardService} from '../../services/dashboard-service.service';
+import {DashBoardService} from '../../services/dashboard-service.service';
 import {Prenotazione, User} from '../../modelli/user.model';
 import {firstValueFrom} from 'rxjs';
 import {AuthService} from '../../services/auth-service.service';
@@ -12,12 +12,14 @@ import {AuthService} from '../../services/auth-service.service';
 })
 export class ProssimiAppuntamentiComponent {
   /*service injection*/
-  private dashboardService = inject(DashboardService);
+  private dashboardService = inject(DashBoardService);
   private authService = inject(AuthService);
 
   //current user var declaration
   currentUser?: User | null;
   userId?: number;
+  //user List needed for receptionist and referente
+  userList = new Map<number, User>();
 
   // appointment list
   appointments = signal<Prenotazione[]>([]);
@@ -53,14 +55,29 @@ export class ProssimiAppuntamentiComponent {
   //function to load prenotazioni
   async loadPrenotazioni(): Promise<void> {
     try {
+      /*get Prenotazioni for guest ONLY*/
       const response: Prenotazione[] = await firstValueFrom(this.dashboardService.getPrenotazioni());
       console.log('Fetched list', response);
       // This will trigger the computed signal to recalculate
       this.appointments.set(response);
-    } catch (error: any) {
+      this.loadUsers();
+    }catch (error: any) {
       console.error('Error during list fetching', error);
       this.appointments.set([]);
     }
+  }
+  //load all users that have an appointment booked
+  loadUsers() {
+    const appList = this.appointments();
+    appList.forEach((appointment) => {
+      firstValueFrom(this.dashboardService.getOspiteInfo(appointment.idOspite)).then((response) =>{
+        //if it doesn't exist in the map, add the key with an empty array
+        if (!this.userList.has(response.id!)) {
+          this.userList.set(response.id!, response);
+        }
+      });
+    })
+    console.log(this.userList);
   }
 
   //map list by date to allow separation in UI

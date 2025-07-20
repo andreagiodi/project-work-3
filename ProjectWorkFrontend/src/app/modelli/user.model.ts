@@ -1,5 +1,3 @@
-export type UserType = 'ospite' | 'impiegato';
-
 export type User = Ospite | Impiegato;
 
 export interface Ospite {

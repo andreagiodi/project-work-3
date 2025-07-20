@@ -1,8 +1,9 @@
 <div class="baseLayout">
-
-  <section>
-    <button><img src="/icons/freeUser.svg" alt="default logo"></button><!--user profile-->
-    <button class="pulsanteRosso" type="button" (click)="logOutFunc()">LOGOUT</button> <!--logOut button-->
+  <section class="logoutUserIcon">
+    <!--user profile button-->
+    <button class="userIcon" (click)="toggleUserInfo()"><img src="/icons/freeUser.svg" alt="default logo"></button>
+    <!--logOut button-->
+    <button class="pulsanteRosso logoutButton" type="button" (click)="logOutFunc()">LOGOUT</button>
   </section>
 
   <section id="prenotaAppuntamentiWrapper">
@@ -13,29 +14,81 @@
     <app-prossimi-appuntamenti (passData)="getEntryData($event)"/>
   </section>
 
-  @if (this.entryDetails()) {
-    <div class="box" id="AppointmentDetails">
-      <h2>Dettagli dell'appuntamento</h2>
-      <div class="caselle">
-        <h3>Richiedente: </h3>
-        <h3>{{ currentUser?.nome }} {{ currentUser?.cognome }}</h3>
-      </div>
-      <div class="caselle">
-        <h3>Data: </h3>
-        <h3>{{ entryDetails()!.dataPrenotazione.split("T")[0].slice(0, 10) }}</h3>
-      </div>
-      <div class="caselle">
-        <h3>Ora: </h3>
-        <h3>{{ entryDetails()!.dataPrenotazione.split("T")[1].slice(0, 5) }} </h3>
-      </div>
-      <div class="caselle">
-        <h3>Identificazione: </h3>
-        <h3>{{ entryDetails()!.identificazioneProfessionale }}</h3>
-      </div>
-      <div class="caselle">
-        <h3>Motivo dichiarato. </h3>
-        <h3>{{ entryDetails()!.motivo }}</h3>
-      </div>
-    </div>
-  }
+  <!--ANYTHING OUTSIDE THIS DIV IS A POPUP-->
 </div>
+
+<!--section appearing showing appointment details on click-->
+@if (this.entryDetails()) {
+  <div class="boxVerdeScuro popUpClass">
+    <section class="popUp_header">
+      <h2>Dettagli dell'appuntamento</h2>
+      <button class="pulsanteRosso escButton" (click)="this.entryDetails.set(null)"><img src="/icons/XcloseIcon.svg" alt="X"></button>
+    </section>
+    <div class="caselle">
+      <h4>Richiedente: </h4>
+      <h3>{{ currentUser?.nome }} {{ currentUser?.cognome }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Data: </h4>
+      <h3>{{ entryDetails()!.dataPrenotazione.split("T")[0].slice(0, 10) }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Ora: </h4>
+      <h3>{{ entryDetails()!.dataPrenotazione.split("T")[1].slice(0, 5) }} </h3>
+    </div>
+    <div class="caselle">
+      <h4>Identificazione: </h4>
+      <h3>{{ entryDetails()!.identificazioneProfessionale }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Motivo dichiarato. </h4>
+      <h3>{{ entryDetails()!.motivo }}</h3>
+    </div>
+  </div>
+}
+
+@if (isShowingUser()) {
+  <div class="boxVerdeScuro popUpClass">
+    <section class="popUp_header">
+      <h2>Informazioni utente</h2>
+      <button class="pulsanteRosso escButton" (click)="toggleUserInfo()"><img src="/icons/XcloseIcon.svg" alt="X"></button>
+    </section>
+    <div class="caselle">
+      <h4>Nome e Cognome: </h4>
+      <h3>{{ currentUser?.nome }} {{ currentUser?.cognome }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Email: </h4>
+      <h3>{{ currentUser?.email }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Telefono: </h4>
+      <h3>{{ currentUser?.telefono }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Codice Fiscale: </h4>
+      <h3>{{ currentUser?.codiceFiscale }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Azienda attuale: </h4>
+      <h3>{{ currentUser?.azienda }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Categoria Ospite: </h4>
+      @switch (currentUser?.idTipoOspite) {
+        @case (1) {
+          <h3>Visitatore</h3>
+        }
+        @case (2) {
+          <h3>Fornitore</h3>
+        }
+        @case (3) {
+          <h3>Esterno</h3>
+        }
+        @case (4) {
+          <h3>Cliente</h3>
+        }
+      }
+    </div>
+  </div>
+}

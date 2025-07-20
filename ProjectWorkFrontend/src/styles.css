@@ -36,6 +36,26 @@ body {
   align-items: center;
   margin:5%
 }
+/*floating dark green box (take Storico Utente in Recepionist) ==> same as "box" but with different colors*/
+.boxVerdeScuro{
+  background-color: var(--button-primary-bg);
+  border-radius: var(--border-radius);
+  color: var(--button-secondary-bg); /*default text color for texts*/
+  box-shadow: var(--box-shadow); /*adding subtle shadow*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:5%
+}
+
+/*modified name from caselle --> caselleInput for clarity (caselleInput are input fields of form)*/
+.caselle{
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: var(--input-border);
+  font-size: 0.75rem; /*text in input based on base font-size*/
+}
 
 /*all buttons style these same characteristics, therefore unified in one general tag selector*/
 button{
@@ -76,14 +96,6 @@ button{
   color: var(--text-primary);
 }
 
-/*modified name from caselle --> caselleInput for clarity (caselleInput are input fields of form)*/
-.caselle{
-  background-color: var(--button-secondary-bg);
-  color: var(--button-secondary-text);
-  border: var(--input-border);
-  font-size: 0.75rem; /*text in input based on base font-size*/
-}
-
 /*this is the base layout for each of the page wrapper
 HOW?
   each pages template( interno html and ospite html EXCLUDED home html) will NEED
@@ -95,9 +107,95 @@ HOW?
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
   grid-template-areas:
     "sideL header topR"
     "sideL main sideR"
     "sideL footer botR";
+  gap: 0.5rem;
+}
+/*styling for section containing user profile button + logout button (appearing in ospite.html / interno.html components)*/
+.logoutUserIcon{
+  grid-area: topR;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   gap: 1rem;
+  margin-right: 32px;
+}
+/*specific style for user icon*/
+.logoutUserIcon .userIcon{
+  aspect-ratio: 1; /*keep the proportion one to one = square*/
+  width: 60px;
+  border-radius: 100%;
+  align-self: center;
+}
+/*specific style for logout button*/
+.logoutUserIcon .logoutButton{
+  font-size: 1rem;
+  font-weight: bold;
+  height: 2.5rem;
+}
+
+
+/*===popUp styling for all project===*/
+.popUpClass{
+  /*fix position to center of screen*/
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  /*========*/
+  width: 60vw;
+  height: fit-content;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+}
+/*titles in popup*/
+.popUpClass h2{
+  grid-row: 1/3;
+  grid-column: 1/3;
+}
+/*text caselle in popup*/
+.popUpClass .caselle{
+  display: inline-flex;
+  justify-content: space-between;
+  border-radius: var(--border-radius);
+  border: var(--input-border);
+  text-align: end;
+  padding: 0.5rem;
+  margin: 0.3rem 0.3rem 1rem;
+  width: 75%;
+}
+/*specific h4 in caselle*/
+.popUpClass .caselle h4{
+  font-weight: normal;
+}
+/*popUp headers styling*/
+.popUpClass .popUp_header{
+  grid-column: 1/3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/*only all DIRECT CHILDREN for popUp_header class*/
+.popUpClass .popUp_header > *{
+  margin: 1rem
+}
+
+/*Styling for escape button used to clear popups*/
+.escButton{
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-content: center;
+}
+/*image X on button*/
+.escButton img{
+  width: 100%;
+  height: 100%;
 }

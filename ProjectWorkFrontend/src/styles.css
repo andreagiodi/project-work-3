@@ -123,16 +123,18 @@ HOW?
 }
 /*styling for section containing user profile button + logout button (appearing in ospite.html / interno.html components)*/
 .logoutUserIcon{
-  grid-area: topR;
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
+  margin-top: 32px;
   margin-right: 32px;
 }
 /*specific style for user icon*/
 .logoutUserIcon .userIcon{
-  aspect-ratio: 1; /*keep the proportion one to one = square*/
   width: 60px;
   border-radius: 100%;
   align-self: center;

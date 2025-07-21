@@ -1,8 +1,13 @@
-<app-prossimi-appuntamenti></app-prossimi-appuntamenti>
-<div class="pulsanti">
-  <button class="pulsanteVerdeChiaro">NUOVO APPUNTAMENTO</button>
-  <button class="pulsanteAzzurro">APPUNTAMENTO IN SOSPESO</button>
-  <button class="pulsanteGiallo">DA ACCETTARE</button>
+<div class="baseLayout">
+  <app-prossimi-appuntamenti id="prossimiAppuntamentiRef"></app-prossimi-appuntamenti>
+  <div class="pulsanti">
+    <button class="pulsanteVerdeChiaro">NUOVO APPUNTAMENTO</button>
+    <button class="pulsanteGiallo">DA ACCETTARE</button>
+  </div>
   <!--router Outlet for nuovo Appuntamento, Appuntamento in Sospeso, da Accettare-->
-  <router-outlet></router-outlet>
+  <div class="componentsRef">
+    <app-accetta-appuntamento id="accettaRef"></app-accetta-appuntamento>
+    <app-nuovo-appuntamento id="nuovoRef"></app-nuovo-appuntamento>
+  </div>
 </div>
+

@@ -68,6 +68,18 @@ export class DashBoardService {
 
   //RECEPTIONIST SPECIFIC
 
+  setEntrataOspite(id: number): Observable<any> {
+    return this.http.post(`${apiURL}/reception/ingresso/`, {
+      id: id
+    }, {withCredentials: true})
+      .pipe(
+        tap(() => {
+          // Refresh appointments after check-in (might affect status)
+          this.refreshAppointments();
+        })
+      );
+  }
+
   setUscitaOspite(id: number): Observable<any> {
     return this.http.post(`${apiURL}/reception/uscita/${id}`, {
       id: id

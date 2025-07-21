@@ -1,9 +1,17 @@
-.receptionClass{
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows:  5vw 1fr 1fr;
-  grid-template-areas:
-    "topL header topR"
-    "L main R"
-    "L footer R";
+#prossimiAppuntamentiRec{
+  grid-area: sideL;
+}
+
+#infoUtente{
+  grid-area: main;
+}
+
+#storicoRec{
+  height: 100%;
+  grid-area: footer;
+}
+
+.baseLayout{
+  grid-template-rows: 1fr 3fr 1fr;
+  gap:0;
 }

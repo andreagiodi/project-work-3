@@ -118,7 +118,7 @@ HOW?
   grid-template-areas:
     "sideL header topR"
     "sideL main sideR"
-    "sideL footer botR";
+    "sideL footer footer";
   gap: 0.5rem;
 }
 /*styling for section containing user profile button + logout button (appearing in ospite.html / interno.html components)*/

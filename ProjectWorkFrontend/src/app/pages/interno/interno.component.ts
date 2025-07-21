@@ -24,15 +24,15 @@ export class InternoComponent implements OnInit {
     if(user?.userType === 'impiegato')
       switch (user.idRuolo) {
         case 1: {
-          this.router.navigate(['interno/receptionist']);
+          this.router.navigate(['interno/admin']);
           break;
         }
         case 2: {
-          this.router.navigate(['interno/referente']);
+          this.router.navigate(['interno/receptionist']);
           break;
         }
-        case 4: {
-          this.router.navigate(['interno/admin']);
+        case 3: {
+          this.router.navigate(['interno/referente']);
           break;
         }
         default: {

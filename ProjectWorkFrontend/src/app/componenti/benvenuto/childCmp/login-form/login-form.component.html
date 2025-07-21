@@ -4,7 +4,7 @@
     @if (loginMessage){<h4 id="loginError">{{loginMessage}}</h4>}
     <img class="img" src="/icons/freeUser.svg" alt="foto profilo default">
 
-    <form [formGroup]="loginForm" class="loginForm"(ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="onSubmit()">
 
       <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"
              autocomplete="email"/><br/>

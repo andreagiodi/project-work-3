@@ -124,7 +124,7 @@ export class ProssimiAppuntamentiComponent implements OnInit {
     });
     return groupsByDate;
   }
-
+  //passData through custom event
   passData = output<Prenotazione>();
   passEntry(entry: Prenotazione) {
     this.passData.emit(entry);

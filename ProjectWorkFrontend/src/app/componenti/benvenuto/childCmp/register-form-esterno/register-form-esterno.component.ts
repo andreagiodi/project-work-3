@@ -63,8 +63,6 @@ export class RegisterFormEsternoComponent implements OnInit {
         data.forEach(type => {
           this.userTypeList.set(type.id, type.tipologia);
         });
-        console.log(data)
-        console.log(this.userTypeList);
       }
     );
   }

@@ -24,6 +24,21 @@ export interface Impiegato {
   isEsterno: boolean;
 }
 
+export type Ruolo = {
+  id: number,
+  ruolo: string,
+}
+
+export type TipoOspite = {
+  id: number,
+  tipologia: string,
+}
+
+export type Stato = {
+  id: number,
+  nome: string,
+}
+
 export type LoginRequest = {
   email: string | null;
   password: string | null;

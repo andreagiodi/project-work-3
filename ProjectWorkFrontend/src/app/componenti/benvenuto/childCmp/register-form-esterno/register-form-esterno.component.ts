@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RegisterService} from '../../../../services/register-service.service';
 
@@ -9,8 +9,12 @@ import {
   phoneNumber,
   strongPassword,
 } from '../../../../validators/customValid.validator';
-import {Ospite} from '../../../../modelli/user.model';
+import {Ospite, TipoOspite} from '../../../../modelli/user.model';
 import {ValidationErrorService} from '../../../../validators/validationErrors';
+import {DashBoardService} from '../../../../services/dashboard-service.service';
+import {firstValueFrom} from 'rxjs';
+import {apiURL} from '../../../../app.config';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-register-form-esterno',
@@ -21,9 +25,12 @@ import {ValidationErrorService} from '../../../../validators/validationErrors';
   templateUrl: './register-form-esterno.component.html',
   styleUrl: './register-form-esterno.component.css'
 })
-export class RegisterFormEsternoComponent {
-  /*injecting register service*/
-  registrationService = inject(RegisterService)
+export class RegisterFormEsternoComponent implements OnInit {
+  /*injecting service*/
+  registrationService = inject(RegisterService);
+  dashboardService = inject(DashBoardService);
+  http = inject(HttpClient);
+
 
   /*FORM*/
   registerEsternoForm = new FormGroup({
@@ -46,6 +53,21 @@ export class RegisterFormEsternoComponent {
       confirm: new FormControl('', [Validators.required, Validators.minLength(6)])
     }, {validators: passwordMatch()}) //match both passwords to validate
   });
+
+  //get userType from DB
+  userTypeList = new Map<number, string>();
+
+  ngOnInit() {
+    firstValueFrom(this.http.get<TipoOspite[]>(`${apiURL}/tipo_ospite/all`)).then(
+      data => {
+        data.forEach(type => {
+          this.userTypeList.set(type.id, type.tipologia);
+        });
+        console.log(data)
+        console.log(this.userTypeList);
+      }
+    );
+  }
 
   /*map the form data to match Ospite custom type*/
   private mapToOspite(): Ospite {

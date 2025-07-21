@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
 import {ProssimiAppuntamentiComponent} from '../prossimi-appuntamenti/prossimi-appuntamenti.component';
 import {StoricoOspiteComponent} from './childCmp/info-ospite/childCmp/storico-ospite/storico-ospite.component';
 import {InfoOspiteComponent} from './childCmp/info-ospite/info-ospite.component';

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
 import {ProssimiAppuntamentiComponent} from '../prossimi-appuntamenti/prossimi-appuntamenti.component';
 import {AccettaAppuntamentoComponent} from './childCmp/accetta-appuntamento/accetta-appuntamento.component';
 import {NuovoAppuntamentoComponent} from './childCmp/nuovo-appuntamento/nuovo-appuntamento.component';

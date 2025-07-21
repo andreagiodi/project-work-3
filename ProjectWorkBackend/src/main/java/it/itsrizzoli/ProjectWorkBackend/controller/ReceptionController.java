@@ -2,7 +2,7 @@ package it.itsrizzoli.ProjectWorkBackend.controller;
 
 import it.itsrizzoli.ProjectWorkBackend.Ospite;
 import it.itsrizzoli.ProjectWorkBackend.dto.AuthenticatedUser;
-import it.itsrizzoli.ProjectWorkBackend.dto.IdRequest;
+import it.itsrizzoli.ProjectWorkBackend.dto.RichiestaId;
 import it.itsrizzoli.ProjectWorkBackend.services.AuthService;
 import it.itsrizzoli.ProjectWorkBackend.services.ReceptionService;
 
@@ -25,7 +25,7 @@ public class ReceptionController {
     @PostMapping("/ingresso")
     public ResponseEntity<?> registraIngresso(
             @CookieValue(value = "auth_token", required = false) String token,
-            @RequestBody IdRequest idRequest) {
+            @RequestBody RichiestaId idRequest) {
         AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
         if (user == null || !user.isImpiegato()) {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'ingresso");

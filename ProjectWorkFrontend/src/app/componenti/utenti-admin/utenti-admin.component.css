@@ -9,6 +9,7 @@
 
 h1{
   text-align: center;
+  padding: 0%;
 }
 
 h3{
@@ -17,7 +18,7 @@ h3{
 
 .box{
   padding:3%;
-  margin-top:10%;
+  margin-top:0%;
 }
 
 .caselle{

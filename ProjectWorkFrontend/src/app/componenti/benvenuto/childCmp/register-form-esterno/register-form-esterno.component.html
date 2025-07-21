@@ -3,7 +3,7 @@
     <h1>CREA ACCOUNT</h1>
     <img class="caselle" src="/icons/freeUser.svg" alt="foto profilo default" />
 
-    <form class="registerEsternoForm" [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
+    <form class="registerEsternoForm" class="registerEst" [formGroup]="registerEsternoForm" (ngSubmit)="onSubmit()">
 
       <!-- Dati Anagrafici -->
       <div formGroupName="datiAnagrafici">
@@ -45,7 +45,7 @@
         }<br />
       </div>
 
-      <div> <!--in Natalia Version she wrapped it in a div, so did i (Luck) to allow her styling to word-->
+      <div formGroupName="info"> <!--in Natalia Version she wrapped it in a div, so did i (Luck) to allow her styling to word-->
         <!-- Azienda -->
         <h3>AZIENDA IN CUI LAVORI ATTUALMENTE</h3>
         <input class="caselle" id="azienda" type="text" placeholder="AZIENDA" formControlName="azienda" /><br />

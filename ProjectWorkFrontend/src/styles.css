@@ -92,7 +92,7 @@ button{
   width: 25vw; /*width set as 1/5 of screen width by default*/
   /*displaying grid to allow positioning of elements header and body*/
   display: grid;
-  grid-template-rows: 15vh auto;
+  grid-template-rows: fit-content(15vh) auto;
   grid-template-columns: 100%;
   grid-template-areas:
   "header"

@@ -3,13 +3,18 @@ h2 {
 }
 
 .caselle {
-  margin: 5%;
-  padding: 5%;
+  margin: 0%;
+  padding: 3%;
   border-radius: 25px;
 }
 
-img {
+.img {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: var(--input-border);
+  font-size: 0.75rem;
   border-radius: 100%;
+  margin-top: 5%;
 }
 
 .pulsanteVerdeScuro {
@@ -20,7 +25,16 @@ img {
   align-items: center;
 }
 
-.principale{
+/*.principale{
   grid-area: main;
+}*/
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+  margin:5%;
 }
 

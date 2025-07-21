@@ -8,8 +8,10 @@ button {
   padding:2%;
   margin-top:3%;
 }
-.pulsanteVerdeChiaro {
-  margin-left: 3%;
+.pulsanti{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
 }
 
 h3{

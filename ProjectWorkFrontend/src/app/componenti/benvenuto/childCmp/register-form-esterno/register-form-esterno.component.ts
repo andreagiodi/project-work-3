@@ -30,14 +30,16 @@ export class RegisterFormEsternoComponent {
     datiAnagrafici: new FormGroup({
       nome: new FormControl('', [Validators.required]),
       cognome: new FormControl('', [Validators.required]),
-      codiceFiscale: new FormControl('', [Validators.required,codiceFiscale()]),
+      codiceFiscale: new FormControl('', [Validators.required, codiceFiscale()]),
     }),
     contatti: new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       telefono: new FormControl<string>('', [Validators.required, Validators.minLength(10), phoneNumber()])
     }),
-    azienda: new FormControl('', [Validators.required]),
-    tipoOspite: new FormControl('', [Validators.required]),
+    info: new FormGroup({
+      azienda: new FormControl('', [Validators.required]),
+      tipoOspite: new FormControl('', [Validators.required]),
+    }),
 
     passwords: new FormGroup({
       password: new FormControl('', [Validators.required, strongPassword()]), //custom Validator for strong pswd
@@ -48,7 +50,7 @@ export class RegisterFormEsternoComponent {
   /*map the form data to match Ospite custom type*/
   private mapToOspite(): Ospite {
     const formData = this.registerEsternoForm.getRawValue();
-    return{
+    return {
       userType: 'ospite',
       nome: formData.datiAnagrafici.nome ?? '',
       cognome: formData.datiAnagrafici.cognome ?? '',
@@ -56,8 +58,8 @@ export class RegisterFormEsternoComponent {
       email: formData.contatti.email ?? '',
       telefono: formData.contatti.telefono ?? '',
       password: formData.passwords.password ?? '',
-      azienda: formData.azienda ?? '',
-      idTipoOspite: Number(formData.tipoOspite), // ensure it's a number
+      azienda: formData.info.azienda ?? '',
+      idTipoOspite: Number(formData.info.tipoOspite), // ensure it's a number
     };
   }
 
@@ -68,6 +70,7 @@ export class RegisterFormEsternoComponent {
       this.registrationService.register(this.mapToOspite());
     }
   }
+
   /*returns error message based on passed control*/
   getErrorMessage(controlName: string): string | null {
     const control = this.registerEsternoForm.get(controlName);

@@ -19,6 +19,10 @@ export class ValidationErrorService{
     if (errors['invalidPhone']) return "Il numero di telefono inserito non è valido";
     if (errors['invalidCF']) return "Codice Fiscale inserito non valido";
     if (errors['notFuture']) return "La data e ora inserite devono essere successiva a quelle attuali";
+    if (errors['notFutureTime']) return "L'orario inserito deve essere nel futuro";
+    if (errors['invalidTime']) return "L'orario inserito non è valido";
+    if (errors['invalidDate']) return "La data inserita non è valida";
+    if (errors['invalidDateTime']) return "Sia la data che l'ora inserite non sono valide";
     return 'validationError Not Found';
   }
 }

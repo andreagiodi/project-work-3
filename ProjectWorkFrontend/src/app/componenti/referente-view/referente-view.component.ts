@@ -7,7 +7,6 @@ import {NuovoAppuntamentoComponent} from './childCmp/nuovo-appuntamento/nuovo-ap
 @Component({
   selector: 'app-referente-view',
   imports: [
-    RouterOutlet,
     ProssimiAppuntamentiComponent,
     AccettaAppuntamentoComponent,
     NuovoAppuntamentoComponent

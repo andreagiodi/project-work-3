@@ -6,7 +6,6 @@ import {InfoOspiteComponent} from './childCmp/info-ospite/info-ospite.component'
 @Component({
   selector: 'app-receptionist-view',
   imports: [
-    RouterOutlet,
     ProssimiAppuntamentiComponent,
     StoricoOspiteComponent,
     InfoOspiteComponent,

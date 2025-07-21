@@ -57,11 +57,10 @@
         <h3>CHE TIPO DI OSPITE SEI</h3>
         <select class="caselle" id="tipoOspite" name="tipoOspite" formControlName="tipoOspite">
           <option value="" disabled selected>Seleziona un tipo</option> <!--default empty option-->
-          <option value="1">Visitatore</option>
-          <option value="2">Fornitore</option>
-          <option value="3">Esterno</option>
-          <option value="4">Cliente</option>
-        </select> <br />
+          @for(entry of userTypeList; track entry[0]) {
+            <option value="{{entry[0]}}">{{entry[1]}}</option>
+          }
+        </select> <br/>
         @if (registerEsternoForm.get('tipoOspite')?.touched && registerEsternoForm.get('tipoOspite')?.invalid) {
           <small class="error">{{ getErrorMessage('tipoOspite') }}</small>
         }<br />

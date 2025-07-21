@@ -1,8 +1,10 @@
-import {Component, computed, effect, inject, output, signal} from '@angular/core';
+import {Component, computed, effect, inject, OnInit, output, signal} from '@angular/core';
 import {DashBoardService} from '../../services/dashboard-service.service';
-import {Prenotazione, User} from '../../modelli/user.model';
+import {Prenotazione, Stato, User} from '../../modelli/user.model';
 import {firstValueFrom} from 'rxjs';
 import {AuthService} from '../../services/auth-service.service';
+import {HttpClient} from '@angular/common/http';
+import {apiURL} from '../../app.config';
 
 @Component({
   selector: 'app-prossimi-appuntamenti',
@@ -10,10 +12,11 @@ import {AuthService} from '../../services/auth-service.service';
   templateUrl: './prossimi-appuntamenti.component.html',
   styleUrl: './prossimi-appuntamenti.component.css'
 })
-export class ProssimiAppuntamentiComponent {
+export class ProssimiAppuntamentiComponent implements OnInit {
   /*service injection*/
   private dashboardService = inject(DashBoardService);
   private authService = inject(AuthService);
+  private http = inject(HttpClient);
 
   //current user var declaration
   currentUser?: User | null;
@@ -78,6 +81,20 @@ export class ProssimiAppuntamentiComponent {
       });
     })
     console.log(this.userList);
+  }
+  //load roles from DB
+  stateList = new Map<number, string>();
+
+  ngOnInit() {
+    firstValueFrom(this.http.get<Stato[]>(`${apiURL}/stato/all`)).then(
+      data => {
+        data.forEach(type => {
+          this.stateList.set(type.id, type.nome);
+        });
+        console.log('data', data)
+        console.log(this.stateList);
+      }
+    );
   }
 
   //map list by date to allow separation in UI

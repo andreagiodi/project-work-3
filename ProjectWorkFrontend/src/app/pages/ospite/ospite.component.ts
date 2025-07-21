@@ -3,7 +3,10 @@ import {Router} from '@angular/router';
 import {PrenotaAppuntamentoComponent} from '../../componenti/prenota-appuntamento/prenota-appuntamento.component';
 import {ProssimiAppuntamentiComponent} from '../../componenti/prossimi-appuntamenti/prossimi-appuntamenti.component';
 import {AuthService} from '../../services/auth-service.service';
-import {Ospite, Prenotazione, User} from '../../modelli/user.model';
+import {Ospite, Prenotazione, TipoOspite, User} from '../../modelli/user.model';
+import {firstValueFrom} from 'rxjs';
+import {apiURL} from '../../app.config';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-ospite',
@@ -17,12 +20,23 @@ import {Ospite, Prenotazione, User} from '../../modelli/user.model';
 export class OspiteComponent implements OnInit {
   /*service injection*/
   authService = inject(AuthService);
+  http = inject(HttpClient);
   router = inject(Router);
+
+  //get userType from DB
+  userTypeList = new Map<number, string>();
 
   currentUser!: Ospite | null;
   ngOnInit() {
     this.currentUser = <Ospite>this.authService.getCurrentUser()();
     this.redirectUser(this.currentUser);
+    firstValueFrom(this.http.get<TipoOspite[]>(`${apiURL}/tipo_ospite/all`)).then(
+      data => {
+        data.forEach(type => {
+          this.userTypeList.set(type.id, type.tipologia);
+        });
+      }
+    );
   }
 
   /*logout function call*/

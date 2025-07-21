@@ -75,17 +75,7 @@
     </div>
     <div class="caselle">
       <h4>Categoria Ospite: </h4>
-      @switch (currentUser?.idTipoOspite) {
-        @case (1) {
-          <h3>cliente</h3>
-        }
-        @case (2) {
-          <h3>Fornitore</h3>
-        }
-        @case (3) {
-          <h3>Visitatore</h3>
-        }
-      }
+      <h3>{{userTypeList.get(currentUser?.idTipoOspite)}}</h3>
     </div>
   </div>
 }

@@ -8,7 +8,6 @@ import {UtenteComponent} from './childCmp/utente/utente.component';
 @Component({
   selector: 'app-admin-view',
   imports: [
-    RouterOutlet,
     UtentiAdminComponent,
     StoricoUtenteComponent,
     WarningComponent,

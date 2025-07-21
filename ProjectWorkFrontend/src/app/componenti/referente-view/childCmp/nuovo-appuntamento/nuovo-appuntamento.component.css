@@ -1,0 +1,26 @@
+.box {
+  padding-top: 5%;
+  height: 85%;
+  overflow: scroll;
+}
+
+.pulsanti {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 25px;
+}
+
+.pulsanti button{
+  padding:3%;
+}
+
+.caselle {
+  border-radius: 25px;
+}
+
+#tempo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

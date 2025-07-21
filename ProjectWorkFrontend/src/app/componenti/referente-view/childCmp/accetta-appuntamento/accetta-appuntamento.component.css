@@ -1,0 +1,42 @@
+.box{
+  padding:5%;
+  height: 80%;
+}
+.sfondoAppuntamento{
+  background-color: var(--surface-color);
+  border-radius: 25px;
+  overflow: scroll;
+  height: 100%;
+  padding:5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:80%;
+}
+
+h1{
+  text-align: center;
+}
+
+.caselle{
+  border-radius: 25px;
+  height: 50%;
+}
+
+.pulsanti{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top:5%;
+}
+
+.pulsanti button{
+  padding:3%;
+}
+
+.form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

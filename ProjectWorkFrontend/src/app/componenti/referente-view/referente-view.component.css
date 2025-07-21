@@ -1,0 +1,22 @@
+.baseLayout{
+  grid-auto-rows: 1fr 2fr 1fr;
+  grid-template-areas:
+    "sideL header topR"
+    "sideL main sideR"
+    "sideL main botR";
+  gap: 2rem;
+}
+.pulsanti{
+  display: flex;
+  justify-content: space-between;
+  border-radius: 25px;
+  height: 35%;
+  grid-area: header;
+}
+#prossimiAppuntamentiRef{
+  grid-area: sideL;
+}
+
+.componentsRef{
+  grid-area: main;
+}

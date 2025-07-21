@@ -1,5 +1,3 @@
-export type UserType = 'ospite' | 'impiegato';
-
 export type User = Ospite | Impiegato;
 
 export interface Ospite {
@@ -24,6 +22,21 @@ export interface Impiegato {
   password: string;
   idRuolo: number;
   isEsterno: boolean;
+}
+
+export type Ruolo = {
+  id: number,
+  ruolo: string,
+}
+
+export type TipoOspite = {
+  id: number,
+  tipologia: string,
+}
+
+export type Stato = {
+  id: number,
+  nome: string,
 }
 
 export type LoginRequest = {

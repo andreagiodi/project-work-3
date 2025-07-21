@@ -1,12 +1,14 @@
 .box {
   padding: 3%;
 }
-.storico{
+
+.storico {
   position: fixed;
   top: 5%;
   right: 5%;
 }
-#utente{
+
+#utente {
   grid-area: main;
 }
 
@@ -14,14 +16,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 90%;
 }
 
 .permessi {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 35%;
+  width: 45%;
 }
 
 .password {
@@ -35,6 +37,7 @@
 .pulsanteVerdeScuro {
   height: 2%;
   padding: 2%;
+  width: 40%;
 }
 
 .caselle {
@@ -44,7 +47,17 @@
 }
 
 .pulsanti {
-  padding: 2%;
   display: flex;
   justify-content: space-between;
+  width: 100%;
+}
+
+.pulsanti button {
+  margin: 0.5rem;
+  padding: 0.2rem;
+}
+
+.pulsanteRosso {
+  /*padding: 1%;*/
+
 }

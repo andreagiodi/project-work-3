@@ -1,4 +1,3 @@
-<p>nuovo-appuntamento works!</p>
 <div class="box">
   <form [formGroup]="newAppuntamento" (ngSubmit)="onSubmit()">
     <h1>NUOVO APPUNTAMENTO</h1>
@@ -12,7 +11,7 @@
     <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"/> <br/>
     <h3>TELEFONO:</h3>
     <input class="caselle" id="telefono" type="number" placeholder="TELEFONO" formControlName="telefono"/> <br/>
-    <div formGroupName="tempo">
+    <div formGroupName="tempo" id="tempo">
       <h3>DATA:</h3>
       <input class="caselle" id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
       <h3>ORA:</h3>

@@ -1,0 +1,25 @@
+.box{
+  padding:3%;
+  margin-top: 5%;
+  width:55%;
+}
+
+button {
+  padding:3%;
+  margin-top:3%;
+}
+.pulsanti{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+h3{
+  text-align: center;
+}
+p{
+  text-align: center;
+}
+.caselle{
+  align-self: center;
+}

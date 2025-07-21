@@ -1,9 +1,14 @@
 .box {
   width: 75%;
   padding:5%;
+  margin-left:5%;
 }
 
+h3{
+  text-align: center;
+}
 .caselle{
   display: flex;
   border-radius: 25px;
+  align-self: center;
 }

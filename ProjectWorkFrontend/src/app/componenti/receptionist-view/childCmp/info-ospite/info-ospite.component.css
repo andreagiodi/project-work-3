@@ -1,0 +1,34 @@
+.infoUtente {
+  padding-bottom: 5%;
+  padding-left: 10%;
+}
+#ore{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+.note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 45%;
+  margin-top: 5%;
+}
+
+.caselle {
+  border-radius: 25px;
+}
+
+button {
+  padding: 2%;
+  margin-top: 3%;
+}
+
+.pulsanteVerdeChiaro {
+  margin-left: 3%;
+}
+
+.pulsanteRosso {
+  margin-right: 8%;
+}

@@ -1,0 +1,17 @@
+#prossimiAppuntamentiRec{
+  grid-area: sideL;
+}
+
+#infoUtente{
+  grid-area: main;
+}
+
+#storicoRec{
+  height: 100%;
+  grid-area: footer;
+}
+
+.baseLayout{
+  grid-template-rows: 1fr 3fr 1fr;
+  gap:0;
+}

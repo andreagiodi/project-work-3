@@ -18,12 +18,12 @@ button {
   padding:8%;
 }
 
-.registerInternoForm div{
+.registerInt{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height:80%;
   margin:3%
 }
 

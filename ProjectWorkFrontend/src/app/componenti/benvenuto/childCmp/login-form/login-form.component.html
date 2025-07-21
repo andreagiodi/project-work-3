@@ -2,9 +2,9 @@
   <h2>LOGIN</h2>
   <div class="box">
     @if (loginMessage){<h4 id="loginError">{{loginMessage}}</h4>}
-    <img class="caselle" src="/icons/freeUser.svg" alt="foto profilo default">
+    <img class="img" src="/icons/freeUser.svg" alt="foto profilo default">
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="onSubmit()">
 
       <input class="caselle" id="email" type="email" placeholder="EMAIL" formControlName="email"
              autocomplete="email"/><br/>

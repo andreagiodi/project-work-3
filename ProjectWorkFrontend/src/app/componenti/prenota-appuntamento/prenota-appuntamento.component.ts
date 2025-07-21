@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {DashboardService} from '../../services/dashboard-service.service';
+import {DashBoardService} from '../../services/dashboard-service.service';
 import {AuthService} from '../../services/auth-service.service';
 import {Router} from '@angular/router';
 import {futureDateTimeValidator} from '../../validators/customValid.validator';
@@ -27,7 +27,7 @@ export class PrenotaAppuntamentoComponent{
   }
 
   /*services injection*/
-  private dashboardService = inject(DashboardService)
+  private dashboardService = inject(DashBoardService)
   private authService = inject(AuthService);
   private router = inject(Router);
 

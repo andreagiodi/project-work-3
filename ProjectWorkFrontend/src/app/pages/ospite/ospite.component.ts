@@ -3,14 +3,13 @@ import {Router} from '@angular/router';
 import {PrenotaAppuntamentoComponent} from '../../componenti/prenota-appuntamento/prenota-appuntamento.component';
 import {ProssimiAppuntamentiComponent} from '../../componenti/prossimi-appuntamenti/prossimi-appuntamenti.component';
 import {AuthService} from '../../services/auth-service.service';
-import {Prenotazione, User} from '../../modelli/user.model';
-
+import {Ospite, Prenotazione, User} from '../../modelli/user.model';
 
 @Component({
   selector: 'app-ospite',
   imports: [
     PrenotaAppuntamentoComponent,
-    ProssimiAppuntamentiComponent
+    ProssimiAppuntamentiComponent,
   ],
   templateUrl: './ospite.component.html',
   styleUrl: './ospite.component.css'
@@ -20,9 +19,9 @@ export class OspiteComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
 
-  currentUser: User | null = null;
+  currentUser!: Ospite | null;
   ngOnInit() {
-    this.currentUser = this.authService.getCurrentUser()();
+    this.currentUser = <Ospite>this.authService.getCurrentUser()();
     this.redirectUser(this.currentUser);
   }
 
@@ -47,10 +46,18 @@ export class OspiteComponent implements OnInit {
       });
     }
   }
-
+  //create signal to contain entry details
   entryDetails = signal<Prenotazione | null>(null)
+  //function to fetch entry details from custom event
   getEntryData(entry:Prenotazione){
     this.entryDetails.set(entry);
     console.log('got this from event', this.entryDetails());
+  }
+
+  //flag to show currentUser info
+  isShowingUser = signal(false)
+  //invert state with toggle
+  toggleUserInfo(){
+    this.isShowingUser.set(!this.isShowingUser());
   }
 }

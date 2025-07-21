@@ -3,6 +3,7 @@ import {RouterOutlet} from '@angular/router';
 import {UtentiAdminComponent} from '../utenti-admin/utenti-admin.component';
 import {StoricoUtenteComponent} from './childCmp/utente/childCmp/storico-utente/storico-utente.component';
 import {WarningComponent} from './childCmp/utente/childCmp/warning/warning.component';
+import {UtenteComponent} from './childCmp/utente/utente.component';
 
 @Component({
   selector: 'app-admin-view',
@@ -10,7 +11,8 @@ import {WarningComponent} from './childCmp/utente/childCmp/warning/warning.compo
     RouterOutlet,
     UtentiAdminComponent,
     StoricoUtenteComponent,
-    WarningComponent
+    WarningComponent,
+    UtenteComponent
   ],
   templateUrl: './admin-view.component.html',
   styleUrl: './admin-view.component.css'

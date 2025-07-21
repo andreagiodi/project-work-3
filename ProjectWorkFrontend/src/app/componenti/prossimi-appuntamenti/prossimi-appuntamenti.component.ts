@@ -80,7 +80,6 @@ export class ProssimiAppuntamentiComponent implements OnInit {
         }
       });
     })
-    console.log(this.userList);
   }
   //load roles from DB
   stateList = new Map<number, string>();
@@ -91,8 +90,6 @@ export class ProssimiAppuntamentiComponent implements OnInit {
         data.forEach(type => {
           this.stateList.set(type.id, type.nome);
         });
-        console.log('data', data)
-        console.log(this.stateList);
       }
     );
   }

@@ -27,7 +27,7 @@ public class ReceptionController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/ingresso/{id}")
+    @GetMapping("/ingresso/{id}")
     public ResponseEntity<?> registraIngresso(
             @CookieValue(value = "auth_token", required = false) String token,
             @PathVariable Integer id) {
@@ -36,13 +36,15 @@ public class ReceptionController {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'ingresso");
         }
         Prenotazione salvato = receptionService.registraIngresso(id);
+        System.out.println("salvato: " + salvato +"id preno: "+ salvato.getId());
+        System.out.println("id: " + id);
         if (salvato == null) {
             return ResponseEntity.status(404).body("Ospite non trovato");
         }
         return ResponseEntity.ok("Entrata registrata con successo");
     }
 
-    @PostMapping("/uscita/{id}")
+    @GetMapping("/uscita/{id}")
     public ResponseEntity<?> registraUscita(
             @CookieValue(value = "auth_token", required = false) String token,
             @PathVariable Integer id) {

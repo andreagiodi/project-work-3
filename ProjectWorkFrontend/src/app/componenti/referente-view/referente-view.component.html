@@ -6,10 +6,10 @@
   </div>
   <!--router Outlet for nuovo Appuntamento, Appuntamento in Sospeso, da Accettare-->
   <div class="componentsRef">
-    @if (showSecNuovoApp()=== false) {
+    @if (!showSecNuovoApp()) {
       <app-accetta-appuntamento [passedData]="savedData" id="accettaRef"></app-accetta-appuntamento>
     }
-    @if (showSecNuovoApp() === true){
+    @if (showSecNuovoApp()){
       <app-nuovo-appuntamento id="nuovoRef"></app-nuovo-appuntamento>
     }
   </div>

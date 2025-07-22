@@ -68,10 +68,9 @@ export class DashBoardService {
 
   //RECEPTIONIST SPECIFIC
 
+  /*NOT WORKING --> TESTING andrea fix*/
   setEntrataOspite(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/reception/ingresso/`, {
-      id: id
-    }, {withCredentials: true})
+    return this.http.get(`${apiURL}/reception/ingresso/${id}`, {withCredentials: true})
       .pipe(
         tap(() => {
           // Refresh appointments after check-in (might affect status)
@@ -79,11 +78,9 @@ export class DashBoardService {
         })
       );
   }
-
+  /*NOT WORKING --> awaiting andrea fix*/
   setUscitaOspite(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/reception/uscita/${id}`, {
-      id: id
-    }, {withCredentials: true})
+    return this.http.get(`${apiURL}/reception/uscita/${id}`, {withCredentials: true})
       .pipe(
         tap(() => {
           // Refresh appointments after checkout (might affect status)

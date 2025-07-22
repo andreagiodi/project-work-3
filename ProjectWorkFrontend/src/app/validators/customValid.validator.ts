@@ -49,33 +49,62 @@ export function codiceFiscale():ValidatorFn{
 /*future date validation, invalid if selected date is in the past*/
 export function futureDateTimeValidator(): ValidatorFn {
   return (input: AbstractControl): ValidationErrors | null => {
-    //get data and ora from the group
-    const data = input.get('data')?.value;
-    const ora = input.get('ora')?.value;
-    //returns null for empty values, Required will handle empty inputs
-    if (!data || !ora) return null;
-    //map data e ora for confrontation
-    const [hour, minute] = ora.split(':').map(Number);
-    const selectedDateTime = new Date(data);
-    selectedDateTime.setHours(hour, minute, 0, 0);
-    //get current date time
-    const now = new Date();
-    //confrontation
-    return !(selectedDateTime <= now) ? null : { notFuture: true };
+    // Get date and time from the form group
+    const dateControl = input.get('data');
+    const timeControl = input.get('ora');
+    const dateValue = dateControl?.value;
+    const timeValue = timeControl?.value;
+    // Return null for empty values, required validator will handle empty inputs
+    if (!dateValue || !timeValue) return null;
+    try {
+      // Parse time (format: "HH:mm")
+      const [hour, minute] = timeValue.split(':').map(Number);
+      // Validate parsed time values
+      if (isNaN(hour) || isNaN(minute) || hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+        return { invalidTime: true };
+      }
+      // Create selected datetime
+      const selectedDateTime = new Date(dateValue);
+      // Check if date is valid
+      if (isNaN(selectedDateTime.getTime())) {
+        return { invalidDate: true };
+      }
+      selectedDateTime.setHours(hour, minute, 0, 0);
+      // Get current datetime
+      const now = new Date();
+      // Return error if selected datetime is not in the future
+      return selectedDateTime <= now ? { notFuture: true } : null;
+    } catch (error) {
+      // Handle any parsing errors
+      return { invalidDateTime: true };
+    }
   };
 }
-/*only time validation*/
-export function futureTime():ValidatorFn {
-  return (ora:AbstractControl):ValidationErrors | null =>{
+/*only time validator*/
+export function futureTime(): ValidatorFn {
+  return (ora: AbstractControl): ValidationErrors | null => {
     const oraValue = ora.value;
-    if(!oraValue) return null;
-
-    const [hour, minute] = oraValue.split(':').map(Number);
-    const selectedDateTime = new Date();
-    selectedDateTime.setHours(hour, minute, 0, 0);
-
-    const now = new Date();
-
-    return !(selectedDateTime <= now) ? null : { notFutureTime: true };
-  }
+    // Return null for empty values, required validator will handle empty inputs
+    if (!oraValue) {
+      return null;
+    }
+    try {
+      // Parse time string (expected format: "HH:mm")
+      const [hour, minute] = oraValue.split(':').map(Number);
+      // Validate parsed time values
+      if (isNaN(hour) || isNaN(minute) || hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+        return { invalidTime: true };
+      }
+      // Create selected time using today's date
+      const selectedDateTime = new Date();
+      selectedDateTime.setHours(hour, minute, 0, 0);
+      // Get current datetime
+      const now = new Date();
+      // Return error if selected time is not in the future (today)
+      return selectedDateTime <= now ? { notFutureTime: true } : null;
+    } catch (error) {
+      // Handle any parsing errors
+      return { invalidTime: true };
+    }
+  };
 }

@@ -35,7 +35,6 @@ public class VisitaController {
     public Visita add(@RequestBody Visita visita) {
         return visitaRepository.save(visita);
     }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         visitaRepository.deleteById(id);

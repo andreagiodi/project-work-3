@@ -26,7 +26,7 @@ export interface Impiegato {
 
 export type Ruolo = {
   id: number,
-  ruolo: string,
+  nome: string,
 }
 
 export type TipoOspite = {
@@ -61,4 +61,11 @@ export type Prenotazione = {
   identificazioneProfessionale: string,
   motivo: string,
   dataPrenotazione: string
+}
+
+export type Visite = {
+  id?: number,
+  id_referente: number,
+  id_prenotazione: number,
+  id_motivazione: number,
 }

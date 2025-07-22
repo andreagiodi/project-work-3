@@ -1,8 +1,8 @@
 import {inject, Injectable, signal} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {apiURL} from '../app.config';
-import { Observable, tap} from 'rxjs';
-import {Prenotazione, PrenotazioneRequest, User} from '../modelli/user.model';
+import {Observable, tap} from 'rxjs';
+import {Prenotazione, PrenotazioneRequest, Ruolo, User} from '../modelli/user.model';
 import {AuthService} from './auth-service.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class DashBoardService {
   http = inject(HttpClient);
   authService = inject(AuthService);
 
-/*===Appointments management ===*/
+  /*===Appointments management ===*/
   // reactive state for appointments using signals
   private appointmentsSignal = signal<Prenotazione[]>([]);
 
@@ -26,7 +26,7 @@ export class DashBoardService {
   //sends a prenotazione create POST with data from custom type
   createPrenotazione(request: PrenotazioneRequest): Observable<any> {
     console.log(request);
-    return this.http.post(`${apiURL}/prenotazione/create`, request, { withCredentials: true })
+    return this.http.post(`${apiURL}/prenotazione/create`, request, {withCredentials: true})
       .pipe(
         tap(() => {
           // After creating, refresh the appointment list
@@ -36,12 +36,14 @@ export class DashBoardService {
   }
 
   //sends a GET request to list all appointments of current user --> list of Prenotazione types
-  getPrenotazioni(): Observable<Prenotazione[]>{
+  getPrenotazioni(): Observable<Prenotazione[]> {
     //check who is calling the function
     const currentUser = this.authService.getCurrentUser()();
     //based on caller, if it's an impiegato then gets a different list
-    if(currentUser?.userType === 'impiegato') {
-      if (currentUser.idRuolo === 1) {
+    if (currentUser?.userType === 'impiegato') {
+      if (currentUser.idRuolo === 2) {
+        return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/all`);
+      }else if (currentUser.idRuolo === 3) {
         return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/all`);
       }
     }
@@ -53,11 +55,14 @@ export class DashBoardService {
         })
       );
   }
-
+/*
+  return this.http.get<Prenotazione[]>(`${apiURL}/api/referente/prenotazioni`, {withCredentials: true})
+*/
   // refresh appointments (call this from components)
   refreshAppointments(): void {
     this.getPrenotazioni().subscribe({
       next: (appointments) => {
+        this.appointmentsSignal.set(appointments);
         console.log('Appointments refreshed:', appointments);
       },
       error: (error) => {
@@ -68,10 +73,9 @@ export class DashBoardService {
 
   //RECEPTIONIST SPECIFIC
 
+  /*NOT WORKING --> TESTING andrea fix*/
   setEntrataOspite(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/reception/ingresso/`, {
-      id: id
-    }, {withCredentials: true})
+    return this.http.get(`${apiURL}/reception/ingresso/${id}`, {withCredentials: true})
       .pipe(
         tap(() => {
           // Refresh appointments after check-in (might affect status)
@@ -79,22 +83,15 @@ export class DashBoardService {
         })
       );
   }
-
+  /*NOT WORKING --> awaiting andrea fix*/
   setUscitaOspite(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/reception/uscita/${id}`, {
-      id: id
-    }, {withCredentials: true})
+    return this.http.get(`${apiURL}/reception/uscita/${id}`, {withCredentials: true})
       .pipe(
         tap(() => {
           // Refresh appointments after checkout (might affect status)
           this.refreshAppointments();
         })
       );
-  }
-
-  getPresenti(): Observable<any> {
-    // Fixed: removed extra quote
-    return this.http.get(`${apiURL}/reception/presenti`, {withCredentials: true});
   }
 
   setNonPresentatoOspite(id: number): Observable<any> {
@@ -109,15 +106,16 @@ export class DashBoardService {
       );
   }
 
-  //REFERENTE SPECIFIC
-  getPrenotazioniReferente(): Observable<any> {
+  getPresenti(): Observable<any> {
     // Fixed: removed extra quote
-    return this.http.get(`${apiURL}/api/referente/prenotazioni`, {withCredentials: true});
+    return this.http.get(`${apiURL}/reception/presenti`, {withCredentials: true});
   }
 
-  approvaPrenotazione(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/approva`, {
-      id: id // ID PRENOTAZIONE
+  //REFERENTE SPECIFIC
+
+  approvaPrenotazione(idPrenotazione: number): Observable<any> {
+    return this.http.post(`${apiURL}/api/referente/prenotazioni/${idPrenotazione}/approva`, {
+      id: idPrenotazione // ID PRENOTAZIONE
     }, {withCredentials: true})
       .pipe(
         tap(() => {
@@ -127,9 +125,9 @@ export class DashBoardService {
       );
   }
 
-  rifiutaPrenotazione(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/rifiuta`, {
-      id: id // ID PRENOTAZIONE
+  rifiutaPrenotazione(idPrenotazione: number): Observable<any> {
+    return this.http.post(`${apiURL}/api/referente/prenotazioni/${idPrenotazione}/rifiuta`, {
+      id: idPrenotazione // ID PRENOTAZIONE
     }, {withCredentials: true})
       .pipe(
         tap(() => {
@@ -139,11 +137,15 @@ export class DashBoardService {
       );
   }
 
-/*===END Appointments management ===*/
+  /*===END Appointments management ===*/
 
   //sends a GET request to get that specific user's info
   getOspiteInfo(id: number): Observable<User> {
     return this.http.get<User>(`${apiURL}/ospite/${id}`, {withCredentials: true});
+  }
+
+  getAllRuoli(): Observable<any> {
+    return this.http.get<Ruolo[]>(`${apiURL}/ruolo/all`, {withCredentials: true});
   }
 
   //ADMIN SPECIFIC

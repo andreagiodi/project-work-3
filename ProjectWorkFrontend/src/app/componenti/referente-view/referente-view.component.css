@@ -12,6 +12,7 @@
   border-radius: 25px;
   height: 35%;
   grid-area: header;
+  margin-top: 10px;
 }
 #prossimiAppuntamentiRef{
   grid-area: sideL;

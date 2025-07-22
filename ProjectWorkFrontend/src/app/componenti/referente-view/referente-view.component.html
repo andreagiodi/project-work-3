@@ -1,13 +1,17 @@
 <div class="baseLayout">
-  <app-prossimi-appuntamenti id="prossimiAppuntamentiRef"></app-prossimi-appuntamenti>
+  <app-prossimi-appuntamenti (passData)="getData($event)" id="prossimiAppuntamentiRef"></app-prossimi-appuntamenti>
   <div class="pulsanti">
-    <button class="pulsanteVerdeChiaro">NUOVO APPUNTAMENTO</button>
-    <button class="pulsanteGiallo">DA ACCETTARE</button>
+    <button class="pulsanteVerdeChiaro" (click)="toggleSecNuovoApp(true)">Nuovo Appuntamento</button>
+    <button class="pulsanteGiallo" (click)="toggleSecNuovoApp(false)">Da Accettare</button>
   </div>
   <!--router Outlet for nuovo Appuntamento, Appuntamento in Sospeso, da Accettare-->
   <div class="componentsRef">
-    <app-accetta-appuntamento id="accettaRef"></app-accetta-appuntamento>
-    <app-nuovo-appuntamento id="nuovoRef"></app-nuovo-appuntamento>
+    @if (!showSecNuovoApp()) {
+      <app-accetta-appuntamento [passedData]="savedData" id="accettaRef"></app-accetta-appuntamento>
+    }
+    @if (showSecNuovoApp()){
+      <app-nuovo-appuntamento id="nuovoRef"></app-nuovo-appuntamento>
+    }
   </div>
 </div>
 

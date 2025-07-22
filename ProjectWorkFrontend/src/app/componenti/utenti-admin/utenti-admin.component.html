@@ -1,46 +1,27 @@
 <div class="sfondoSideBar">
   <h1>UTENTI</h1>
   <div class="box">
-    <h3>RECEPTIONIST</h3>
-    <div class="caselle">
-      <h4>ID:...</h4>
-      <h4>Cognome:</h4>
-      <p>...</p>
-      <h4>Nome:</h4>
-      <p>...</p>
-    </div>
+    <h3>Ospiti</h3>
+    @for (guest of guestList; track guest.id) {
+      <div style="cursor: pointer" (click)="passData(guest)" class="caselle">
+        <h4>ID:</h4>
+        <h3>{{ guest?.id }}</h3>
+        <h3>{{ guest?.cognome }}</h3>
+        <h3>{{ guest?.nome }}</h3>
+      </div>
+    }
   </div>
-
-  <div class="box">
-    <h3>REFERENTE</h3>
-    <div class="caselle">
-      <h4>ID:...</h4>
-      <h4>Cognome:</h4>
-      <p>...</p>
-      <h4>Nome:</h4>
-      <p>...</p>
+  @for (role of dividedStaffList; track role[0]){
+    <div class="box">
+      <h3>{{getRoleName(role[0])}}</h3>
+      @for (user of role[1]; track user?.id){
+      <div style="cursor: pointer" (click)="passData(user)" class="caselle">
+        <h4>ID:</h4>
+        <h3>{{ user?.id }}</h3>
+        <h3>{{ user?.cognome }}</h3>
+        <h3>{{ user?.nome }}</h3>
+      </div>
+      }
     </div>
-  </div>
-
-  <div class="box">
-    <h3>OSPITE</h3>
-    <div class="caselle">
-      <h4>ID:...</h4>
-      <h4>Cognome:</h4>
-      <p>...</p>
-      <h4>Nome:</h4>
-      <p>...</p>
-    </div>
-  </div>
-
-  <div class="box">
-    <h3>ADMIN</h3>
-    <div class="caselle">
-      <h4>ID:...</h4>
-      <h4>Cognome:</h4>
-      <p>...</p>
-      <h4>Nome:</h4>
-      <p>...</p>
-    </div>
-  </div>
+  }
 </div>

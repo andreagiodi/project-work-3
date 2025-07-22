@@ -35,9 +35,6 @@ public class AdminController {
         if (user == null) {
             return ResponseEntity.status(401).body("Non autenticato");
         }
-        if (!user.isAmministratore()) {
-            return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono visualizzare gli ospiti");
-        }
         return ResponseEntity.ok(adminRepository.findAllOspite());
     }
 
@@ -49,9 +46,6 @@ public class AdminController {
 
         if (user == null) {
             return ResponseEntity.status(401).body("Non autenticato");
-        }
-        if (!user.isAmministratore()) {
-            return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono visualizzare gli impiegati");
         }
         return ResponseEntity.ok(adminRepository.findAllImpiegato());
     }
@@ -66,9 +60,6 @@ public class AdminController {
         AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
         if (user == null) {
             return ResponseEntity.status(401).body("Non autenticato");
-        }
-        if (!user.isAmministratore()) {
-            return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono modificare i ruoli");
         }
         adminRepository.setImpiegatoRole(id, request.getIdRuolo());
         return ResponseEntity.ok().build();
@@ -87,9 +78,6 @@ public class AdminController {
         if (user == null) {
             return ResponseEntity.status(401).body("Non autenticato");
         }
-        if (!user.isAmministratore()) {
-            return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono modificare le password");
-        }
         adminRepository.setOspitePassword(id, passwordEncoder.encode(request.getPassword()));
         return ResponseEntity.ok().build();
     }
@@ -104,9 +92,6 @@ public class AdminController {
         AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
         if (user == null) {
             return ResponseEntity.status(401).body("Non autenticato");
-        }
-        if (!user.isAmministratore()) {
-            return ResponseEntity.status(403).body("Accesso negato: solo amministratori possono modificare le password");
         }
         adminRepository.setImpiegatoPassword(id, passwordEncoder.encode(request.getPassword()));
         return ResponseEntity.ok().build();

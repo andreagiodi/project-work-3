@@ -1,7 +1,8 @@
 .boxVerdeScuro{
   margin-top: 1rem;
-  width: 25%;
+  width: 20%;
   height: 60%;
+  padding: 0;
 }
 
 .caselle {
@@ -17,6 +18,10 @@
 .principale h1{
   margin: 0;
   padding: 1rem;
+}
+
+h3{
+  margin:1%;
 }
 
 

@@ -39,7 +39,7 @@ public class ReceptionController {
         if (salvato == null) {
             return ResponseEntity.status(404).body("Ospite non trovato");
         }
-        return ResponseEntity.ok(salvato);
+        return ResponseEntity.ok("Entrata registrata con successo");
     }
 
     @PostMapping("/uscita/{id}")
@@ -51,8 +51,8 @@ public class ReceptionController {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'uscita");
         }
 
-        boolean esito = receptionService.registraUscita(id);
-        if (!esito) {
+        Prenotazione esito = receptionService.registraUscita(id);
+        if (esito == null) {
             return ResponseEntity.status(404).body("Ospite non trovato o già uscito");
         }
 

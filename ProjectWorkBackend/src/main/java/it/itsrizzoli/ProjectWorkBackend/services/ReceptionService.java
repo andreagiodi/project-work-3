@@ -35,17 +35,14 @@ public class ReceptionService {
         return prenotazione;
     }
 
-    public boolean registraUscita(Integer idOspite) {
-        Iterable<Prenotazione> prenotazioni = prenotazioneRepository.findByIdOspite(idOspite);
-        for (Prenotazione p : prenotazioni) {
-            if (p.getStato() != null && p.getStato() == 1 && p.getUscita() == null) {
-                p.setUscita(LocalDateTime.now());
-                p.setStato(2);
-                prenotazioneRepository.save(p);
-                return true;
-            }
-        }
-        return false;
+    public Prenotazione registraUscita(Integer idPrenotazione) {
+        Prenotazione prenotazione = prenotazioneRepository.findById(idPrenotazione).orElse(null);
+        if (prenotazione == null) return null;
+
+        prenotazione.setUscita(LocalDateTime.now());
+        prenotazioneRepository.save(prenotazione);
+
+        return prenotazione;
     }
 
     public boolean segnaNonPresentato(Integer idOspite) {

@@ -1,26 +1,81 @@
 .infoUtente {
-  padding-bottom: 5%;
+  padding-bottom: 1rem;
   padding-left: 10%;
 }
+.infoUtente > h2 {
+  text-align: center;
+}
+hr{
+  margin-bottom: 1rem;
+}
+.basicInfo{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.infoContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  height: 2rem;
+}
+.infoContainer > * {
+  margin: 0.5rem;
+}
+.infoContainer > h3{
+  margin:0 0.5rem;
+  font-size: 1.2rem;
+  color: var(--button-primary-bg);
+}
+.infoContainer > h4{
+  margin:0 0.5rem;
+  font-size: 1rem;
+}
+
 #ore{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+#ore > section{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#ore .caselle{
+  text-align: center;
+  font-size: 1.2rem;
+  width: 35%;
+}
+#note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 80%;
 }
-.note {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 45%;
-  margin-top: 5%;
+#note textarea{
+  margin-top: 0.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
 }
 
 .caselle {
-  border-radius: 25px;
+  border-radius: var(--border-radius);
+  height: 3rem;
 }
 
+
 button {
+  font-weight: bold;
   padding: 2%;
   margin-top: 3%;
 }

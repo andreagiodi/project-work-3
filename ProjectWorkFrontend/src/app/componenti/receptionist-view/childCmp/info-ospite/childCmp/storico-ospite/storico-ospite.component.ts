@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './storico-ospite.component.css'
 })
 export class StoricoOspiteComponent {
-
 }

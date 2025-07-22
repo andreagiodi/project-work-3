@@ -41,8 +41,11 @@ export class DashBoardService {
     const currentUser = this.authService.getCurrentUser()();
     //based on caller, if it's an impiegato then gets a different list
     if (currentUser?.userType === 'impiegato') {
-      if (currentUser.idRuolo === 1) {
+      if (currentUser.idRuolo === 2) {
         return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/all`);
+      }else if (currentUser.idRuolo === 3) {
+        // Fixed: removed extra quote
+        return this.http.get<Prenotazione[]>(`${apiURL}/api/referente/prenotazioni`, {withCredentials: true});
       }
     }
     return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/list`, {withCredentials: true})
@@ -107,10 +110,6 @@ export class DashBoardService {
   }
 
   //REFERENTE SPECIFIC
-  getPrenotazioniReferente(): Observable<any> {
-    // Fixed: removed extra quote
-    return this.http.get(`${apiURL}/api/referente/prenotazioni`, {withCredentials: true});
-  }
 
   approvaPrenotazione(id: number): Observable<any> {
     return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/approva`, {

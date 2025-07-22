@@ -2,7 +2,7 @@ import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {apiURL} from '../app.config';
 import {Observable, tap} from 'rxjs';
-import {Prenotazione, PrenotazioneRequest, User} from '../modelli/user.model';
+import {Prenotazione, PrenotazioneRequest, User, Visite} from '../modelli/user.model';
 import {AuthService} from './auth-service.service';
 
 @Injectable({
@@ -44,8 +44,7 @@ export class DashBoardService {
       if (currentUser.idRuolo === 2) {
         return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/all`);
       }else if (currentUser.idRuolo === 3) {
-        // Fixed: removed extra quote
-        return this.http.get<Prenotazione[]>(`${apiURL}/api/referente/prenotazioni`, {withCredentials: true});
+        return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/all`);
       }
     }
     return this.http.get<Prenotazione[]>(`${apiURL}/prenotazione/list`, {withCredentials: true})
@@ -56,11 +55,14 @@ export class DashBoardService {
         })
       );
   }
-
+/*
+  return this.http.get<Prenotazione[]>(`${apiURL}/api/referente/prenotazioni`, {withCredentials: true})
+*/
   // refresh appointments (call this from components)
   refreshAppointments(): void {
     this.getPrenotazioni().subscribe({
       next: (appointments) => {
+        this.appointmentsSignal.set(appointments);
         console.log('Appointments refreshed:', appointments);
       },
       error: (error) => {
@@ -111,9 +113,9 @@ export class DashBoardService {
 
   //REFERENTE SPECIFIC
 
-  approvaPrenotazione(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/approva`, {
-      id: id // ID PRENOTAZIONE
+  approvaPrenotazione(idPrenotazione: number): Observable<any> {
+    return this.http.post(`${apiURL}/api/referente/prenotazioni/${idPrenotazione}/approva`, {
+      id: idPrenotazione // ID PRENOTAZIONE
     }, {withCredentials: true})
       .pipe(
         tap(() => {
@@ -123,9 +125,9 @@ export class DashBoardService {
       );
   }
 
-  rifiutaPrenotazione(id: number): Observable<any> {
-    return this.http.post(`${apiURL}/api/referente/prenotazioni/${id}/rifiuta`, {
-      id: id // ID PRENOTAZIONE
+  rifiutaPrenotazione(idPrenotazione: number): Observable<any> {
+    return this.http.post(`${apiURL}/api/referente/prenotazioni/${idPrenotazione}/rifiuta`, {
+      id: idPrenotazione // ID PRENOTAZIONE
     }, {withCredentials: true})
       .pipe(
         tap(() => {

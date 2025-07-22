@@ -41,6 +41,7 @@ export class InfoOspiteComponent implements OnInit {
   formData = output<{ore:{entrata:boolean|null, uscita:boolean|null}, note:string|null}>();
   onSubmit(){
     /*submit logic changing times*/
+    console.log(this.infoOspite.getRawValue())
     /*pass the form to father, allow it to send data to backend Ask andrea about 2 endpoints*/
     this.formData.emit(this.infoOspite.getRawValue())
   }

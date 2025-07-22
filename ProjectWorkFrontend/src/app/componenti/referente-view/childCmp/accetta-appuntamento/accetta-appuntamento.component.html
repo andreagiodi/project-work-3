@@ -1,34 +1,46 @@
-<div class="box">
-  <div class="sfondoAppuntamento">
-    <h1>ACCETTA APPUNTAMENTO</h1>
-    <h3>CODICE FISCALE:</h3>
-    <p>...</p>
-    <h3>COGNOME:</h3>
-    <p>...</p>
-    <h3>NOME:</h3>
-    <p>...</p>
-    <h3>EMAIL:</h3>
-    <p>...</p>
-    <h3>TELEFONO:</h3>
-    <p>...</p>
-    <h3>AZIENDA:</h3>
-    <p>...</p>
-    <h3>PROFESSIONE:</h3>
-    <p>...</p>
-    <h3>MOTIVO DELLA VISITA:</h3>
-    <p>...</p>
-    <form [formGroup]="accettaAppuntamento" class="form" (ngSubmit)="onSubmit()">
-      <h3>DATA:</h3>
-      <input class="caselle" id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
-      <h3>ORA:</h3>
-      <input class="caselle" id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
-    </form>
-    <div class="pulsanti">
-      <button class="pulsanteGiallo">MODIFICA</button>
-      <button class="pulsanteRosso">RIFIUTA</button>
-      <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!accettaAppuntamento.valid">ACCETTA</button>
+@if (passedData()) {
+  <div class="box">
+    <div class="sfondoAppuntamento">
+      <h1>ACCETTA APPUNTAMENTO</h1>
+
+      <h3>Codice Fiscale:</h3>
+      <p>{{ selectedUser?.codiceFiscale }}</p>
+      <h3>Cognome:</h3>
+      <p>{{ selectedUser?.cognome }}</p>
+      <h3>Nome:</h3>
+      <p>{{ selectedUser?.nome }}</p>
+      <h3>Email:</h3>
+      <p>{{ selectedUser?.email }}</p>
+      <h3>Telefono:</h3>
+      <p>{{ selectedUser?.telefono }}</p>
+      <h3>Azienda:</h3>
+      <p>{{ selectedUser?.azienda }}</p>
+      <h3>Idetificazione professionale:</h3>
+      <p>{{ passedData()?.identificazioneProfessionale }}</p>
+      <h3>Motivo della visita:</h3>
+      <p>{{ passedData()?.motivo }}</p>
+      <form [formGroup]="accettaAppuntamento" class="form" (ngSubmit)="onSubmit()">
+        <section>
+          <h3>Data Attuale: {{ passedData()!.dataPrenotazione.split("T")[0].slice(0, 10) }}</h3>
+          <div style="display: inline-flex; align-items: center">
+            <h3>Nuova Data:</h3>
+            <input class="caselle" id="data" type="date" placeholder="DATA" formControlName="data"/> <br/>
+          </div>
+        </section>
+        <section>
+          <h3>Ora attuale: {{ passedData()!.dataPrenotazione.split("T")[1].slice(0, 5) }}</h3>
+          <div style="display: inline-flex; align-items: center">
+            <h3>Nuova Ora:</h3>
+            <input class="caselle" id="ora" type="time" placeholder="ORA" formControlName="ora"/> <br/>
+          </div>
+        </section>
+      </form>
+      <div class="pulsanti">
+        <button class="pulsanteGiallo" type="submit" [disabled]="!accettaAppuntamento.valid">MODIFICA</button>
+        <button class="pulsanteRosso" (click)="refuse()">RIFIUTA</button>
+        <button class="pulsanteVerdeChiaro" (click)="accept()">ACCETTA</button>
+      </div>
     </div>
   </div>
-</div>
-
+}
 

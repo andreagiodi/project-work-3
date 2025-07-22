@@ -76,11 +76,6 @@ public class ReferenteController {
         if (user == null) {
             return ResponseEntity.status(401).body("Non autenticato");
         }
-
-        if (!user.isReferente()) {
-            return ResponseEntity.status(403).body("Accesso negato: ruolo non sufficiente.");
-        }
-
         try {
             Prenotazione prenotazioneAggiornata = referenteService.aggiornaStatoPrenotazione(idPrenotazione,
                     user.getUserId(), "Rifiutato");

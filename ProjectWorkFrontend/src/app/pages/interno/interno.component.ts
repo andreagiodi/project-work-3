@@ -1,7 +1,7 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
 import {AuthService} from '../../services/auth-service.service';
-import {User} from '../../modelli/user.model';
+import {Impiegato, User} from '../../modelli/user.model';
 
 @Component({
   selector: 'app-interno',
@@ -14,9 +14,9 @@ import {User} from '../../modelli/user.model';
 export class InternoComponent implements OnInit {
   router = inject(Router);
   authService = inject(AuthService);
-  currentUser: User | null = null;
+  currentUser: Impiegato | null = null;
   ngOnInit() {
-    this.currentUser = this.authService.getCurrentUser()();
+    this.currentUser = <Impiegato>this.authService.getCurrentUser()();
     this.redirectUser(this.currentUser);
   }
 
@@ -59,5 +59,11 @@ export class InternoComponent implements OnInit {
   /*logout function call*/
   logOutFunc(){
     this.authService.logout();
+  }
+  //flag to show currentUser info
+  isShowingUser = signal(false)
+  //invert state with toggle
+  toggleUserInfo(){
+    this.isShowingUser.set(!this.isShowingUser());
   }
 }

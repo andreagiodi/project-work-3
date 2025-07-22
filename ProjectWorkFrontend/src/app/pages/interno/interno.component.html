@@ -1,6 +1,6 @@
 <section class="logoutUserIcon">
   <!--user profile-->
-  <button><img src="/icons/freeUser.svg" alt="default logo"></button>
+  <button (click)="toggleUserInfo()"><img src="/icons/freeUser.svg" alt="default logo"></button>
   <!--logOut button-->
   <button class="pulsanteRosso" type="button" (click)="logOutFunc()">LOGOUT</button>
 </section>
@@ -8,3 +8,23 @@
   <router-outlet></router-outlet>
 </div>
 
+@if (isShowingUser()) {
+  <div class="boxVerdeScuro popUpClass">
+    <section class="popUp_header">
+      <h2>Informazioni utente</h2>
+      <button class="pulsanteRosso escButton" (click)="toggleUserInfo()"><img src="/icons/XcloseIcon.svg" alt="X"></button>
+    </section>
+    <div class="caselle">
+      <h4>Nome e Cognome: </h4>
+      <h3>{{ currentUser?.nome }} {{ currentUser?.cognome }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>Email: </h4>
+      <h3>{{ currentUser?.email }}</h3>
+    </div>
+    <div class="caselle">
+      <h4>idRuolo: </h4>
+      <h3>{{ currentUser?.idRuolo }}</h3>
+    </div>
+  </div>
+}

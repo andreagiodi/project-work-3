@@ -62,3 +62,10 @@ export type Prenotazione = {
   motivo: string,
   dataPrenotazione: string
 }
+
+export type Visite = {
+  id?: number,
+  id_referente: number,
+  id_prenotazione: number,
+  id_motivazione: number,
+}

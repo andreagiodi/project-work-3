@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import it.itsrizzoli.ProjectWorkBackend.Visita;
+import it.itsrizzoli.ProjectWorkBackend.repository.VisitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -31,6 +33,8 @@ public class PrenotazioneController {
 
     @Autowired
     private AuthService authService;
+    @Autowired
+    private VisitaRepository visitaRepository;
 
     @PostMapping("/create")
     public ResponseEntity<?> createPrenotazione(
@@ -62,8 +66,11 @@ public class PrenotazioneController {
             prenotazione.setIdentificazioneProfessionale(request.getIdentificazioneProfessionale());
             prenotazione.setMotivo(request.getMotivoVisita());
 
-
             Prenotazione saved = prenotazioneRepository.save(prenotazione);
+
+            Visita visita = new Visita();
+            visita.setIdPrenotazione(prenotazione.getId());
+            Visita visitSaved = visitaRepository.save(visita);
 
             return ResponseEntity.ok(saved);
         } catch (Exception e) {

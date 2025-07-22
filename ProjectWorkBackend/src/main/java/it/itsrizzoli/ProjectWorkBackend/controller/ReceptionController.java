@@ -1,14 +1,21 @@
 package it.itsrizzoli.ProjectWorkBackend.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import it.itsrizzoli.ProjectWorkBackend.Ospite;
+import it.itsrizzoli.ProjectWorkBackend.Prenotazione;
 import it.itsrizzoli.ProjectWorkBackend.dto.AuthenticatedUser;
 import it.itsrizzoli.ProjectWorkBackend.services.AuthService;
 import it.itsrizzoli.ProjectWorkBackend.services.ReceptionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/reception")
@@ -28,7 +35,7 @@ public class ReceptionController {
         if (user == null || !user.isImpiegato()) {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'ingresso");
         }
-        Ospite salvato = receptionService.registraIngresso(id);
+        Prenotazione salvato = receptionService.registraIngresso(id);
         if (salvato == null) {
             return ResponseEntity.status(404).body("Ospite non trovato");
         }

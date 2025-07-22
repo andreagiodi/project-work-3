@@ -26,7 +26,7 @@ export interface Impiegato {
 
 export type Ruolo = {
   id: number,
-  ruolo: string,
+  nome: string,
 }
 
 export type TipoOspite = {

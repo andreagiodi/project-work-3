@@ -24,4 +24,10 @@ h3{
 .caselle{
   display: flex;
   border-radius: 25px;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.caselle > *{
+  padding: 0.2rem;
 }

@@ -1,15 +1,21 @@
 package it.itsrizzoli.ProjectWorkBackend.controller;
 
-import it.itsrizzoli.ProjectWorkBackend.Ospite;
-import it.itsrizzoli.ProjectWorkBackend.dto.AuthenticatedUser;
-import it.itsrizzoli.ProjectWorkBackend.services.AuthService;
-import it.itsrizzoli.ProjectWorkBackend.services.ReceptionService;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import it.itsrizzoli.ProjectWorkBackend.Ospite;
+import it.itsrizzoli.ProjectWorkBackend.Prenotazione;
+import it.itsrizzoli.ProjectWorkBackend.dto.AuthenticatedUser;
+import it.itsrizzoli.ProjectWorkBackend.services.AuthService;
+import it.itsrizzoli.ProjectWorkBackend.services.ReceptionService;
 
 @RestController
 @RequestMapping("/reception")
@@ -21,20 +27,24 @@ public class ReceptionController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/ingresso")
+    @GetMapping("/ingresso/{id}")
     public ResponseEntity<?> registraIngresso(
             @CookieValue(value = "auth_token", required = false) String token,
-            @RequestBody Ospite ospite) {
+            @PathVariable Integer id) {
         AuthenticatedUser user = authService.verifyTokenAndGetUser(token);
         if (user == null || !user.isImpiegato()) {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'ingresso");
         }
-        ospite.setPassword(null);
-        Ospite salvato = receptionService.registraIngresso(ospite);
-        return ResponseEntity.ok(salvato);
+        Prenotazione salvato = receptionService.registraIngresso(id);
+        System.out.println("salvato: " + salvato +"id preno: "+ salvato.getId());
+        System.out.println("id: " + id);
+        if (salvato == null) {
+            return ResponseEntity.status(404).body("Ospite non trovato");
+        }
+        return ResponseEntity.ok("Entrata registrata con successo");
     }
 
-    @PostMapping("/uscita/{id}")
+    @GetMapping("/uscita/{id}")
     public ResponseEntity<?> registraUscita(
             @CookieValue(value = "auth_token", required = false) String token,
             @PathVariable Integer id) {
@@ -43,8 +53,8 @@ public class ReceptionController {
             return ResponseEntity.status(403).body("Accesso negato: solo impiegati possono registrare l'uscita");
         }
 
-        boolean esito = receptionService.registraUscita(id);
-        if (!esito) {
+        Prenotazione esito = receptionService.registraUscita(id);
+        if (esito == null) {
             return ResponseEntity.status(404).body("Ospite non trovato o già uscito");
         }
 

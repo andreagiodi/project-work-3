@@ -31,18 +31,26 @@
         <h4>Referente:</h4>
         <h3>...</h3>
       </div> <!--wait for referente to create a visita before-->
+      <div class="infoContainer caselle">
+        <h4>Entrata:</h4>
+        <h3>{{selectedPrenotazione()?.entrata!.split("T")[1].slice(0, 8)}}</h3>
+      </div>
+      <div class="infoContainer caselle">
+        <h4>Uscita:</h4>
+        <h3>{{selectedPrenotazione()?.uscita!.split("T")[1].slice(0, 8)}}</h3>
+      </div>
       <form [formGroup]="infoOspite" (ngSubmit)="onSubmit()">
         <div formGroupName="ore" id="ore">
           <section>
-            <h3>Entrata effettiva:</h3>
-            <input class="caselle" id="entrata" type="time" formControlName="entrata">
+            <h3>Entrata: </h3>
+            <input class="caselle" id="entrata" type="checkbox" formControlName="entrata">
             @if (infoOspite.get('ore.entrata')?.touched && infoOspite.get('ore.entrata')?.invalid) {
               <small class="error">{{ getErrorMessage('ore.entrata') }}</small>
             }
           </section>
           <section>
-            <h3>Ora Uscita:</h3>
-            <input class="caselle" id="uscita" type="time" formControlName="uscita">
+            <h3>Uscita: </h3>
+            <input class="caselle" id="uscita" type="checkbox" formControlName="uscita">
             @if (infoOspite.get('ore.uscita')?.touched && infoOspite.get('ore.uscita')?.invalid) {
               <small class="error">{{ getErrorMessage('ore.uscita') }}</small>
             }

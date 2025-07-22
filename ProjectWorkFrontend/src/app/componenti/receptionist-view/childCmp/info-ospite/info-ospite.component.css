@@ -52,8 +52,7 @@ hr{
 }
 #ore .caselle{
   text-align: center;
-  font-size: 1.2rem;
-  width: 35%;
+  width: 10%;
 }
 #note {
   display: flex;

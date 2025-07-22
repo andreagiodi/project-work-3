@@ -31,16 +31,21 @@ export class ReceptionistViewComponent {
     });
   }
   //get form data from custom output event
-  getFormData(formData:{ore:{entrata:boolean|null, uscita:boolean|null}, note:string|null}){
+  async getFormData(formData:{ore:{entrata:boolean|null, uscita:boolean|null}, note:string|null}){
     const entrata = formData.ore.entrata;
     if(entrata) {
-      this.dashboardService.setEntrataOspite(this.selectedUser?.id!)
+      const resposne = await firstValueFrom(this.dashboardService.setEntrataOspite(this.selectedPrenotazione?.id!));
+      console.log('Entrata sent', resposne);
     }
     const uscita = formData.ore.uscita;
     if(uscita) {
-      this.dashboardService.setUscitaOspite(this.selectedUser?.id!)
+     const response = await firstValueFrom(this.dashboardService.setUscitaOspite(this.selectedPrenotazione?.id!));
+      console.log('Uscita sent', response);
     }
     const note = formData.note;
-    if(note != ''){}
+    if(note != ''){
+      /*something with notes...not implemented*/
+      console.log('Note sent');
+    }
   }
 }

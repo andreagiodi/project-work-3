@@ -1,16 +1,17 @@
 package it.itsrizzoli.ProjectWorkBackend.services;
 
-import it.itsrizzoli.ProjectWorkBackend.Ospite;
-import it.itsrizzoli.ProjectWorkBackend.Prenotazione;
-import it.itsrizzoli.ProjectWorkBackend.repository.OspiteRepository;
-import it.itsrizzoli.ProjectWorkBackend.repository.PrenotazioneRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import it.itsrizzoli.ProjectWorkBackend.Ospite;
+import it.itsrizzoli.ProjectWorkBackend.Prenotazione;
+import it.itsrizzoli.ProjectWorkBackend.repository.OspiteRepository;
+import it.itsrizzoli.ProjectWorkBackend.repository.PrenotazioneRepository;
 
 @Service
 public class ReceptionService {
@@ -21,30 +22,27 @@ public class ReceptionService {
     @Autowired
     private PrenotazioneRepository prenotazioneRepository;
 
-    public Ospite registraIngresso(Integer idOspite) {
-        Ospite ospite = ospiteRepository.findById(idOspite).orElse(null);
+    public Prenotazione registraIngresso(Integer idPrenotazione) {
+        Prenotazione prenotazione = prenotazioneRepository.findById(idPrenotazione).orElse(null);
+        if (prenotazione == null) return null;
+
+        Ospite ospite = ospiteRepository.findById(prenotazione.getIdOspite()).orElse(null);
         if (ospite == null) return null;
 
-        Prenotazione prenotazione = new Prenotazione();
-        prenotazione.setIdOspite(ospite.getId());
         prenotazione.setEntrata(LocalDateTime.now());
-        prenotazione.setStato(1);
         prenotazioneRepository.save(prenotazione);
 
-        return ospite;
+        return prenotazione;
     }
 
-    public boolean registraUscita(Integer idOspite) {
-        Iterable<Prenotazione> prenotazioni = prenotazioneRepository.findByIdOspite(idOspite);
-        for (Prenotazione p : prenotazioni) {
-            if (p.getStato() != null && p.getStato() == 1 && p.getUscita() == null) {
-                p.setUscita(LocalDateTime.now());
-                p.setStato(2);
-                prenotazioneRepository.save(p);
-                return true;
-            }
-        }
-        return false;
+    public Prenotazione registraUscita(Integer idPrenotazione) {
+        Prenotazione prenotazione = prenotazioneRepository.findById(idPrenotazione).orElse(null);
+        if (prenotazione == null) return null;
+
+        prenotazione.setUscita(LocalDateTime.now());
+        prenotazioneRepository.save(prenotazione);
+
+        return prenotazione;
     }
 
     public boolean segnaNonPresentato(Integer idOspite) {

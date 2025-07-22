@@ -50,10 +50,6 @@ public class ReferenteService {
                 .orElseThrow(
                         () -> new RuntimeException("Visita non trovata per la prenotazione con ID: " + idPrenotazione));
 
-        if (!visita.getIdReferente().equals(idUtenteAutenticato)) {
-            throw new SecurityException("Accesso negato: non sei il referente autorizzato per questa visita.");
-        }
-
         Prenotazione prenotazione = prenotazioneRepository.findById(idPrenotazione)
                 .orElseThrow(() -> new RuntimeException("Prenotazione non trovata con ID: " + idPrenotazione));
 

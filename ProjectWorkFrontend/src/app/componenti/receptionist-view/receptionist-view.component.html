@@ -1,9 +1,9 @@
 <div class="baseLayout">
   <div id="prossimiAppuntamentiRec">
-    <app-prossimi-appuntamenti/>
+    <app-prossimi-appuntamenti (passData)="getEntryData($event)"/>
   </div>
   <div id="infoUtente">
-    <app-info-ospite></app-info-ospite>
+    <app-info-ospite (formData)="getFormData($event)" [selectedPrenotazione]="selectedPrenotazione" [selectedUser]="selectedUser"></app-info-ospite>
   </div>
   <div id="storicoRec">
     <app-storico-ospite></app-storico-ospite>

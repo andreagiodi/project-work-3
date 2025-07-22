@@ -1,11 +1,6 @@
 <div class="adminClass baseLayout">
-  <div class="pulsanti">
-    <button class="pulsanteVerdeScuro">ADMIN</button>
-    <button class="pulsanteVerdeScuro">REFERENTE</button>
-    <button class="pulsanteVerdeScuro">RECEPTIONIST</button>
-  </div>
   <section class="utenti">
-    <app-utenti-admin></app-utenti-admin>
+    <app-utenti-admin (dataPassed)="getData($event)"></app-utenti-admin>
   </section>
   <section class="storico">
     <app-storico-utente></app-storico-utente>
@@ -14,7 +9,7 @@
     <app-warning></app-warning>
   </section>
   <section class="utente">
-    <app-utente></app-utente>
+    <app-utente [dataPassed]="dataPassed"></app-utente>
   </section>
 </div>
 

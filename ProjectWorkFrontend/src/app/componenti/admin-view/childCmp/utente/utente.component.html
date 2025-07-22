@@ -1,15 +1,15 @@
 <div class="box" id="utente">
   <form [formGroup]="utente" (ngSubmit)="onSubmit()">
     <h1>Utente</h1>
-    <h3>ID: ...</h3>
+    <h3>ID: {{dataPassed()?.id}}</h3>
     <div class="ruolo">
       <h3>RUOLO:</h3>
       <input class="caselle" id="ruolo" type="text" placeholder="RUOLO" formControlName="ruolo">
       <button class="pulsanteVerdeScuro">VEDI DETTAGLI</button>
     </div>
-    <h3>COGNOME:...</h3>
-    <h3>NOME:...</h3>
-    <h3>EMAIL:...</h3>
+    <h3>Cognome: {{dataPassed()?.cognome}}</h3>
+    <h3>Npme: {{dataPassed()?.nome}}</h3>
+    <h3>Email: {{dataPassed()?.email}}</h3>
     <div class="password">
       <h3>PASSWORD:</h3>
       <input class="caselle" id="password" type="text" placeholder="PASSWORD" formControlName="password">

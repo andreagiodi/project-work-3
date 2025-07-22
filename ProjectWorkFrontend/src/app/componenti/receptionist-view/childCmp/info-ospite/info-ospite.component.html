@@ -1,29 +1,79 @@
 <div class="infoUtente">
-  <h3>NOME:...</h3>
-  <h3>COGNOME:...</h3>
-  <h3>NOME AZIENDA:...</h3>
-  <h3>ORA VISITA:...</h3>
-  <h3>REFERENTE:...</h3>
-  <form [formGroup]="infoOspite" (ngSubmit)="onSubmit()">
+  @if (selectedUser() != null) {
+    <h2>Informazioni Ospite:</h2>
+    <section class="basicInfo">
+      <div class="infoContainer caselle">
+        <h4>Nome:</h4>
+        <h3>{{ selectedUser()?.nome }}</h3>
+      </div>
+      <div class="infoContainer caselle">
+        <h4>Cognome:</h4>
+        <h3>{{ selectedUser()?.cognome }}</h3>
+      </div>
+      <div class="infoContainer caselle">
+        <h4>Azienda:</h4>
+        <h3>{{ selectedUser()?.azienda }}</h3>
+      </div>
+    </section>
+    <section class="basicInfo">
+      <div class="infoContainer caselle">
+        <h4>Ora prenotata:</h4>
+        <h3> {{ selectedPrenotazione()?.dataPrenotazione!.split("T")[1].slice(0, 5) }}</h3>
+      </div>
+      <div class="infoContainer caselle">
+        <h4>Stato:</h4>
+        <h3>{{ stateList.get(selectedPrenotazione()!.stato) }}</h3>
+      </div>
+    </section>
+    <hr>
+    @if (selectedPrenotazione()?.stato === 2) {
+      <div class="infoContainer caselle">
+        <h4>Referente:</h4>
+        <h3>...</h3>
+      </div> <!--wait for referente to create a visita before-->
+      <div class="infoContainer caselle">
+        <h4>Entrata:</h4>
+        @if (selectedPrenotazione()?.entrata) {
+          <h3>{{ selectedPrenotazione()?.entrata!.split("T")[1].slice(0, 8) }}</h3>
+        }
+      </div>
+      <div class="infoContainer caselle">
+        <h4>Uscita:</h4>
+        @if (selectedPrenotazione()?.uscita) {
+          <h3>{{ selectedPrenotazione()?.uscita!.split("T")[1].slice(0, 8) }}</h3>
+        }
+      </div>
+      <form [formGroup]="infoOspite" (ngSubmit)="onSubmit()">
+        <div formGroupName="ore" id="ore">
+          <section>
+            <h3>Entrata: </h3>
+            <input class="caselle" id="entrata" type="checkbox" formControlName="entrata">
+            @if (infoOspite.get('ore.entrata')?.touched && infoOspite.get('ore.entrata')?.invalid) {
+              <small class="error">{{ getErrorMessage('ore.entrata') }}</small>
+            }
+          </section>
+          <section>
+            <h3>Uscita: </h3>
+            <input class="caselle" id="uscita" type="checkbox" formControlName="uscita">
+            @if (infoOspite.get('ore.uscita')?.touched && infoOspite.get('ore.uscita')?.invalid) {
+              <small class="error">{{ getErrorMessage('ore.uscita') }}</small>
+            }
+          </section>
+        </div>
 
-    <div formGroupName="ore" id="ore">
-      <h3>ENTRA ORE:</h3>
-      <input class="caselle" id="entarata" type="time" formControlName="entrata">
-      <h3>ESCE ORE:</h3>
-      <input class="caselle" id="uscita" type="time" formControlName="uscita">
-    </div>
+        <div id="note">
+          <label for="note">Note:</label>
+          <textarea class="caselle" id="note" placeholder="Scrivi qui..." formControlName="note"> </textarea>
+        </div>
 
-    <div class="note">
-      <label for="note">Note:</label>
-      <textarea class="caselle" id="note" placeholder="Scrivi qui..." formControlName="note"> </textarea>
-    </div>
-
-    <div class="pulsanti">
-      <button class="pulsanteRosso">NON PRESENTATO</button>
-      <button class="pulsanteGiallo">MODIFICA</button>
-      <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
-    </div>
-  </form>
-  <router-outlet></router-outlet>
+        <div class="pulsanti">
+          <button class="pulsanteRosso">NON PRESENTATO</button>
+          <button class="pulsanteGiallo">MODIFICA</button>
+          <button class="pulsanteVerdeChiaro" type="submit" [disabled]="!infoOspite.valid">APPLICA</button>
+        </div>
+      </form>
+    }
+    <router-outlet></router-outlet>
+  }
 </div>
 

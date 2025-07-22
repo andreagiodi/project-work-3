@@ -1,7 +1,7 @@
 <div class="box">
   <h1>PRENOTA APPUNTAMENTO</h1>
-  <form [formGroup]="prenotaAppOspite" (ngSubmit)="onSubmit()">
-    <div formGroupName="dataOra">
+  <form [formGroup]="prenotaAppOspite" class="prenotaAppOspite" (ngSubmit)="onSubmit()">
+    <div formGroupName="dataOra"  id="dataOra">
       <h3>Data:</h3>
       <input class="caselle" id="data" type="date" [min]="today" formControlName="data">
       <h3>Ora:</h3>
@@ -11,16 +11,14 @@
       <small class="error">
         {{ getErrorMessage('dataOra') }}
       </small>
-    }<br/>
+    }
     <h3>Indentificazione professionale:</h3>
     <input class="caselle" id="professione" type="text" formControlName="professione">
     <h3>Motivo della visita:</h3>
     <div class="motivo">
       <textarea class="caselle" id="motivo" type="text" placeholder="Scrivi qui..." formControlName="motivo"></textarea>
     </div>
-    <div class="pulsanti">
       <button type="submit" [disabled]="!prenotaAppOspite.valid" class="pulsanteVerdeScuro">PrenotaMe</button>
-    </div>
     @if(feedBack) { <h4>{{feedBack}}</h4>} <!--prints feedback message-->
   </form>
 </div>

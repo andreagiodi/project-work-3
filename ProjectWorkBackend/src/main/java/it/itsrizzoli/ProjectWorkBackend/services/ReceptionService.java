@@ -21,16 +21,17 @@ public class ReceptionService {
     @Autowired
     private PrenotazioneRepository prenotazioneRepository;
 
-    public Ospite registraIngresso(Ospite ospite) {
-        Ospite savedOspite = ospiteRepository.save(ospite);
+    public Ospite registraIngresso(Integer idOspite) {
+        Ospite ospite = ospiteRepository.findById(idOspite).orElse(null);
+        if (ospite == null) return null;
 
         Prenotazione prenotazione = new Prenotazione();
-        prenotazione.setIdOspite(savedOspite.getId());
+        prenotazione.setIdOspite(ospite.getId());
         prenotazione.setEntrata(LocalDateTime.now());
         prenotazione.setStato(1);
         prenotazioneRepository.save(prenotazione);
 
-        return savedOspite;
+        return ospite;
     }
 
     public boolean registraUscita(Integer idOspite) {

@@ -57,7 +57,7 @@
   /*Borders*/
   --border-color: var(--gray-silver); /*NEW --> modified border color to match Figma*/
   --input-border: 1px solid var(--border-color); /*NEW --> predefined border style*/
-  --border-radius: 15px;
+  --border-radius: 8px;
 
   /*Feedback colors*/
   --color-success: var(--status-success);

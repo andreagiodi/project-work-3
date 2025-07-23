@@ -54,7 +54,7 @@ body {
   background-color: var(--button-secondary-bg);
   color: var(--button-secondary-text);
   border: var(--input-border);
-  font-size: 0.75rem; /*text in input based on base font-size*/
+  font-size: 0.8rem; /*text in input based on base font-size*/
 }
 
 /*all buttons style these same characteristics, therefore unified in one general tag selector*/
@@ -210,4 +210,10 @@ HOW?
 .escButton img{
   width: 100%;
   height: 100%;
+}
+.error{
+  color: var(--color-error);
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
 }

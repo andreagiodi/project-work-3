@@ -31,7 +31,7 @@
   }
   @if (currentUser?.userType === 'impiegato') {
     <div id="boxHeaderWrapper">
-      <h1>APPUNTI IN ATTESA:</h1>
+      <h1>Prossimi Appuntamenti:</h1>
     </div>
     <section id="listWrapper">
       @for (date of groupedAppointments(); track date[0]) {

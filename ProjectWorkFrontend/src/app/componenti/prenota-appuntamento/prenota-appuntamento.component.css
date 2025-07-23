@@ -9,9 +9,9 @@ h1{
 }
 
 .caselle{
-  font-size: 1rem;
   border-radius: var(--border-radius);
-  width:50%;
+  width:60%;
+  height: 1.5rem;
 }
 
 .pulsanteVerdeScuro{
@@ -20,5 +20,4 @@ h1{
   margin: 1rem auto;
   font-weight: bold;
 }
-
 
